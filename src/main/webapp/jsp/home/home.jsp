@@ -190,8 +190,8 @@
     <div class="exclude">
 
     <div class="text-divtag"><span class="text-decoration" style="font-size:30px;">그렇다면, 시간이 지나면 잊어버린다는 사실마저 부정되어야 마땅할까요?</span></div>
-    <div class="text-divtag"><span class="text-decoration" style="font-size:30px;">사람마다 기억할 수 있는 시간이 다르다면, 그 시간을 측정해주는 기계가 있으면 되지 않을까요?</span></div>
-    <div class="text-divtag"><span class="text-decoration" style="font-size:30px;">단어충전소는 고객마다 단어마다 기억할 수 있는 시간을 체크해드립니다. 아는지 모르는지만 체크해주세요. </span></div>
+    <div class="text-divtag" style="margin-top:3vh"><span class="text-decoration" style="font-size:30px;">사람마다 기억할 수 있는 시간이 다르다면, 그 시간을 측정해주는 기계가 있으면 되지 않을까요?</span></div>
+    <div class="text-divtag" style="margin-top:3vh"><span class="text-decoration" style="font-size:30px;">단어충전소는 고객마다 단어마다 기억할 수 있는 시간을 체크해드립니다.  </span></div>
 
 
 
