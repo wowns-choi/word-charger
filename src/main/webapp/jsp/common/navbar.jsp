@@ -5,6 +5,36 @@
 
 <html>
 <head>
+    <!-- ajax 자바스크립트 시작 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myForm').submit(function(e) {
+                e.preventDefault();
+
+                var voca = $('[name="voca"]').val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/findVoca",
+                    data: { voca: voca },
+                    success: function(response) {
+                        $('#modalText').text(response.voca);
+                        $('#correctAnswer').text(response.correctAnswer);
+                        $('#myModal').show();
+                    }
+                });
+            });
+
+            $('.close').click(function() {
+                $('#myModal').hide();
+            });
+        });
+    </script>
+    <!-- ajax 자바스크립트 종료 -->
+
+
+
     <!--단어충전소 글꼴-->
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
 
@@ -105,8 +135,8 @@
         </li>
       </ul>
 
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="단어" aria-label="Search">
+      <form href="/find" id="myForm" class="d-flex" role="search">
+        <input name="voca" class="form-control me-2" type="search" placeholder="단어" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">검색</button>
       </form>
 
@@ -118,6 +148,15 @@
   </div>
 </nav>
 
+    <!-- 모달창 시작 -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalText"></p>
+                <p id="correctAnswer"></p>
+            </div>
+        </div>
+    <!-- 모달창 종료 -->
 
     <!-- 부트스트랩 시작 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
