@@ -5,6 +5,11 @@
 
 <html>
 <head>
+
+    <!--findmodal.css 시작-->
+        <link rel="stylesheet" type="text/css" href="../css/findmodal.css">
+    <!--findmodal.css 종료-->
+
     <!-- ajax 자바스크립트 시작 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -17,17 +22,18 @@
                 $.ajax({
                     type: "POST",
                     url: "/findVoca",
-                    data: { voca: voca },
+                    data: { voca : voca },
                     success: function(response) {
                         $('#modalText').text(response.voca);
                         $('#correctAnswer').text(response.correct);
-                        $('#myModal').show();
+                        $('#mymyModal').show();
+                        console.log("hello");
                     }
                 });
             });
 
             $('.close').click(function() {
-                $('#myModal').hide();
+                $('#mymyModal').hide();
             });
         });
     </script>
@@ -107,56 +113,65 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">단어 충전소</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Introduction</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Charger</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Contact
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><hr class="dropdown-divider"></li>
-          </ul>
-        </li>
-      </ul>
-
-      <form href="/find" id="myForm" class="d-flex" role="search">
-        <input name="voca" class="form-control me-2" type="search" placeholder="단어" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">검색</button>
-      </form>
-
-      <a href="/loginForm" class="login-button">  <button type="button" class="btn btn-outline-primary"> Login</button></a>
-
-
-
-    </div>
-  </div>
-</nav>
-
-    <!-- 모달창 시작 -->
-        <div id="myModal" class="modal">
+    <!-- find Voca 모달창 시작 -->
+        <div id="mymyModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p id="modalText"></p>
                 <p id="correctAnswer"></p>
             </div>
         </div>
-    <!-- 모달창 종료 -->
+    <!--  find Voca 모달창 종료 -->
+
+
+    <!-- nav 바 시작  -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">단어 충전소</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Introduction</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Charger</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contact
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <form  method="post" id="myForm" class="d-flex" >
+                    <input name="voca" class="form-control me-2" type="text" placeholder="단어" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">검색</button>
+                    </form>
+
+                    <a href="/loginForm" class="login-button">
+                        <button type="button" class="btn btn-outline-primary">
+                            Login
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    <!-- nav 바 종료  -->
+
+
+
+
 
     <!-- 부트스트랩 시작 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
