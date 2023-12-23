@@ -20,7 +20,7 @@
                     data: { voca: voca },
                     success: function(response) {
                         $('#modalText').text(response.voca);
-                        $('#correctAnswer').text(response.correctAnswer);
+                        $('#correctAnswer').text(response.correct);
                         $('#myModal').show();
                     }
                 });
