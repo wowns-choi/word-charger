@@ -51,7 +51,10 @@
         -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
         transform: translateX(-9%) translateY(-25%) rotate(45deg);
     }
+    .atagAndTextContainer{
+        flex-direction: column;
 
+    }
 
 
 /*버튼 관련 css 종료 */

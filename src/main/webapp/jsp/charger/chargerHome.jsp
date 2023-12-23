@@ -62,7 +62,7 @@
             text-align: left; /* 텍스트를 왼쪽으로 정렬 */
             overflow: hidden; /* 내부 컨텐츠가 밖으로 넘치지 않도록 함 */
 
-            margin-bottom: 10vh;
+            margin-bottom: 2vh;
         }
 
         .left-WC, .right-WC {
@@ -118,6 +118,18 @@
             max-width: 100%; /* 이미지가 컨테이너 너비를 넘지 않도록 함 */
             max-height: 100%; /* 이미지가 컨테이너 높이를 넘지 않도록 함 */
         }
+        .button_containering {
+            display: flex; /* Flexbox를 활성화 */
+            flex-direction: row; /* 요소들을 가로로 나열 */
+            justify-content: center; /* 요소들을 수평 중앙에 정렬 */
+            align-items: center; /* 요소들을 수직 중앙에 정렬 */
+            margin: 10px; /* 필요에 따라 마진 조정 */
+            font-family: 'MYYeongnamnu';
+            font-size: 12px;
+            gap: 20px; /* 버튼 사이의 간격 설정 */
+        }
+
+
     </style>
 </head>
 <body>
@@ -133,7 +145,7 @@
                 <img src="충전기.png" style="max-width:100%; max-height:100%;  ">
             </div>
             <div class="right-WC">
-                <div class="text-divtag">억지로 외우지 마세요. </div>
+
                 <div class="text-divtag">5초 안에 정답을 고르세요. </div>
                 <div class="text-divtag">틀렸다면, 내일도 하면 됩니다. </div>
                 <div class="text-divtag">이미 알고 있는 단어를 다시 보는 시간을    아껴서, 모르는 것만 외우게 해드릴게요  </div>
@@ -142,101 +154,115 @@
 
         </div>
 
-<!--버튼시작-->
 
-<span>
-        <div class="button_containering">
-            <a href="/zeroToHundred" style="text-decoration: none;">
-                <button class="bts">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-</span><span>
-        <div class="button_containering">
-            <a href="/zeroToHundred">
-                <button class="bts">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-</span>
-        <div class="button_container">
-            <a href="/zeroToHundred">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
+        <!--버튼시작-->
+            <div class="button_containering">
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
 
-        <div class="button_container">
-            <a href="/zeroToHundred">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-
-        <div class="button_container">
-            <a href="/zeroToHundred">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-
-        <div class="button_container">
-            <a href="/zeroToHundred">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-
-        <div class="button_container">
-            <a href="/zeroToHundred">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-
-        <div class="button_container">
-            <a href="/zeroToHundred" class="atag">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-
-        <div class="button_container">
-            <a href="/zeroToHundred">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-
-        <div class="button_container">
-            <a href="/zeroToHundred">
-                <button class="btn">
-                    <span>1 ~ 100</span>
-                </button>
-            </a>
-            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
-        </div>
-
-<!-- 버튼종료-->
-
+            </div>
+            <!-- 버튼 두번째 줄 시작 -->
+            <div class="button_containering">
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+                    <div class="atagAndTextContainer">
+                        <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
+                            <button class="bts" style="font-size:18px;">
+                                <span>1 ~ 100</span>
+                            </button>
+                        </a>
+                        <div>
+                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                        </div>
+                    </div>
+            </div>
+        <!-- 버튼종료-->
     </div>
 
 
