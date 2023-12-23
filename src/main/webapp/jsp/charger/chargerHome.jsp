@@ -135,7 +135,7 @@
 <body>
 
 <!--네브 바 -->
-    <c:import url="/jsp/common/navbar.jsp" />
+    <c:import url="/jsp/common/loginedNavbar.jsp" />
 <!--네브 바 종료 -->
 
     <div class="exclude">

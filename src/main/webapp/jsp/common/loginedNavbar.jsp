@@ -159,16 +159,20 @@
                     <button class="btn btn-outline-success" type="submit">검색</button>
                     </form>
 
+
+                    <div class="login-button" style="font-family: 'MYYeongnamnu';">
+                            ${loginedMember.userName}님 어서오세요.
+                    </div>
+
                     <a href="/loginForm" class="login-button">
                         <button type="button" class="btn btn-outline-primary">
-                            Login
+                            로그아웃
                         </button>
                     </a>
-                    <a href="/JoinForm" class="login-button">
-                        <button type="button" class="btn btn-outline-primary">
-                            Join
-                        </button>
-                    </a>
+
+
+
+
 
                 </div>
             </div>

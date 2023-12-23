@@ -42,6 +42,9 @@
             font-size: 100px;
              font-weight: bold;
              margin-bottom:5vh;
+
+
+
         }
         .subText{
             font-family: 'NanumSquareNeo-Variable';
@@ -69,14 +72,12 @@
         }
 
         .left-WC{
-            width: 40%;
+            width: 60%;
             height: 100%;
-            border: 10px solid #5496ff;
-            border-radius: 25px;
-            border-style: dotted;
+
         }
         .right-WC{
-            width: 60%;
+            width: 40%;
             height: 100%;
             font-family: 'MYYeongnamnu';
             font-weight: bold;
@@ -87,7 +88,7 @@
             border-style: double;
         }
         .text-divtag{
-            margin-top: 1vh;
+            margin-top: 2.5vh;
         }
         .text-decoration{
             color: #001840;
@@ -112,68 +113,81 @@
             max-width: 100%; /* 이미지가 컨테이너 너비를 넘지 않도록 함 */
             max-height: 100%; /* 이미지가 컨테이너 높이를 넘지 않도록 함 */
         }
+        .formForm{
+            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
+            align-items: center; /* 세로 중앙 정렬 */
+            justify-content: center; /* 가로 중앙 정렬 */
+            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
+            gap: 5px;
+            margin-top: 5vh;
+        }
+        .idInput, .passwordInput{
+            width: 20vw;
+            height: 5vh;
+            border-radius: 25px;
+            font-size: 16px;
+
+        }
+        .loginButton{
+            color: #001840;
+            font-size: 20px;
+            background: #fafafa;
+            /*#fcc065 주황컬러*/
+            border-radius: 1px;
+            box-sizing: border-box;  /* border와 padding을 요소의 총 크기에 포함 */
+            padding: 7px;
+            font-family: 'MYYeongnamnu';
+            transition: all 0.3s ease;
+        }
+        .loginButton:hover {
+            /* 마우스 호버 시 애니메이션 적용 */
+            animation: blink-animation 5s ease infinite;
+        }
+
+        @keyframes blink-animation {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
     </style>
 </head>
 <body>
 
-<!--네브 바 -->
-    <c:import url="/jsp/common/navbar.jsp" />
-<!--네브 바 종료 -->
+
 
     <div class="exclude">
-        <div class="charge-your-brain">
-        Charge Your Brain !!
+
+
+        <div class="charge-your-brain" >
+         [ Login ]
         </div>
-        <div class="subText">
-            단어 충전소를 통해서 잊어버린 영어단어를 충전하세요 !!
-        </div>
+
         <div class="whitecontainer">
             <div class="left-WC">
+            <form:form modelAttribute="loginDTO" method="post" class="formForm">
+                <form:input class="idInput" path="id"  placeholder="ID"/>
+                ${idIncorrectMessage}
+                <form:input class="passwordInput" path="password" placeholder="Password"/>
+                ${passwordIncorrectMessage}
+                <button type="submit"  class="loginButton" >
+                    Login
+                </button>
+            </form:form>
 
-                    <img src="head.jpeg" style="max-width:100%; max-height:100%;  ">
 
             </div>
             <div class="right-WC">
-                <div class="text-divtag">에빙하우스의 망각곡선에 따르면,</div>
-                <div class="text-divtag"><span class="text-decoration">20분 뒤</span>에는 <span class="text-decoration">58%</span> 만이,</div>
-                <div class="text-divtag"><span class="text-decoration">1시간 뒤</span>에는 <span class="text-decoration">44%</span> 만이,</div>
-                <div class="text-divtag"><span class="text-decoration">하루 뒤</span>에는 <span class="text-decoration">33%</span> 만이</div>
-                <div class="text-divtag">기억에 남습니다.</div>
+
+                <div class="text-divtag"><a href="#" style="text-decoration: none;"><span class="text-decoration">아이디 찾기</span></a></div>
+                <div class="text-divtag"><a href="#" style="text-decoration: none;"><span class="text-decoration">비밀번호 찾기</span></a></div>
+                <div class="text-divtag"><a href="#" style="text-decoration: none;"><span class="text-decoration">회원가입 하기</span></a></div>
+
 
             </div>
         </div>
-    </div>
-
-
-    <!-- 2page -->
-    <div class="exclude">
-            <div class="charge-your-brain" style="margin-right:30vw; font-size:130px; margin-bottom:0;">
-                But,
-            </div>
-            <div class="subText" style="margin-left:10vw; font-style: italic;font-size:25px;  margin-top:0; margin-bottom:3vh;">
-                "The subject was the only one, being oneself."
-            </div>
-            <div class="whitecontainer">
-                <div class="left-WC">
-                        <img src="ebinghaus.jpeg" style="max-width:100%; max-height:100%;  ">
-                </div>
-                <div class="right-WC">
-                    <div class="text-divtag"><span class="text-decoration">피험자가 자기자신 1명 뿐이었으며... -위키백과 </span></div>
-                    <div class="text-divtag" style="border-top: 2px solid black; margin-top:30px;">20분 뒤에 58% 만이 기억에 남는다는 것은 에빙하우스 본인에 한정된 진실이었기 때문에, 많은 사람들이 망각이론에 따라 공부했지만 실패했습니다.
-                </div>
-            </div>
-    </div>
-
-    <!-- 3page -->
-    <div class="exclude">
-        <div class="text-divtag"><span class="text-decoration" style="font-size:30px;">그렇다면, 시간이 지나면 잊어버린다는 사실마저 부정되어야 마땅할까요?</span></div>
-        <div class="text-divtag" style="margin-top:3vh"><span class="text-decoration" style="font-size:30px;">사람마다 기억할 수 있는 시간이 다르다면, 그 시간을 측정해주는 기계가 있으면 되지 않을까요?</span></div>
-        <div class="text-divtag" style="margin-top:3vh"><span class="text-decoration" style="font-size:30px;">단어충전소는 고객마다 단어마다 기억할 수 있는 시간을 체크해드립니다.  </span></div>
     </div>
 
 
 
 </body>
 </html>
-
-
