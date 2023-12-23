@@ -1,0 +1,57 @@
+/*버튼 관련 css 시작 */
+
+    .button_containering {
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 30%;
+        flex: 0 0 calc(20% - 10px); /* 좌우 마진을 고려하여 계산 */
+        margin: 5px; /* 상하좌우 마진 설정 */
+    }
+
+
+    .bts {
+        border: none;
+        display: block;
+        text-align: center;
+        cursor: pointer;
+        text-transform: uppercase;
+        outline: none;
+        overflow: hidden;
+        position: relative;
+        color: #222;
+        font-weight: 700;
+        font-size: 15px;
+        background-color: #fff;
+        padding: 17px 60px;
+        margin: 0 auto;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+    }
+
+    .bts span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .bts:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 490%;
+        width: 140%;
+        background: #fcc065;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+        -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+        transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    }
+
+    .bts:hover:after {
+        -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+        transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    }
+
+
+
+/*버튼 관련 css 종료 */
