@@ -1,5 +1,8 @@
 package firstportfolio.wordcharger.controller;
 
+import firstportfolio.wordcharger.DTO.MemberDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,8 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ChargerController {
 
     @GetMapping("/chargerHome")
-    public String chargerHomeController(){
-
+    public String chargerHomeController(HttpServletRequest request){
         return "/charger/chargerHome";
     }
 }

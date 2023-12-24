@@ -141,15 +141,17 @@
                             <a class="nav-link" href="/chargerHome">Charger</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="/faq" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Contact
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="/faq">자주 묻는 질문</a></li>
+                                <li><a class="dropdown-item" href="/contact">연락처</a></li>
+                                <li><a class="dropdown-item" href="/wayToCome">오시는 길</a></li>
                                 <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/board">자유게시판</a></li>
+                                <li><a class="dropdown-item" href="/myWriting">내가 작성한 글</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -164,7 +166,7 @@
                             ${loginedMember.userName}님 어서오세요.
                     </div>
 
-                    <a href="/loginForm" class="login-button">
+                    <a href="/logout" class="login-button">
                         <button type="button" class="btn btn-outline-primary">
                             로그아웃
                         </button>

@@ -112,6 +112,7 @@
             max-width: 100%; /* 이미지가 컨테이너 너비를 넘지 않도록 함 */
             max-height: 100%; /* 이미지가 컨테이너 높이를 넘지 않도록 함 */
         }
+
     </style>
 </head>
 <body>
@@ -170,6 +171,42 @@
         <div class="text-divtag" style="margin-top:3vh"><span class="text-decoration" style="font-size:30px;">사람마다 기억할 수 있는 시간이 다르다면, 그 시간을 측정해주는 기계가 있으면 되지 않을까요?</span></div>
         <div class="text-divtag" style="margin-top:3vh"><span class="text-decoration" style="font-size:30px;">단어충전소는 고객마다 단어마다 기억할 수 있는 시간을 체크해드립니다.  </span></div>
     </div>
+
+
+    <!-- login모달 시작-->
+
+            <script>
+              $(document).ready(function() {
+                // URL에서 파라미터 확인
+                const urlParams = new URLSearchParams(window.location.search);
+                const showModal = urlParams.get('modal');
+
+                // 'modal=true'인 경우 모달 창 표시
+                if (showModal === 'true') {
+                  $('#exampleModal').modal('show');
+                }
+              });
+            </script>
+            <div class="">
+
+            </div>
+
+            <div class="modal" id="exampleModal" tabindex="-1"  style="position: absolute; z-index:1500;">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">로그인이 필요합니다.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>you need to logined</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+    <!-- login모달 종료-->
 
 
 
