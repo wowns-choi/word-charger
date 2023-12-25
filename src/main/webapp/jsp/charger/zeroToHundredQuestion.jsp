@@ -15,6 +15,37 @@
         <link rel="stylesheet" type="text/css" href="../css/chargerHomeYellowButton.css">
     <!--chargerHomeYellowButton.css 종료-->
 
+    <!-- ajax 자바스크립트 시작 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.answerSheetButton').on('click', function(e){
+                    e.preventDefault();
+
+                    var userAnswer = $(this).val();
+                    var vocabulary = $('[name="vocabulary"]').val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "submitAnswerSheet",
+                        data: {
+                            userAnswer: userAnswer,
+                            vocabulary: vocabulary
+                        },
+                        success: function(response){
+                            if(response.trueOrFalseBox=="correct"){
+                                window.location.href="/";
+                            } else if(response.trueOrFalseBox=="incorrect"){
+                                window.location.href="/loginForm"
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    <!-- ajax 자바스크립트 종료 -->
+
+
     <style>
         /*이거 한글 글꼴임*/
         @font-face {
@@ -153,7 +184,7 @@
             </div>
 
             <div class="down-WC">
-                <form:form action="/submitAnswerSheet" method="post">
+
                     <%
                        List<String> shuffledAnswers = (List<String>) request.getAttribute("answer");
                         for(String answer : shuffledAnswers) {
@@ -162,8 +193,8 @@
                     <%
                     }
                     %>
-                    <input type="hidden" name="voca" value="${voca}">
-                </form:form>
+                    <input type="hidden" name="vocabulary" value="${voca}">
+
             </div>
         </div>
     </div>

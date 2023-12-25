@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -17,17 +20,21 @@ public class SubmitAnswerSheetController {
 
     @PostMapping("/submitAnswerSheet")
     @ResponseBody
-    public String submitAnswerSheetControllerMethod(@RequestParam String voca, @RequestParam String userAnswer){
+    public Map<String, String> submitAnswerSheetControllerMethod(@RequestParam String vocabulary, @RequestParam String userAnswer){
+
+        log.info("voca==========={}", vocabulary);
+        log.info("userAnswer======={}", userAnswer);
+        Map<String, String> trueOrFalseMap = new ConcurrentHashMap<>();
 
         //voca = 영단어가 뭐였는지. userAnswer = 사용자가 뭘 선택했는지.
-        WordDTO findedVoca = wordMapper.findByVoca(voca);
+        WordDTO findedVoca = wordMapper.findByVoca(vocabulary);
         String correct = findedVoca.getCorrect();
         if (!userAnswer.equals(correct)) {
-            return "/charger/wrongCaseRenderingPage";
+            trueOrFalseMap.put("trueOrFalseBox", "incorrect");
+        } else {
+            trueOrFalseMap.put("trueOrFalseBox", "correct");
         }
 
-
-
-        return "zzz";
+        return trueOrFalseMap;
     }
 }
