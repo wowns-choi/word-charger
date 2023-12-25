@@ -9,4 +9,5 @@
         select * from word where voca = #{voca}
     </select>
 
+
 </mapper>

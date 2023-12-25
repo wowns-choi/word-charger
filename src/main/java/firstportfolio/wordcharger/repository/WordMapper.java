@@ -8,4 +8,6 @@ public interface WordMapper {
 
     WordDTO findByVoca(String voca);
 
+
+
 }

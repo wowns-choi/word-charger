@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.CountMapper">
+
+
+    <select id="findRowById" resultType="CountDTO">
+        SELECT * FROM count WHERE id = #{id}
+    </select>
+
+    <insert id="CountInit">
+        INSERT INTO count VALUES (#{id},null,null,null,null,null,null,null,null,null,null)
+    </insert>
+
+    <insert id="uploadFixedDayToCount">
+        UPDATE count SET ${columnName} = ${columnName} || ',' || #{value} WHERE id = #{id}
+    </insert>
+
+    <select id="findOneColumnById" resultType="String">
+        SELECT one FROM count WHERE id = #{id}
+    </select>
+
+    <update id="deletePulledVoca">
+        UPDATE count
+        SET one = REPLACE(one, CONCAT(',',#{firstVoca}), '') WHERE id = #{id}
+    </update>
+
+
+</mapper>
