@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class zeroToHunderedController {
     private final FixedDayMapper fixedDayMapper;
     private final IncludeMapper includeMapper;
     private final WordMapper wordMapper;
-    @GetMapping("/zeroToHundred")
+    @RequestMapping("/zeroToHundred")
     public String zeroToHundredController(HttpServletRequest request){
 
         //id 꺼내기
@@ -59,7 +59,6 @@ public class zeroToHunderedController {
 
 
         //여기부터 진행해.
-
         for (Field field : reflection.getDeclaredFields()) {
             try {
                 Object value = field.get(idMappingRowInInclude);
@@ -70,51 +69,59 @@ public class zeroToHunderedController {
                 throw new RuntimeException(e);
             }
         }
+        //여기에 우리가 틀렸던 단어가 들어있어. 왜???????????
+        log.info("falseFields=========================================={}", falseFields);
+
 
         for (String falseFieldName : falseFields) {
             //a = falseFieldName
 
             //a= include 테이블에 있던 false 라는 값을 가진 컬럼의 이름
-            String findedFixedDay = fixedDayMapper.findFixedDayByIdAndColumn(id, falseFieldName);
+            Integer findedFixedDay = fixedDayMapper.findFixedDayByIdAndColumn(id, falseFieldName);
             log.info("여기야여기={}", findedFixedDay);
 
 
-            if (findedFixedDay.equals("1")) {
+            if (findedFixedDay.equals(0)) {
+                countMapper.uploadFixedDayToCount("today", id, falseFieldName);
+            } else if (findedFixedDay.equals(1)) {
                 countMapper.uploadFixedDayToCount("one", id, falseFieldName);
-            } else if (findedFixedDay.equals("2")) {
+            } else if (findedFixedDay.equals(2)) {
                 countMapper.uploadFixedDayToCount("two", id, falseFieldName);
-            } else if (findedFixedDay.equals("3")) {
+            } else if (findedFixedDay.equals(3)) {
                 countMapper.uploadFixedDayToCount("three", id, falseFieldName);
-            } else if (findedFixedDay.equals("4")) {
+            } else if (findedFixedDay.equals(4)) {
                 countMapper.uploadFixedDayToCount("four", id, falseFieldName);
-            } else if (findedFixedDay.equals("5")) {
+            } else if (findedFixedDay.equals(5)) {
                 countMapper.uploadFixedDayToCount("five", id, falseFieldName);
-            } else if (findedFixedDay.equals("6")) {
+            } else if (findedFixedDay.equals(6)) {
                 countMapper.uploadFixedDayToCount("six", id, falseFieldName);
-            } else if (findedFixedDay.equals("7")) {
+            } else if (findedFixedDay.equals(7)) {
                 countMapper.uploadFixedDayToCount("seven", id, falseFieldName);
-            } else if (findedFixedDay.equals("8")) {
+            } else if (findedFixedDay.equals(8)) {
                 countMapper.uploadFixedDayToCount("eight", id, falseFieldName);
-            } else if (findedFixedDay.equals("9")) {
+            } else if (findedFixedDay.equals(9)) {
                 countMapper.uploadFixedDayToCount("nine", id, falseFieldName);
-            } else if (findedFixedDay.equals("10")) {
+            } else if (findedFixedDay.equals(10)) {
                 countMapper.uploadFixedDayToCount("ten", id, falseFieldName);
             }
 
             includeMapper.updateToTrue(falseFieldName, id);
         }
 
-        String pulledOneColumn = countMapper.findOneColumnById(id);
-        String[] splitedVoca = pulledOneColumn.split(",");
+        String pulledTodayColumn = countMapper.findTodayColumnById(id);
+        if (pulledTodayColumn.equals("")) {
+            return "/charger/todayFinish";
+        }
+        log.info("==============={}================", pulledTodayColumn);
+        String[] splitedVoca = pulledTodayColumn.split(",");
         String firstVoca = splitedVoca[0];
         if(firstVoca.equals("")){
             firstVoca = splitedVoca[1];
         }
 
         countMapper.deletePulledVoca(firstVoca, id);
-
-
-
+        //include 테이블에도 firstVoca의 상태를 false로 만들어야지.
+        includeMapper.updateToFalse(firstVoca, id);
         //firstVoca 의 correct 와 wrong을 꺼내와야지
         WordDTO findRowFromWord = wordMapper.findByVoca(firstVoca);
 

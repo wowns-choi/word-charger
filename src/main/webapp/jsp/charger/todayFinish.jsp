@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:import url="/jsp/bootstrapconfig/index.jsp"/>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %> <!-- 필요한 경우에 추가 -->
 
 <html>
 <head>
@@ -14,40 +12,6 @@
     <!--chargerHomeYellowButton.css 시작-->
         <link rel="stylesheet" type="text/css" href="../css/chargerHomeYellowButton.css">
     <!--chargerHomeYellowButton.css 종료-->
-
-    <!-- ajax 자바스크립트 시작 -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $('.answerSheetButton').on('click', function(e){
-                    e.preventDefault();
-
-                    var userAnswer = $(this).val();
-                    var vocabulary = $('[name="vocabulary"]').val();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "submitAnswerSheet",
-                        data: {
-                            userAnswer: userAnswer,
-                            vocabulary: vocabulary
-                        },
-                        success: function(response){
-                            if(response.trueOrFalseBox=="correct"){
-                                $('#correctAlarm').show();
-                                setTimeout(function(){
-                                    window.location.href="/zeroToHundred";
-                                },1100);
-                            } else if(response.trueOrFalseBox=="incorrect"){
-                                window.location.href="/ExplanationPage?vocabulary="+vocabulary;
-                            }
-                        }
-                    });
-                });
-            });
-        </script>
-    <!-- ajax 자바스크립트 종료 -->
-
 
     <style>
         /*이거 한글 글꼴임*/
@@ -94,43 +58,38 @@
             height: 50vh;
             background: #fafafa;
             display: flex; /* Flexbox를 사용하여 내부 요소를 가로로 배치 */
-            flex-direction: column; /* 요소들을 세로로 쌓기 위해 수정 */
             align-items: center; /* 내부 요소를 세로 중앙에 배치 */
             text-align: left; /* 텍스트를 왼쪽으로 정렬 */
             overflow: hidden; /* 내부 컨텐츠가 밖으로 넘치지 않도록 함 */
+
             margin-bottom: 2vh;
-
-            border: 10px solid black;
-                        border-radius: 25px;
-                        border-style: double;
-
         }
-        .top-WC{
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: flex-end; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            width: 100%;
-            height: 20%;
 
-        }
-        .up-WC{
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: flex-end; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            width: 100%;
-            height: 30%;
-            font-size: 60px;
-        }
-        .down-WC{
+        .left-WC, .right-WC {
             display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
             align-items: center; /* 세로 중앙 정렬 */
             justify-content: center; /* 가로 중앙 정렬 */
-            width: 100%;
-            height: 50%;
+            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
+        }
+
+        .left-WC{
+            width: 60%;
+            height: 100%;
+            border: 10px solid black;
+            border-radius: 25px;
+
+
+        }
+        .right-WC{
+            width: 40%;
+            height: 100%;
             font-family: 'MYYeongnamnu';
             font-weight: bold;
             font-size: 17px;
             color: #525252;
+            border: 10px solid black;
+            border-radius: 25px;
+            border-style: double;
         }
         .text-divtag{
             margin-top: 1vh;
@@ -170,52 +129,12 @@
             gap: 20px; /* 버튼 사이의 간격 설정 */
         }
 
-        .answerSheetButton{
-            gap: 5vw;
-            transition: background-color 0.5s ease; /* 배경색 변경을 0.5초 동안 부드럽게 진행 */
-
-        }
-        .answerSheetButton:hover{
-            background-color: #fcc065;
-        }
-
 
     </style>
 </head>
 <body>
+asdfjajskdhfkjasdhfkjadsfhajksdfhkjasdhfkjsadhfasdkjhadjkfh
 
-<!--네브 바 -->
-    <c:import url="/jsp/common/loginedNavbar.jsp" />
-<!--네브 바 종료 -->
-
-    <div class="exclude">
-        <div class="whitecontainer">
-            <div class="top-WC">
-                <div id="correctAlarm" style="font-size:20px; display: none; font-family: 'Gugi', sans-serif; color:#5496ff;">정답입니다</div>
-            </div>
-            <div class="up-WC">
-                <div style="margin-bottom:0px;">${voca} </div>
-            </div>
-            <div class="down-WC">
-
-                    <%
-                       List<String> shuffledAnswers = (List<String>) request.getAttribute("answer");
-                        for(String answer : shuffledAnswers) {
-                    %>
-                        <button type="submit" class="answerSheetButton" name="userAnswer" value="<%=answer%>"> <span><%=answer%></span> </button>
-                    <%
-                    }
-                    %>
-                    <input type="hidden" name="vocabulary" value="${voca}">
-
-            </div>
-        </div>
-    </div>
 
 </body>
 </html>
-
-
-
-
-

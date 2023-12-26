@@ -8,7 +8,7 @@ public interface FixedDayMapper {
 
     void fixedDayInit (String id);
 
-    String findFixedDayByIdAndColumn(@Param("id") String id, @Param("columnName") String columnName);
+    Integer findFixedDayByIdAndColumn(@Param("id") String id, @Param("columnName") String columnName);
 
-
+    void plusOneDay(@Param("ColumnName") String ColumnName, @Param("id") String id);
 }

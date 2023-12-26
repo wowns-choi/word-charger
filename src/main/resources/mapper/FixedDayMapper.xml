@@ -6,11 +6,17 @@
 <mapper namespace="firstportfolio.wordcharger.repository.FixedDayMapper">
 
     <insert id="fixedDayInit">
-        INSERT INTO fixedday VALUES (#{id}, '1', '1', '1')
+        INSERT INTO fixedday VALUES (#{id}, 0, 0, 0)
     </insert>
 
-    <select id="findFixedDayByIdAndColumn" resultType="String">
+    <select id="findFixedDayByIdAndColumn" resultType="Integer">
         SELECT ${columnName} FROM fixedday WHERE id = #{id}
     </select>
+
+    <update id="plusOneDay">
+        UPDATE fixedday
+        SET ${ColumnName} = ${ColumnName} + 1
+        WHERE id = #{id}
+    </update>
 
 </mapper>

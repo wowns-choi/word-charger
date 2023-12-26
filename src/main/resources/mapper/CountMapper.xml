@@ -11,21 +11,41 @@
     </select>
 
     <insert id="CountInit">
-        INSERT INTO count VALUES (#{id},null,null,null,null,null,null,null,null,null,null)
+        INSERT INTO count VALUES (#{id},null,null,null,null,null,null,null,null,null,null,null)
     </insert>
 
     <insert id="uploadFixedDayToCount">
         UPDATE count SET ${columnName} = ${columnName} || ',' || #{value} WHERE id = #{id}
     </insert>
 
-    <select id="findOneColumnById" resultType="String">
-        SELECT one FROM count WHERE id = #{id}
+    <select id="findTodayColumnById" resultType="String">
+        SELECT today FROM count WHERE id = #{id}
     </select>
 
     <update id="deletePulledVoca">
         UPDATE count
-        SET one = REPLACE(one, CONCAT(',',#{firstVoca}), '') WHERE id = #{id}
+        SET today = REPLACE(today, CONCAT(',',#{firstVoca}), '') WHERE id = #{id}
     </update>
+
+    <update id="todayColumnCharger">
+        UPDATE count SET
+        today = today || one
+    </update>
+
+    <update id="columnShiftUpdate">
+        UPDATE count SET
+        ONE = TWO,
+        TWO = THREE,
+        THREE = FOUR,
+        FOUR = FIVE,
+        FIVE = SIX,
+        SIX = SEVEN,
+        SEVEN = EIGHT,
+        EIGHT = NINE,
+        NINE = TEN,
+        TEN = NULL
+    </update>
+
 
 
 </mapper>

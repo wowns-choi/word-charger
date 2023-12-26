@@ -16,4 +16,8 @@
     <update id="updateToTrue" >
         UPDATE include SET ${falseFieldName} = 'true' WHERE id = #{id}
     </update>
+
+    <update id="updateToFalse">
+        UPDATE include SET ${firstVoca} = 'false' WHERE id = #{id}
+    </update>
 </mapper>

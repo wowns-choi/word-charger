@@ -13,7 +13,11 @@ public interface CountMapper {
 
     void uploadFixedDayToCount (@Param("columnName") String columnName, @Param("id") String id, @Param("value") String value );
 
-    String findOneColumnById (String id);
+    String findTodayColumnById (String id);
 
     void deletePulledVoca(@Param("firstVoca") String firstVoca, @Param("id") String id);
+
+    void todayColumnCharger();
+
+    void columnShiftUpdate();
 }

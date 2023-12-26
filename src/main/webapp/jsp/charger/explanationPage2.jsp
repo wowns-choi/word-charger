@@ -19,30 +19,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
-                $('.answerSheetButton').on('click', function(e){
+                $('#next-word').on('click', function(e){
                     e.preventDefault();
-
-                    var userAnswer = $(this).val();
-                    var vocabulary = $('[name="vocabulary"]').val();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "submitAnswerSheet",
-                        data: {
-                            userAnswer: userAnswer,
-                            vocabulary: vocabulary
-                        },
-                        success: function(response){
-                            if(response.trueOrFalseBox=="correct"){
-                                $('#correctAlarm').show();
-                                setTimeout(function(){
-                                    window.location.href="/zeroToHundred";
-                                },1100);
-                            } else if(response.trueOrFalseBox=="incorrect"){
-                                window.location.href="/ExplanationPage?vocabulary="+vocabulary;
-                            }
-                        }
-                    });
+                    window.location.href="/zeroToHundred";
                 });
             });
         </script>
@@ -110,27 +89,32 @@
             align-items: flex-end; /* 세로 중앙 정렬 */
             justify-content: center; /* 가로 중앙 정렬 */
             width: 100%;
-            height: 20%;
+            height: 40%;
+            font-size: 60px;
 
         }
         .up-WC{
             display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: flex-end; /* 세로 중앙 정렬 */
+            align-items: center; /* 세로 중앙 정렬 */
             justify-content: center; /* 가로 중앙 정렬 */
+            flex-direction: column; /* 요소들을 세로로 쌓기 위해 수정 */
             width: 100%;
-            height: 30%;
-            font-size: 60px;
+            height: 40%;
+            font-size: 20px;
+
+                        font-family: 'MYYeongnamnu';
         }
         .down-WC{
             display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
             align-items: center; /* 세로 중앙 정렬 */
             justify-content: center; /* 가로 중앙 정렬 */
             width: 100%;
-            height: 50%;
+            height: 20%;
             font-family: 'MYYeongnamnu';
             font-weight: bold;
             font-size: 17px;
             color: #525252;
+
         }
         .text-divtag{
             margin-top: 1vh;
@@ -170,12 +154,12 @@
             gap: 20px; /* 버튼 사이의 간격 설정 */
         }
 
-        .answerSheetButton{
+        #next-word{
             gap: 5vw;
             transition: background-color 0.5s ease; /* 배경색 변경을 0.5초 동안 부드럽게 진행 */
 
         }
-        .answerSheetButton:hover{
+        #next-word:hover{
             background-color: #fcc065;
         }
 
@@ -191,23 +175,16 @@
     <div class="exclude">
         <div class="whitecontainer">
             <div class="top-WC">
-                <div id="correctAlarm" style="font-size:20px; display: none; font-family: 'Gugi', sans-serif; color:#5496ff;">정답입니다</div>
+                <div id="correctAlarm" style="font-family: 'NanumSquareNeo-Variable';">${voca}</div>
             </div>
             <div class="up-WC">
-                <div style="margin-bottom:0px;">${voca} </div>
+                <div style="color: #ff7a7d;"> ${correct} </div>
+                <div> ${examplesentence1} </div>
+                <div> ${examplesentence2}</div>
+
             </div>
             <div class="down-WC">
-
-                    <%
-                       List<String> shuffledAnswers = (List<String>) request.getAttribute("answer");
-                        for(String answer : shuffledAnswers) {
-                    %>
-                        <button type="submit" class="answerSheetButton" name="userAnswer" value="<%=answer%>"> <span><%=answer%></span> </button>
-                    <%
-                    }
-                    %>
-                    <input type="hidden" name="vocabulary" value="${voca}">
-
+                   <button id="next-word"> Next Word </button>
             </div>
         </div>
     </div>

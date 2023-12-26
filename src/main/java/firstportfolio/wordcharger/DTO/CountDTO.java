@@ -6,6 +6,7 @@ import lombok.Data;
 public class CountDTO {
 
     public String id;
+    public String today;
     public String one;
     public String two;
     public String three;

@@ -12,4 +12,6 @@ public interface IncludeMapper {
     IncludeDTO findRowById(String id);
 
     void updateToTrue(@Param("falseFieldName") String falseFieldName,@Param("id")String id);
+
+    void updateToFalse(@Param("firstVoca") String firstVoca, @Param("id") String id);
 }

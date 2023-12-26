@@ -2,8 +2,10 @@ package firstportfolio.wordcharger.controller;
 
 
 import firstportfolio.wordcharger.DTO.MemberDTO;
+import firstportfolio.wordcharger.repository.CountMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
@@ -14,8 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class HomeController {
-
+    private final CountMapper countMapper;
 
     @GetMapping("/")
     public String homeController(HttpServletRequest request) {
@@ -34,5 +37,6 @@ public class HomeController {
 
         return "/home/loginedHome";
     }
+
 
 }
