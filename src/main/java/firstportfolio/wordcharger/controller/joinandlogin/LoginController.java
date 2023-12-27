@@ -1,4 +1,4 @@
-package firstportfolio.wordcharger.controller;
+package firstportfolio.wordcharger.controller.joinandlogin;
 
 import firstportfolio.wordcharger.DTO.LoginDTO;
 import firstportfolio.wordcharger.DTO.MemberDTO;
@@ -23,13 +23,13 @@ public class LoginController {
     private final MemberMapper memberMapper;
 
     @GetMapping("/loginForm")
-    public String getLoginFormController(HttpServletRequest request) {
+    public String getLoginFormControllerMethod(HttpServletRequest request) {
         request.setAttribute("loginDTO", new LoginDTO());
         return "/login/loginForm";
     }
 
     @PostMapping("/loginForm")
-    public String postLoginFormController(@Valid @ModelAttribute LoginDTO loginDTO, BindingResult bindingResult, HttpServletRequest request) {
+    public String postLoginFormControllerMethod(@Valid @ModelAttribute LoginDTO loginDTO, BindingResult bindingResult, HttpServletRequest request) {
         String id = loginDTO.getId();
         String password = loginDTO.getPassword();
         //db Member 테이블에서 아이디를 찾아와서 여기있는 password랑 같은지 봐야겠지.
@@ -51,7 +51,7 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logoutController (HttpServletRequest request){
+    public String logoutControllerMethod (HttpServletRequest request){
         HttpSession session = request.getSession(false);
 
         if (session != null) {

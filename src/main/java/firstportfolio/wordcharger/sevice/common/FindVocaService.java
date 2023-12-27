@@ -1,4 +1,4 @@
-package firstportfolio.wordcharger.sevice;
+package firstportfolio.wordcharger.sevice.common;
 
 import firstportfolio.wordcharger.DTO.WordDTO;
 import firstportfolio.wordcharger.repository.WordMapper;

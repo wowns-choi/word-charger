@@ -6,7 +6,7 @@
 <mapper namespace="firstportfolio.wordcharger.repository.WordMapper">
 
     <select id="findByVoca" resultType="WordDTO">
-        select * from word where voca = #{voca}
+        SELECT * FROM word WHERE voca = #{voca}
     </select>
 
 

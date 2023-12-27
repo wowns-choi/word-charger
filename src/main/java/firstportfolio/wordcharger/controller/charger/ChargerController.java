@@ -1,9 +1,8 @@
-package firstportfolio.wordcharger.controller;
+package firstportfolio.wordcharger.controller.charger;
 
-import firstportfolio.wordcharger.DTO.MemberDTO;
 import firstportfolio.wordcharger.repository.CountMapper;
+import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,12 +15,10 @@ public class ChargerController {
     private final CountMapper countMapper;
 
     @GetMapping("/chargerHome")
-    public String chargerHomeController(HttpServletRequest request){
+    public String chargerHomeControllerMethod(HttpServletRequest request){
         //count 테이블의 today 컬럼에 들어있는 거 꺼내와.
-        HttpSession session = request.getSession(false);
-        MemberDTO loginedMember = (MemberDTO)session.getAttribute("loginedMember");
-        String pulledTodayColumn = countMapper.findTodayColumnById(loginedMember.getId());
-
+        String id = FindLoginedMemberIdUtil.findLoginedMember(request);
+        String pulledTodayColumn = countMapper.findTodayColumnById(id);
 
         if (pulledTodayColumn == null) {
             request.setAttribute("zeroToHundredTodayAmount", 100);
@@ -31,11 +28,8 @@ public class ChargerController {
             request.setAttribute("zeroToHundredTodayAmount", 0);
         } else{
             String[] splitedVoca = pulledTodayColumn.split(",");
-            log.info("splitedVoca============{}", splitedVoca);
             int length = splitedVoca.length;
-            log.info("length=================={}", length);
             int realLength = length - 1;
-            log.info("realLength================={}", realLength);
             request.setAttribute("zeroToHundredTodayAmount", realLength);
         }
         return "/charger/chargerHome";

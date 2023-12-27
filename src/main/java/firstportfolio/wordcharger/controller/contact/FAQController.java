@@ -1,4 +1,4 @@
-package firstportfolio.wordcharger.controller;
+package firstportfolio.wordcharger.controller.contact;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class ContatctController {
+public class FAQController {
 
     @GetMapping("/faq")
-    @ResponseBody
     public String method1(){
-        return "aaa";
 
+        return "/contact/faq";
     }
 }

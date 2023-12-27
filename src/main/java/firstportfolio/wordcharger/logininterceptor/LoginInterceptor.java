@@ -35,7 +35,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(loginedMember==null){
             log.info("세션이 있긴한데, loginedMember 라는 세션은 없다");
             response.sendRedirect("/?modal=true");
-            log.info("hello");
             return false;
         }
         String id = loginedMember.getId();

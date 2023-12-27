@@ -1,15 +1,14 @@
-package firstportfolio.wordcharger.controller.coreController;
+package firstportfolio.wordcharger.controller.charger;
 
 import firstportfolio.wordcharger.DTO.CountDTO;
 import firstportfolio.wordcharger.DTO.IncludeDTO;
-import firstportfolio.wordcharger.DTO.MemberDTO;
 import firstportfolio.wordcharger.DTO.WordDTO;
 import firstportfolio.wordcharger.repository.CountMapper;
 import firstportfolio.wordcharger.repository.FixedDayMapper;
 import firstportfolio.wordcharger.repository.IncludeMapper;
 import firstportfolio.wordcharger.repository.WordMapper;
+import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,12 +29,10 @@ public class zeroToHunderedController {
     private final IncludeMapper includeMapper;
     private final WordMapper wordMapper;
     @RequestMapping("/zeroToHundred")
-    public String zeroToHundredController(HttpServletRequest request){
+    public String zeroToHundredControllerMethod(HttpServletRequest request){
 
         //id 꺼내기
-        HttpSession session = request.getSession(false);
-        MemberDTO loginedMember = (MemberDTO) session.getAttribute("loginedMember");
-        String id = loginedMember.getId();
+        String id = FindLoginedMemberIdUtil.findLoginedMember(request);
 
         //count테이블에서 위에서 꺼낸 아이디로 행 조회하기
         CountDTO idMatchingCountTableRow = countMapper.findRowById(id);
@@ -69,16 +66,12 @@ public class zeroToHunderedController {
                 throw new RuntimeException(e);
             }
         }
-        //여기에 우리가 틀렸던 단어가 들어있어. 왜???????????
-        log.info("falseFields=========================================={}", falseFields);
-
 
         for (String falseFieldName : falseFields) {
             //a = falseFieldName
 
             //a= include 테이블에 있던 false 라는 값을 가진 컬럼의 이름
             Integer findedFixedDay = fixedDayMapper.findFixedDayByIdAndColumn(id, falseFieldName);
-            log.info("여기야여기={}", findedFixedDay);
 
 
             if (findedFixedDay.equals(0)) {

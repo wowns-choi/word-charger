@@ -1,4 +1,4 @@
-package firstportfolio.wordcharger.controller.coreController;
+package firstportfolio.wordcharger.controller.charger;
 
 import firstportfolio.wordcharger.DTO.WordDTO;
 import firstportfolio.wordcharger.repository.WordMapper;
@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,8 +19,8 @@ public class ExplanationPageController {
 
         WordDTO findedVoca = wordMapper.findByVoca(vocabulary);
         String correct = findedVoca.getCorrect();
-        String examplesentence1 = findedVoca.getExamplesentence1();
-        String examplesentence2 = findedVoca.getExamplesentence2();
+        String examplesentence1 = findedVoca.getExampleSentence1();
+        String examplesentence2 = findedVoca.getExampleSentence2();
 
         request.setAttribute("voca", vocabulary);
         request.setAttribute("correct", correct);

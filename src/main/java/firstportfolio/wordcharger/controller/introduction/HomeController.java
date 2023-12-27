@@ -1,4 +1,4 @@
-package firstportfolio.wordcharger.controller;
+package firstportfolio.wordcharger.controller.introduction;
 
 
 import firstportfolio.wordcharger.DTO.MemberDTO;
@@ -21,7 +21,7 @@ public class HomeController {
     private final CountMapper countMapper;
 
     @GetMapping("/")
-    public String homeController(HttpServletRequest request) {
+    public String homeControllerMethod(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             log.info("session==null");

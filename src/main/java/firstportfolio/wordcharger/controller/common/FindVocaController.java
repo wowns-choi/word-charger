@@ -1,8 +1,6 @@
-package firstportfolio.wordcharger.controller;
+package firstportfolio.wordcharger.controller.common;
 
-import firstportfolio.wordcharger.DTO.WordDTO;
-import firstportfolio.wordcharger.repository.WordMapper;
-import firstportfolio.wordcharger.sevice.FindVocaService;
+import firstportfolio.wordcharger.sevice.common.FindVocaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,9 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +19,7 @@ public class FindVocaController {
 
     @PostMapping("/findVoca")
     @ResponseBody
-    public Map<String, String> findVocaController(@RequestParam String voca){
+    public Map<String, String> findVocaControllerMethod(@RequestParam String voca){
         Map<String, String> containVocaAndCorrect = findVocaService.findWordByVocaFromWordTable(voca);
         return containVocaAndCorrect;
     }
