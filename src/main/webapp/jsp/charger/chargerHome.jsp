@@ -160,7 +160,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>001 ~ 100</span>
                             </button>
                         </a>
                         <div>
