@@ -20,9 +20,8 @@ public class SchedulingConfig {
     //그 다음, * 는 매 일 을 의미한다.
     //그 다음, * 는 매 월 을 의미한다.
     //그 다음, ? 는 요일이 들어가는 곳인데, 매일 매월 과 함께 사용시 "일주일내내"라는 뜻을 가짐.
-    @Scheduled(cron = "0 54 20 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void performTask(){
-        log.info("asdklfasdjlfh");
         countMapper.todayColumnCharger();
         countMapper.columnShiftUpdate();
     }

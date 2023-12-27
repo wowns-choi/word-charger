@@ -157,7 +157,9 @@
         #next-word{
             gap: 5vw;
             transition: background-color 0.5s ease; /* 배경색 변경을 0.5초 동안 부드럽게 진행 */
-
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 25px;
         }
         #next-word:hover{
             background-color: #fcc065;

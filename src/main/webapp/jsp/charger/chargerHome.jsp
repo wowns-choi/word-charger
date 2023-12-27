@@ -170,7 +170,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>101 ~ 200</span>
                             </button>
                         </a>
                         <div>
@@ -180,7 +180,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>201 ~ 300</span>
                             </button>
                         </a>
                         <div>
@@ -190,7 +190,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>301 ~ 400</span>
                             </button>
                         </a>
                         <div>
@@ -200,7 +200,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>401 ~ 500</span>
                             </button>
                         </a>
                         <div>
@@ -214,7 +214,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>501 ~ 600</span>
                             </button>
                         </a>
                         <div>
@@ -224,7 +224,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>601 ~ 700</span>
                             </button>
                         </a>
                         <div>
@@ -234,7 +234,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>701 ~ 800</span>
                             </button>
                         </a>
                         <div>
@@ -244,7 +244,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>801 ~ 900</span>
                             </button>
                         </a>
                         <div>
@@ -254,7 +254,7 @@
                     <div class="atagAndTextContainer">
                         <a class="atag" href="/zeroToHundred" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
-                                <span>1 ~ 100</span>
+                                <span>901 ~ 1000</span>
                             </button>
                         </a>
                         <div>

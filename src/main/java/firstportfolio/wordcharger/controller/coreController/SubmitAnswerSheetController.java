@@ -39,15 +39,16 @@ public class SubmitAnswerSheetController {
         HttpSession session = request.getSession(false);
         MemberDTO loginedMember = (MemberDTO) session.getAttribute("loginedMember");
         String id = loginedMember.getId();
+
+        //이부분 중요 시작
+        Integer fixedDayTableValue = fixedDayMapper.findFixedDayByIdAndColumn(id, vocabulary);
+        if (fixedDayTableValue.equals(0)) {
+            fixedDayMapper.plusOneDay(vocabulary, id);
+        }
+        //이부분 중요 끝
+
         if (!userAnswer.equals(correct)) {
             trueOrFalseMap.put("trueOrFalseBox", "incorrect");
-            //틀렸을 경우, fixedday 에 0 인 경우에만 +1 해줘야해.
-            //fixedday 테이블에서 vocabulary 의 값을 구해온다. 그게 0 이면, +1 해줘야 한다.
-            //이거 왜 해주냐? 0인 경우에도 그대로 둔다면, ExplanationPage를 거쳐 다시 /zeroToHundred 를 호출했을 때, false이기 때문에 바로 count 에 올라가서, 최초 사용자에게 무한굴레에 빠지게 할 수 있음.
-            Integer fixedDayTableValue = fixedDayMapper.findFixedDayByIdAndColumn(id, vocabulary);
-            if (fixedDayTableValue.equals(0)) {
-                fixedDayMapper.plusOneDay(vocabulary, id);
-            }
 
         } else {
             trueOrFalseMap.put("trueOrFalseBox", "correct");
