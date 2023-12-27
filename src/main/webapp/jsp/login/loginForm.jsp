@@ -42,15 +42,6 @@
             font-size: 100px;
              font-weight: bold;
              margin-bottom:5vh;
-
-
-
-        }
-        .subText{
-            font-family: 'NanumSquareNeo-Variable';
-            font-size : 20px;
-            font-weight: bold;
-            margin-bottom: 5vh;
         }
         .whitecontainer{
             width: 60vw;
@@ -99,19 +90,6 @@
             padding: 7px;
             font-family: 'MYYeongnamnu';
 
-        }
-        .picture-container{
-            width: 30%;
-            height: 50%;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            align-items: center; /* 세로 중앙 정렬 *
-            outline: 2px solid red;
-            margin-bottom: 50px;
-        }
-        .img-thumbnail {
-            max-width: 100%; /* 이미지가 컨테이너 너비를 넘지 않도록 함 */
-            max-height: 100%; /* 이미지가 컨테이너 높이를 넘지 않도록 함 */
         }
         .formForm{
             display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */

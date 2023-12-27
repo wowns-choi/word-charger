@@ -65,7 +65,6 @@
             font-weight: normal;
             font-style: normal;
         }
-
         .exclude{
             width: 100vw;
             min-height: 100vh;
@@ -76,18 +75,6 @@
             text-align: center;
             background: #fafafa;
 
-        }
-        .charge-your-brain{
-            font-family: 'Sofia', cursive;
-            font-size: 100px;
-             font-weight: bold;
-             margin-bottom:5vh;
-        }
-        .subText{
-            font-family: 'NanumSquareNeo-Variable';
-            font-size : 20px;
-            font-weight: bold;
-            margin-bottom: 5vh;
         }
         .whitecontainer{
             width: 50vw;
@@ -133,44 +120,6 @@
             color: #525252;
             gap : 1vw;
         }
-        .text-divtag{
-            margin-top: 1vh;
-            margin-left: 0.7vw;
-        }
-        .text-decoration{
-            color: #001840;
-            font-size: 20px;
-            border-bottom: 2px solid black;
-            border-radius: 25px;
-            box-sizing: border-box;  /* border와 padding을 요소의 총 크기에 포함 */
-            padding: 7px;
-            font-family: 'MYYeongnamnu';
-
-        }
-        .picture-container{
-            width: 30%;
-            height: 50%;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            align-items: center; /* 세로 중앙 정렬 *
-            outline: 2px solid red;
-            margin-bottom: 50px;
-        }
-        .img-thumbnail {
-            max-width: 100%; /* 이미지가 컨테이너 너비를 넘지 않도록 함 */
-            max-height: 100%; /* 이미지가 컨테이너 높이를 넘지 않도록 함 */
-        }
-        .button_containering {
-            display: flex; /* Flexbox를 활성화 */
-            flex-direction: row; /* 요소들을 가로로 나열 */
-            justify-content: center; /* 요소들을 수평 중앙에 정렬 */
-            align-items: center; /* 요소들을 수직 중앙에 정렬 */
-            margin: 10px; /* 필요에 따라 마진 조정 */
-            font-family: 'MYYeongnamnu';
-            font-size: 12px;
-            gap: 20px; /* 버튼 사이의 간격 설정 */
-        }
-
         .answerSheetButton{
             gap: 5vw;
             transition: background-color 0.5s ease; /* 배경색 변경을 0.5초 동안 부드럽게 진행 */
@@ -181,8 +130,6 @@
         .answerSheetButton:hover{
             background-color: #fcc065;
         }
-
-
     </style>
 </head>
 <body>
