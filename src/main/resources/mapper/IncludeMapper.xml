@@ -5,6 +5,11 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.IncludeMapper">
 
+
+    <delete id="init">
+        DELETE FROM include
+    </delete>
+
     <insert id="includeInit">
         INSERT INTO include VALUES (#{id}, 'false','false','false')
     </insert>

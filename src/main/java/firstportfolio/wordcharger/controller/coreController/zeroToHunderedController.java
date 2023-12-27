@@ -119,7 +119,7 @@ public class zeroToHunderedController {
             firstVoca = splitedVoca[1];
         }
 
-        countMapper.deletePulledVoca(firstVoca, id);
+        //countMapper.deletePulledVoca(firstVoca, id);
         //include 테이블에도 firstVoca의 상태를 false로 만들어야지.
         includeMapper.updateToFalse(firstVoca, id);
         //firstVoca 의 correct 와 wrong을 꺼내와야지

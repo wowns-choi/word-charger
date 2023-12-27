@@ -36,7 +36,7 @@
                             if(response.trueOrFalseBox=="correct"){
                                 $('#correctAlarm').show();
                                 setTimeout(function(){
-                                    window.location.href="/zeroToHundred";
+                                    window.location.href="/deletePulledVoca?vocabulary="+vocabulary;
                                 },1100);
                             } else if(response.trueOrFalseBox=="incorrect"){
                                 window.location.href="/ExplanationPage?vocabulary="+vocabulary;

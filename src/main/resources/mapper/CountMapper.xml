@@ -5,6 +5,9 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.CountMapper">
 
+    <delete id="init">
+        DELETE FROM count
+    </delete>
 
     <select id="findRowById" resultType="CountDTO">
         SELECT * FROM count WHERE id = #{id}

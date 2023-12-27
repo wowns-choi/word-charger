@@ -21,6 +21,8 @@ public class ChargerController {
         HttpSession session = request.getSession(false);
         MemberDTO loginedMember = (MemberDTO)session.getAttribute("loginedMember");
         String pulledTodayColumn = countMapper.findTodayColumnById(loginedMember.getId());
+
+
         if (pulledTodayColumn == null) {
             request.setAttribute("zeroToHundredTodayAmount", 100);
         }
@@ -29,8 +31,11 @@ public class ChargerController {
             request.setAttribute("zeroToHundredTodayAmount", 0);
         } else{
             String[] splitedVoca = pulledTodayColumn.split(",");
+            log.info("splitedVoca============{}", splitedVoca);
             int length = splitedVoca.length;
+            log.info("length=================={}", length);
             int realLength = length - 1;
+            log.info("realLength================={}", realLength);
             request.setAttribute("zeroToHundredTodayAmount", realLength);
         }
         return "/charger/chargerHome";

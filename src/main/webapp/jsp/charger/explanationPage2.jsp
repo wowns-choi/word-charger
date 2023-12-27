@@ -20,8 +20,10 @@
         <script>
             $(document).ready(function(){
                 $('#next-word').on('click', function(e){
+                    var vocabulary = $('[name="vocabulary"]').val();
+
                     e.preventDefault();
-                    window.location.href="/zeroToHundred";
+                    window.location.href="/deletePulledVoca?vocabulary="+vocabulary;
                 });
             });
         </script>
@@ -187,6 +189,7 @@
             </div>
             <div class="down-WC">
                    <button id="next-word"> Next Word </button>
+                   <input type="hidden" name="vocabulary" value="${voca}">
             </div>
         </div>
     </div>

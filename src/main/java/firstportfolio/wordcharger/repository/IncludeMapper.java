@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface IncludeMapper {
 
+    void init();
     void includeInit (String id);
 
     IncludeDTO findRowById(String id);

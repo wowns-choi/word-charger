@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface CountMapper {
 
+    void init();
+
     CountDTO findRowById (String id);
 
     void CountInit (String id);

@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface FixedDayMapper {
 
+    void init();
+
     void fixedDayInit (String id);
 
     Integer findFixedDayByIdAndColumn(@Param("id") String id, @Param("columnName") String columnName);

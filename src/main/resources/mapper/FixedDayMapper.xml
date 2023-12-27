@@ -5,6 +5,11 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.FixedDayMapper">
 
+
+    <delete id="init">
+        DELETE FROM fixedday
+    </delete>
+
     <insert id="fixedDayInit">
         INSERT INTO fixedday VALUES (#{id}, 0, 0, 0)
     </insert>
