@@ -66,6 +66,8 @@
             border-bottom: 2px solid black;
             position: fixed;
             width: 100%;
+            z-index: 10;
+
         }
         .navbar-brand{
             font-family: 'Gugi', sans-serif;
