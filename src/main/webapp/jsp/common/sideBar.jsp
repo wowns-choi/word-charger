@@ -114,7 +114,7 @@
             window.location.href="/way-to-come"
         });
         document.getElementById('side-bar-third-button').addEventListener("click",function(){
-            window.location.href="/board"
+            window.location.href="/board-home"
         });
         document.getElementById('side-bar-fourth-button').addEventListener("click",function(){
             window.location.href="/my-writing"

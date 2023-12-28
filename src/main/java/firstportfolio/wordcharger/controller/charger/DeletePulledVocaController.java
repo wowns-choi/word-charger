@@ -3,6 +3,7 @@ package firstportfolio.wordcharger.controller.charger;
 import firstportfolio.wordcharger.repository.CountMapper;
 import firstportfolio.wordcharger.repository.FixedDayMapper;
 import firstportfolio.wordcharger.repository.IncludeMapper;
+import firstportfolio.wordcharger.repository.WritingMapper;
 import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ public class DeletePulledVocaController {
     private final CountMapper countMapper;
     private final FixedDayMapper fixedDayMapper;
     private final IncludeMapper includeMapper;
+    private final WritingMapper writingMapper;
     @GetMapping("/delete-pulled-voca")
     public String deletePulledVocaControllerMethod(@RequestParam String vocabulary, HttpServletRequest request) {
         String id = FindLoginedMemberIdUtil.findLoginedMember(request);
@@ -32,5 +34,7 @@ public class DeletePulledVocaController {
         countMapper.init();
         fixedDayMapper.init();
         includeMapper.init();
+        writingMapper.init();
+
     }
 }

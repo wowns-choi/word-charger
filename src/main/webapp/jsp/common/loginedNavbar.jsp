@@ -152,7 +152,7 @@
                                 <li><a class="dropdown-item" href="/contact">연락처</a></li>
                                 <li><a class="dropdown-item" href="/wayToCome">오시는 길</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/board">자유게시판</a></li>
+                                <li><a class="dropdown-item" href="/board-home">자유게시판</a></li>
                                 <li><a class="dropdown-item" href="/myWriting">내가 작성한 글</a></li>
                             </ul>
                         </li>

@@ -13,7 +13,6 @@ public class FAQController {
 
     @GetMapping("/faq")
     public String method1(){
-
         return "/contact/faq";
     }
 }
