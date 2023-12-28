@@ -23,7 +23,7 @@
                     var vocabulary = $('[name="vocabulary"]').val();
 
                     e.preventDefault();
-                    window.location.href="/deletePulledVoca?vocabulary="+vocabulary;
+                    window.location.href="/delete-pulled-voca?vocabulary="+vocabulary;
                 });
             });
         </script>

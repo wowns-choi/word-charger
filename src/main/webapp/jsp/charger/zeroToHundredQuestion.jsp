@@ -27,7 +27,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "submitAnswerSheet",
+                        url: "submit-answer-sheet",
                         data: {
                             userAnswer: userAnswer,
                             vocabulary: vocabulary
@@ -36,10 +36,10 @@
                             if(response.trueOrFalseBox=="correct"){
                                 $('#correctAlarm').show();
                                 setTimeout(function(){
-                                    window.location.href="/deletePulledVoca?vocabulary="+vocabulary;
+                                    window.location.href="/delete-pulled-voca?vocabulary="+vocabulary;
                                 },1100);
                             } else if(response.trueOrFalseBox=="incorrect"){
-                                window.location.href="/ExplanationPage?vocabulary="+vocabulary;
+                                window.location.href="/explanation-page?vocabulary="+vocabulary;
                             }
                         }
                     });

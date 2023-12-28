@@ -23,7 +23,7 @@ public class SubmitAnswerSheetController {
     private final WordMapper wordMapper;
     private final FixedDayMapper fixedDayMapper;
 
-    @PostMapping("/submitAnswerSheet")
+    @PostMapping("/submit-answer-sheet")
     @ResponseBody
     public Map<String, String> submitAnswerSheetControllerMethod(@RequestParam String vocabulary, @RequestParam String userAnswer, HttpServletRequest request){
 

@@ -17,7 +17,7 @@ public class FindVocaController {
 
     private final FindVocaService findVocaService;
 
-    @PostMapping("/findVoca")
+    @PostMapping("/find-voca")
     @ResponseBody
     public Map<String, String> findVocaControllerMethod(@RequestParam String voca){
         Map<String, String> containVocaAndCorrect = findVocaService.findWordByVocaFromWordTable(voca);

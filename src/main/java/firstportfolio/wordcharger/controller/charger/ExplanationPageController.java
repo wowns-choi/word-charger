@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 public class ExplanationPageController {
     private final WordMapper wordMapper;
-    @GetMapping("/ExplanationPage")
+    @GetMapping("/explanation-page")
     public String explanationPageControllerMethod(@RequestParam String vocabulary, HttpServletRequest request){
 
         WordDTO findedVoca = wordMapper.findByVoca(vocabulary);

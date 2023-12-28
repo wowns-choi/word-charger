@@ -21,7 +21,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "/findVoca",
+                    url: "/find-voca",
                     data: { voca : voca },
                     success: function(response) {
                         $('#modalText').text(response.voca);
@@ -139,7 +139,7 @@
                             <a class="nav-link active" aria-current="page" href="/">Introduction</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/chargerHome">Charger</a>
+                            <a class="nav-link" href="/charger-home">Charger</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="/faq" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -162,7 +162,7 @@
                     <button class="btn btn-outline-success" type="submit">검색</button>
                     </form>
 
-                    <a href="/loginForm" class="login-button">
+                    <a href="/login-form" class="login-button">
                         <button type="button" class="btn btn-outline-primary">
                             Login
                         </button>
