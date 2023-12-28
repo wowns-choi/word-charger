@@ -28,7 +28,7 @@ public class zeroToHunderedController {
     private final FixedDayMapper fixedDayMapper;
     private final IncludeMapper includeMapper;
     private final WordMapper wordMapper;
-    @RequestMapping("/zeroToHundred")
+    @RequestMapping("/zero-to-hundred")
     public String zeroToHundredControllerMethod(HttpServletRequest request){
 
         //id 꺼내기

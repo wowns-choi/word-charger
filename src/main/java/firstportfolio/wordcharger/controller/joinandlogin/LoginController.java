@@ -22,13 +22,13 @@ public class LoginController {
 
     private final MemberMapper memberMapper;
 
-    @GetMapping("/loginForm")
+    @GetMapping("/login-form")
     public String getLoginFormControllerMethod(HttpServletRequest request) {
         request.setAttribute("loginDTO", new LoginDTO());
         return "/login/loginForm";
     }
 
-    @PostMapping("/loginForm")
+    @PostMapping("/login-form")
     public String postLoginFormControllerMethod(@Valid @ModelAttribute LoginDTO loginDTO, BindingResult bindingResult, HttpServletRequest request) {
         String id = loginDTO.getId();
         String password = loginDTO.getPassword();

@@ -20,11 +20,11 @@ public class DeletePulledVocaController {
     private final CountMapper countMapper;
     private final FixedDayMapper fixedDayMapper;
     private final IncludeMapper includeMapper;
-    @GetMapping("/deletePulledVoca")
+    @GetMapping("/delete-pulled-voca")
     public String deletePulledVocaControllerMethod(@RequestParam String vocabulary, HttpServletRequest request) {
         String id = FindLoginedMemberIdUtil.findLoginedMember(request);
         countMapper.deletePulledVoca(vocabulary, id);
-        return "redirect:/zeroToHundred";
+        return "redirect:/zero-to-hundred";
     }
 
     @PostConstruct
