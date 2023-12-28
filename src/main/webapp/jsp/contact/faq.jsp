@@ -9,9 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
 
-    <!--아이콘 쓰기 위한 링크 Font Awesome -->
-    <script src="https://kit.fontawesome.com/670206db20.js" crossorigin="anonymous"></script>
-
     <style>
         /*이거 한글 글꼴임*/
         @font-face {
@@ -34,43 +31,7 @@
             height: 100vh;
             display: flex;
         }
-        .my-side-bar{
-            width: 30vw;
-            height: 100vh;
-            background: #fcfcfc;
-            position:fixed;
-            z-index: 2;
-            border-right: 1px solid black;
-        }
-        .side-bar-inner-container{
-            margin-top: 6vh;
-            margin-left: 10vw;
 
-        }
-        .side-bar-button{
-            width:100%;
-            height: 5vh;
-            background: #fff;
-            border: none;
-            border-left: 2px solid black;
-            font-family: 'NanumSquareNeo-Variable';
-            transition: background-color 0.5s ease; /* 배경색 변경을 0.5초 동안 부드럽게 진행 */
-        }
-        .side-bar-button:hover{
-            background-color: #ffdead;
-        }
-        .side-bar-button-disabled{
-            width:100%;
-            height: 5vh;
-            background: #fff;
-            border: none;
-            border-left: 2px solid black;
-            border-bottom:1px solid black;
-            font-family: 'NanumSquareNeo-Variable';
-        }
-        #borrowd-icon{
-            margin-right: 1vw;
-        }
 
         .leftpunch{
             width: 30vw;
