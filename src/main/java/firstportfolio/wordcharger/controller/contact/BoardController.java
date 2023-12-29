@@ -1,6 +1,7 @@
 package firstportfolio.wordcharger.controller.contact;
 
 import firstportfolio.wordcharger.DTO.WritingDTO;
+import firstportfolio.wordcharger.DTO.WritingDTOSelectVersion;
 import firstportfolio.wordcharger.repository.WritingMapper;
 import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,12 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +23,24 @@ public class BoardController {
     private final WritingMapper writingMapper;
 
     @GetMapping("/board-home")
-    public String boardHomeControllerMethod() {
+    public String boardHomeControllerMethod(@RequestParam(value="page", defaultValue = "1") Integer page, Model model) {
+
+        Integer totalWriting = writingMapper.countAllWriting();
+        Integer pageSize = 10;
+
+        double totalPages = Math.ceil((double) totalWriting / pageSize);
+        Integer totalPagesInteger = (int) totalPages;
+        model.addAttribute("totalPagesInteger", totalPagesInteger);
+
+
+        int startRow = page - 1;
+        List<WritingDTOSelectVersion> currentPageWritings = writingMapper.findCurrentPageWritings(startRow);
+        model.addAttribute("currentPageWritings", currentPageWritings);
+        log.info("allWriting================{}", currentPageWritings);
+
+        model.addAttribute("page", page);
+        log.info("page====={}", page);
+
         return "/contact/boardHome";
     }
 
@@ -80,11 +96,9 @@ public class BoardController {
         Integer isPrivate = secretWritingCheckBox ? 1 : 0;
         writingMapper.insertWriting(title, userId, isPrivate, writingPassword, content);
 
-        model.addAttribute("title", title);
-        model.addAttribute("userId", userId);
-        model.addAttribute("content", content);
 
-        return "/contact/viewWriting";
+
+        return "redirect:/board-home";
     }
 
 

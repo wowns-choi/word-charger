@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:import url="/jsp/bootstrapconfig/index.jsp"/>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %> <!-- 필요한 경우에 추가 -->
+<%@ page import="firstportfolio.wordcharger.DTO.WritingDTOSelectVersion" %>
 
 <html>
 <head>
@@ -92,6 +95,26 @@
             height: 70vh;
 
         }
+        .board{
+            display: grid;
+            grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            align-items: center; /* 세로축 중앙 정렬 */
+            justify-items: center; /* 가로축 중앙 정렬 */
+            border-bottom: 1px solid black;
+            font-size: 20px;
+            background-color: #ffdead;
+        }
+        .board-2{
+            display: grid;
+            grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            align-items: center; /* 세로축 중앙 정렬 */
+            justify-items: center; /* 가로축 중앙 정렬 */
+            border-bottom: 1px solid #878787;
+            font-size: 15px;
+        }
+
 
     </style>
 </head>
@@ -117,6 +140,50 @@
             </div>
 
             <div class="my-down-container-in-right">
+                <div class="board">
+                    <span>글번호</span>
+                    <span>제목</span>
+                    <span>작성날짜</span>
+                    <span>조회수</span>
+                    <span>좋아요</span>
+                </div>
+
+                <div class="board-2">
+                    <c:forEach var="writing" items="${currentPageWritings}">
+                        <span>${writing.writingNum}</span>
+                        <span>${writing.title}</span>
+                        <span>${writing.writingDate}</span>
+                        <span>${writing.viewNumber}</span>
+                        <span>${writing.likeNumber}</span>
+                    </c:forEach>
+                </div>
+
+                <c:if test="${page==1}">
+                    <a href="/board-home?page=1"><span style="color:red;"> 1 </span></a>
+                    <a href="/board-home?page=2"><span>2</span></a>
+                    <a href="/board-home?page=3"><span>3</span></a>
+                    <a href="/board-home?page=4"><span>4</span></a>
+                    <a href="/board-home?page=5"><span>5</span></a>
+                </c:if>
+
+                <c:if test="${page==2}">
+                    <a href="/board-home?page=1"><span> 1 </span></a>
+                    <a href="/board-home?page=2"><span style="color:red;">2</span></a>
+                    <a href="/board-home?page=3"><span>3</span></a>
+                    <a href="/board-home?page=4"><span>4</span></a>
+                    <a href="/board-home?page=5"><span>5</span></a>
+                </c:if>
+
+                <c:if test="${page>=3}">
+                    <a href="/board-home?page=${page-2}"><span> ${page-2} </span> </a>
+                    <a href="/board-home?page=${page-1}"><span> ${page-1} </span></a>
+                    <a href="/board-home?page=${page}"><span style="color:red;"> ${page} </span></a>
+                    <a href="/board-home?page=${page+1}"><span> ${page+1} </span></a>
+                    <a href="/board-home?page=${page+2}"><span> ${page+2} </span></a>
+                </c:if>
+
+
+
 
             </div>
 
