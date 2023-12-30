@@ -25,22 +25,36 @@ public class BoardController {
     @GetMapping("/board-home")
     public String boardHomeControllerMethod(@RequestParam(value="page", defaultValue = "1") Integer page, Model model) {
 
-        Integer totalWriting = writingMapper.countAllWriting();
-        Integer pageSize = 10;
-
-        double totalPages = Math.ceil((double) totalWriting / pageSize);
-        Integer totalPagesInteger = (int) totalPages;
-        model.addAttribute("totalPagesInteger", totalPagesInteger);
-
-
         int startRow = page - 1;
         List<WritingDTOSelectVersion> currentPageWritings = writingMapper.findCurrentPageWritings(startRow);
         model.addAttribute("currentPageWritings", currentPageWritings);
         log.info("allWriting================{}", currentPageWritings);
 
-        model.addAttribute("page", page);
-        log.info("page====={}", page);
 
+        Integer totalWriting = writingMapper.countAllWriting();
+        Integer pageSize = 2;
+
+        double totalPagesDouble = Math.ceil((double) totalWriting / pageSize);
+        Integer totalPagesInteger = (int) totalPagesDouble;
+
+        if (totalPagesInteger <= 5) {
+            model.addAttribute("totalPagesInteger", totalPagesInteger);
+            return "/contact/boardHome";
+        }
+
+        if(totalPagesInteger >5){
+            if (page == 1 || page == 2) {
+                model.addAttribute("page", page);
+                return "/contact/boardHome2";
+            }
+            if(totalPagesInteger<page+2){
+                model.addAttribute("page", page);
+                model.addAttribute("totalPageInteger", totalPagesInteger);
+                return "/contact/boardHome3";
+            }
+            model.addAttribute("page", page);
+            return "/contact/boardHome4";
+        }
         return "/contact/boardHome";
     }
 

@@ -24,8 +24,8 @@
     <select id="findCurrentPageWritings" resultType="WritingDTOSelectVersion">
         SELECT * FROM writing_data
         ORDER BY writing_num ASC
-        OFFSET #{startRow}*10 ROWS
-        FETCH NEXT 10 ROWS ONLY
+        OFFSET #{startRow}*2 ROWS
+        FETCH NEXT 2 ROWS ONLY
     </select>
     
 

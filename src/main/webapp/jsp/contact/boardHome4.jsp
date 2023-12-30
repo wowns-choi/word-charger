@@ -158,7 +158,7 @@
                     </c:forEach>
                 </div>
 
-            <c:forEach var="i" begin="1" end="${totalPagesInteger}">
+            <c:forEach var="i" begin="${page-2}" end="${page+2}">
                 <c:choose>
                     <c:when test="${i==page}">
                         <strong> ${i} </strong>
