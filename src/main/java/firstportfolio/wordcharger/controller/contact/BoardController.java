@@ -68,6 +68,7 @@ public class BoardController {
 
             }
 
+
             model.addAttribute("fivePageUp3", true);
             return "/contact/boardHome";
         }
