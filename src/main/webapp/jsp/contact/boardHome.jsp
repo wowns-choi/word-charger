@@ -115,6 +115,27 @@
             font-size: 15px;
         }
 
+        .page-number{
+            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
+            align-items: center; /* 세로 중앙 정렬 */
+            justify-content: center; /* 가로 중앙 정렬 */
+                        font-size: 25px;
+        }
+
+        .page-number a, .page-number span{
+            margin-right: 40px;
+        }
+        .page-number a{
+            text-decoration: none;
+            color: inherit;
+
+        }
+        .page-number span{
+            color: #ff6b3f;
+        }
+
+
+
 
     </style>
 </head>
@@ -158,19 +179,66 @@
                     </c:forEach>
                 </div>
 
-            <c:forEach var="i" begin="1" end="${totalPagesInteger}">
-                <c:choose>
-                    <c:when test="${i==page}">
-                        <strong> ${i} </strong>
-                    </c:when>
-                    <c:otherwise>
-                    <a href="/board-home?page=${i}">${i} </a>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
+                <!--페이지넘버-->
+                <div class="page-number">
+                <c:if test="${fivePageUnder}">
+                <c:forEach var="i" begin="1" end="${totalPagesInteger}">
+                    <c:choose>
+                        <c:when test="${i==page}">
+                            <span class="numbering"> ${i} </span>
+                        </c:when>
+                        <c:otherwise>
+                        <a href="/board-home?page=${i}" class="number">${i} </a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                </c:if>
 
+                <c:if test="${fivePageUp1}">
+                <c:forEach var="i" begin="1" end="5">
+                    <c:choose>
+                        <c:when test="${i==page}">
+                            <span class="number"> ${i} </span>
+                        </c:when>
+                        <c:otherwise>
+                        <a href="/board-home?page=${i}" class="number">${i} </a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <a href="/board-home?page=${totalPageInteger}">...${totalPageInteger}</a>
+                </c:if>
 
+                <c:if test="${fivePageUp2}">
+                <c:forEach var="i" begin="${totalPageInteger-4}" end="${totalPageInteger}">
+                    <c:choose>
+                        <c:when test="${i==page}">
+                            <span class="number"> ${i} </span>
+                        </c:when>
+                        <c:otherwise>
+                        <a href="/board-home?page=${i}" class="number">${i} </a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                </c:if>
 
+                <c:if test="${fivePageUp3}">
+                <c:forEach var="i" begin="${page-2}" end="${page+2}">
+                    <c:choose>
+                        <c:when test="${i==page}">
+                            <span class="number"> ${i} </span>
+                        </c:when>
+                        <c:otherwise>
+                        <a href="/board-home?page=${i}" class="number">${i} </a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <a href="/board-home?page=${totalPageInteger}">${totalPagesString}</a>
+
+                </c:if>
+
+                </div>
+                <!--페이지넘버-->
 
             </div>
 

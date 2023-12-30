@@ -38,22 +38,38 @@ public class BoardController {
         Integer totalPagesInteger = (int) totalPagesDouble;
 
         if (totalPagesInteger <= 5) {
+            model.addAttribute("page", page);
             model.addAttribute("totalPagesInteger", totalPagesInteger);
+            model.addAttribute("fivePageUnder", true);
             return "/contact/boardHome";
         }
 
         if(totalPagesInteger >5){
             if (page == 1 || page == 2) {
                 model.addAttribute("page", page);
-                return "/contact/boardHome2";
+                model.addAttribute("totalPageInteger", totalPagesInteger);
+                model.addAttribute("fivePageUp1", true);
+                return "/contact/boardHome";
             }
+
             if(totalPagesInteger<page+2){
                 model.addAttribute("page", page);
                 model.addAttribute("totalPageInteger", totalPagesInteger);
-                return "/contact/boardHome3";
+                model.addAttribute("fivePageUp2", true);
+                return "/contact/boardHome";
             }
+
             model.addAttribute("page", page);
-            return "/contact/boardHome4";
+            if (totalPagesInteger - page > 2) {
+                String totalPagesIntegerToString = totalPagesInteger.toString();
+                String totalPagesString = "..." + totalPagesIntegerToString;
+                model.addAttribute("totalPagesString", totalPagesString);
+                model.addAttribute("totalPageInteger", totalPagesInteger);
+
+            }
+
+            model.addAttribute("fivePageUp3", true);
+            return "/contact/boardHome";
         }
         return "/contact/boardHome";
     }
@@ -91,21 +107,6 @@ public class BoardController {
                 return "/contact/writingPage";
             }
         }
-
-
-
-//
-////        log.info("{}",writingNum); null
-////        log.info("{}",title);  제목1111
-////        log.info("{}",userId); wowns590
-//        log.info("{}",secretWritingCheckBox); //체크하면 true || 체크안하면false
-//        log.info("{}", writingPassword);  //체크해서 입력하면 1234 || 체크 안하면 ""(빈문자열) //근데 체크 안하는게 불가능하도록 위에서 코드 짬.
-//        log.info("================={}=================", writingPassword.equals(""));
-//        log.info("================={}=================", writingPassword==null);
-////        log.info("{}", writingDate); null
-////        log.info("{}", content); 본문내용1111
-////        log.info("{}", viewNumber); null
-////        log.info("{}", likeNumber); null
 
         Integer isPrivate = secretWritingCheckBox ? 1 : 0;
         writingMapper.insertWriting(title, userId, isPrivate, writingPassword, content);
