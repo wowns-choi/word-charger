@@ -5,9 +5,14 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.WritingMapper">
 
-    <delete id="init">
+    <delete id="deleteAll">
         DELETE FROM writing_data
     </delete>
+
+    <insert id="init">
+        INSERT INTO writing_data
+        VALUES (writing_sequence.NEXTVAL, #{i}, 'wowns590', 0, null, SYSDATE, #{i}, 0, 0)
+    </insert>
 
 
     <insert id="insertWriting">

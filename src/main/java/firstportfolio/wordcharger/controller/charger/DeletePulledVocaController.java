@@ -34,6 +34,12 @@ public class DeletePulledVocaController {
         countMapper.init();
         fixedDayMapper.init();
         includeMapper.init();
+        writingMapper.deleteAll();
+
+        for(int i=0; i<300; i++ ){
+            writingMapper.init(i);
+        }
+
 
 
     }

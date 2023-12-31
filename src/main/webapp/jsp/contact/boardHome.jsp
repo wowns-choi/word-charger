@@ -115,26 +115,23 @@
             font-size: 15px;
         }
 
-        .page-number{
+        .pagination{
             display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
             align-items: center; /* 세로 중앙 정렬 */
             justify-content: center; /* 가로 중앙 정렬 */
-                        font-size: 25px;
-        }
-
-        .page-number a, .page-number span{
+            font-size: 25px;
             margin-right: 40px;
         }
-        .page-number a{
-            text-decoration: none;
-            color: inherit;
-
+        .pagination span, .pagination a{
+            margin-right: 40px;
         }
-        .page-number span{
+        .pagination span{
             color: #ff6b3f;
         }
-
-
+        .pagination a{
+            text-decoration: none;
+            color: inherit;
+        }
 
 
     </style>
@@ -182,12 +179,12 @@
 
 
             <div class="pagination">
-                <!-- 이전 페이지 그룹 링크 -->
+                <!-- 이전 그룹 링크 -->
                 <c:if test="${currentGroupFirstPage != 1}">
                     <a href="/board-home?page=${currentGroupFirstPage - pageGroupSize}">&laquo; 이전</a>
                 </c:if>
 
-                <!-- 현재 페이지 그룹의 페이지 링크 -->
+                <!-- 현재 페이지 그룹의 페이지 링크 forEach 문 돌림 -->
                 <c:forEach var="i" begin="${currentGroupFirstPage}" end="${currentGroupLastPage}">
                     <c:choose>
                         <c:when test="${i == currentPage}">
@@ -199,7 +196,7 @@
                     </c:choose>
                 </c:forEach>
 
-                <!-- 다음 페이지 그룹 링크 -->
+                <!-- 다음 그룹 링크 -->
                 <c:if test="${currentGroupLastPage != totalPages}">
                     <a href="/board-home?page=${currentGroupLastPage + 1}">다음 &raquo;</a>
                 </c:if>

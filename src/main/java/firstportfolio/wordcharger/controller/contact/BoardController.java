@@ -29,7 +29,7 @@ public class BoardController {
     public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
 
         Integer currentPage = page;
-        Integer pageSize = 2;
+        Integer pageSize = 20;
 
         Integer totalWritings = writingService.getTotalWritingsCount();
         Integer totalPages = (int) Math.ceil((double) totalWritings / pageSize);
@@ -37,7 +37,7 @@ public class BoardController {
         int startRow = (currentPage - 1) * pageSize;
         List<WritingDTOSelectVersion> currentPageWritings = writingService.findCurrentPageWritings(startRow, pageSize);
 
-        Integer pageGroupSize = 5;
+        Integer pageGroupSize = 9;
         Integer currentGroup = (int) Math.ceil((double) currentPage / pageGroupSize);
         Integer currentGroupFirstPage = (currentGroup - 1) * pageGroupSize + 1;
         Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);

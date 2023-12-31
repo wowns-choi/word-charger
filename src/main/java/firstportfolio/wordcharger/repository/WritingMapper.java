@@ -8,7 +8,9 @@ import java.util.List;
 @Mapper
 public interface WritingMapper {
 
-    void init();
+    void deleteAll();
+
+    void init(int i);
 
     void insertWriting (String title, String userId, Integer isPrivate, String writingPassword, String content);
 
