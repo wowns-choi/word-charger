@@ -179,68 +179,37 @@
                     </c:forEach>
                 </div>
 
-                <!--페이지넘버-->
-                <div class="page-number">
-                <c:if test="${fivePageUnder}">
-                <c:forEach var="i" begin="1" end="${totalPagesInteger}">
-                    <c:choose>
-                        <c:when test="${i==page}">
-                            <span class="numbering"> ${i} </span>
-                        </c:when>
-                        <c:otherwise>
-                        <a href="/board-home?page=${i}" class="number">${i} </a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
+
+
+            <div class="pagination">
+                <!-- 이전 페이지 그룹 링크 -->
+                <c:if test="${currentGroupFirstPage != 1}">
+                    <a href="/board-home?page=${currentGroupFirstPage - pageGroupSize}">&laquo; 이전</a>
                 </c:if>
 
-                <c:if test="${fivePageUp1}">
-                <c:forEach var="i" begin="1" end="5">
+                <!-- 현재 페이지 그룹의 페이지 링크 -->
+                <c:forEach var="i" begin="${currentGroupFirstPage}" end="${currentGroupLastPage}">
                     <c:choose>
-                        <c:when test="${i==page}">
-                            <span class="number"> ${i} </span>
+                        <c:when test="${i == currentPage}">
+                            <span class="current-page">${i}</span>
                         </c:when>
                         <c:otherwise>
-                        <a href="/board-home?page=${i}" class="number">${i} </a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                <a href="/board-home?page=${totalPageInteger}">...${totalPageInteger}</a>
-                </c:if>
-
-                <c:if test="${fivePageUp2}">
-                <c:forEach var="i" begin="${totalPageInteger-4}" end="${totalPageInteger}">
-                    <c:choose>
-                        <c:when test="${i==page}">
-                            <span class="number"> ${i} </span>
-                        </c:when>
-                        <c:otherwise>
-                        <a href="/board-home?page=${i}" class="number">${i} </a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                </c:if>
-
-                <c:if test="${fivePageUp3}">
-                <c:forEach var="i" begin="${page-2}" end="${page+2}">
-                    <c:choose>
-                        <c:when test="${i==page}">
-                            <span class="number"> ${i} </span>
-                        </c:when>
-                        <c:otherwise>
-                        <a href="/board-home?page=${i}" class="number">${i} </a>
+                            <a href="/board-home?page=${i}">${i}</a>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
 
-                <a href="/board-home?page=${totalPageInteger}">${totalPagesString}</a>
-
+                <!-- 다음 페이지 그룹 링크 -->
+                <c:if test="${currentGroupLastPage != totalPages}">
+                    <a href="/board-home?page=${currentGroupLastPage + 1}">다음 &raquo;</a>
                 </c:if>
+            </div>
 
-                </div>
-                <!--페이지넘버-->
 
             </div>
+
+
+
 
         </div>
 </div>

@@ -3,6 +3,8 @@ package firstportfolio.wordcharger.controller.contact;
 import firstportfolio.wordcharger.DTO.WritingDTO;
 import firstportfolio.wordcharger.DTO.WritingDTOSelectVersion;
 import firstportfolio.wordcharger.repository.WritingMapper;
+
+import firstportfolio.wordcharger.sevice.common.WritingService;
 import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -21,58 +23,37 @@ import java.util.List;
 @Slf4j
 public class BoardController {
     private final WritingMapper writingMapper;
+    private final WritingService writingService;
 
     @GetMapping("/board-home")
-    public String boardHomeControllerMethod(@RequestParam(value="page", defaultValue = "1") Integer page, Model model) {
+    public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
 
-        int startRow = page - 1;
-        List<WritingDTOSelectVersion> currentPageWritings = writingMapper.findCurrentPageWritings(startRow);
-        model.addAttribute("currentPageWritings", currentPageWritings);
-        log.info("allWriting================{}", currentPageWritings);
-
-
-        Integer totalWriting = writingMapper.countAllWriting();
+        Integer currentPage = page;
         Integer pageSize = 2;
 
-        double totalPagesDouble = Math.ceil((double) totalWriting / pageSize);
-        Integer totalPagesInteger = (int) totalPagesDouble;
+        Integer totalWritings = writingService.getTotalWritingsCount();
+        Integer totalPages = (int) Math.ceil((double) totalWritings / pageSize);
 
-        if (totalPagesInteger <= 5) {
-            model.addAttribute("page", page);
-            model.addAttribute("totalPagesInteger", totalPagesInteger);
-            model.addAttribute("fivePageUnder", true);
-            return "/contact/boardHome";
-        }
+        int startRow = (currentPage - 1) * pageSize;
+        List<WritingDTOSelectVersion> currentPageWritings = writingService.findCurrentPageWritings(startRow, pageSize);
 
-        if(totalPagesInteger >5){
-            if (page == 1 || page == 2) {
-                model.addAttribute("page", page);
-                model.addAttribute("totalPageInteger", totalPagesInteger);
-                model.addAttribute("fivePageUp1", true);
-                return "/contact/boardHome";
-            }
-
-            if(totalPagesInteger<page+2){
-                model.addAttribute("page", page);
-                model.addAttribute("totalPageInteger", totalPagesInteger);
-                model.addAttribute("fivePageUp2", true);
-                return "/contact/boardHome";
-            }
-
-            model.addAttribute("page", page);
-            if (totalPagesInteger - page > 2) {
-                String totalPagesIntegerToString = totalPagesInteger.toString();
-                String totalPagesString = "..." + totalPagesIntegerToString;
-                model.addAttribute("totalPagesString", totalPagesString);
-                model.addAttribute("totalPageInteger", totalPagesInteger);
-
-            }
+        Integer pageGroupSize = 5;
+        Integer currentGroup = (int) Math.ceil((double) currentPage / pageGroupSize);
+        Integer currentGroupFirstPage = (currentGroup - 1) * pageGroupSize + 1;
+        Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);
 
 
-            model.addAttribute("fivePageUp3", true);
-            return "/contact/boardHome";
-        }
+
+        model.addAttribute("currentPageWritings", currentPageWritings);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+
+        model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
+        model.addAttribute("currentGroupLastPage", currentGroupLastPage);
+        model.addAttribute("pageGroupSize", pageGroupSize);
+
         return "/contact/boardHome";
+
     }
 
     @GetMapping("/writing-page")
@@ -93,7 +74,7 @@ public class BoardController {
         String content = writingDTO.getContent();
 
         if (bindingResult.hasErrors()) {
-            if(secretWritingCheckBox.equals(true)){
+            if (secretWritingCheckBox.equals(true)) {
                 model.addAttribute("show", true);
             }
 
@@ -113,10 +94,8 @@ public class BoardController {
         writingMapper.insertWriting(title, userId, isPrivate, writingPassword, content);
 
 
-
         return "redirect:/board-home";
     }
-
 
 
 

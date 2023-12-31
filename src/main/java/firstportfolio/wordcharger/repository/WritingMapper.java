@@ -14,7 +14,8 @@ public interface WritingMapper {
 
     Integer countAllWriting ();
 
-    List<WritingDTOSelectVersion> findCurrentPageWritings(Integer startRow);
+    List<WritingDTOSelectVersion> findCurrentPageWritings(Integer startRow, Integer pageSize);
+
 
 }
 
