@@ -1,7 +1,9 @@
 package firstportfolio.wordcharger.controller.contact;
 
+import firstportfolio.wordcharger.DTO.CommentDTO;
 import firstportfolio.wordcharger.DTO.WritingDTO;
 import firstportfolio.wordcharger.DTO.WritingDTOSelectVersion;
+import firstportfolio.wordcharger.repository.UserCommentMapper;
 import firstportfolio.wordcharger.repository.WritingMapper;
 
 import firstportfolio.wordcharger.sevice.common.WritingService;
@@ -25,6 +27,7 @@ import java.util.Map;
 public class BoardController {
     private final WritingMapper writingMapper;
     private final WritingService writingService;
+    private final UserCommentMapper userCommentMapper;
 
     @GetMapping("/board-home")
     public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
@@ -137,14 +140,54 @@ public class BoardController {
     }
 
     @GetMapping("show-writing")
-    public String showWritingControllerMethod(@RequestParam String writingNum, Model model){
+    public String showWritingControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page ,@RequestParam String writingNum, Model model, HttpServletRequest request){
+
 
         WritingDTOSelectVersion findedWritingByWritingNum = writingMapper.findWritingByWritingNum(writingNum);
         model.addAttribute("findedWritingByWritingNum", findedWritingByWritingNum);
 
+        String loginedMember = FindLoginedMemberIdUtil.findLoginedMember(request);
+        model.addAttribute("loginedMemberId", loginedMember);
 
-        return "/contact/";
+        model.addAttribute("commentDTO", new CommentDTO());
+        model.addAttribute("writingNum", writingNum);
 
+        //현재 페이지
+        Integer currentPage = page;
+        //코멘트가 총 몇개인지
+        Integer allCommentCount = userCommentMapper.allCommentCount(writingNum);
+        //한페이지당 개수
+        Integer numberPerPage = 5;
+        //총페이지개수
+        Integer totalPageCount = (int) Math.ceil((double) allCommentCount / numberPerPage);
+        //그룹당 페이지수
+        Integer numberPerGroup = 5;
+        //현재 그룹은?
+        Integer currentGroup = (int) Math.ceil((double) totalPageCount / numberPerPage);
+        //현재 그룹의 첫페이지
+        Integer currentGroupFirstPage = (currentGroup - 1) * numberPerGroup + 1;
+        //현재 그룹의 마지막 페이지
+        Integer currentGroupLastPage = Math.min(currentGroup * numberPerGroup - 1, totalPageCount);
+
+        model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
+        model.addAttribute("currentGroupLastPage", currentGroupLastPage);
+        model.addAttribute("currentPage", currentPage);
+
+
+        Integer startRow = (currentPage - 1) * numberPerPage;
+        log.info("startRow==================={}", startRow);
+
+        List<CommentDTO> findedCommentList = userCommentMapper.findCommentByWritingNum(startRow, numberPerPage, writingNum);
+        model.addAttribute("findedCommentList", findedCommentList);
+
+
+        return "/contact/showWriting";
+
+    }
+    @PostMapping("show-writing")
+    public String InsertCommentControllerMethod(@ModelAttribute CommentDTO commentDTO){
+        userCommentMapper.insertComment(commentDTO.getWritingNum(), commentDTO.getId(), commentDTO.getContent());
+        return "redirect:/show-writing?writingNum=" + commentDTO.getWritingNum();
     }
 
 

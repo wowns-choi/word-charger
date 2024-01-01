@@ -11,14 +11,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class InterceptorConfig implements WebMvcConfigurer {
     private final LoginInterceptor loginInterceptor;
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-
-        registry.addInterceptor(loginInterceptor)
-                .order(1)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/css/**","/**/*.jpeg","/**/*.png","/error","/","/login-form","/memberJoin","/find-voca","/faq","/contact","/wayToCome","/wowns","/board-home","/writing-page","/findWriting");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//
+//        registry.addInterceptor(loginInterceptor)
+//                .order(1)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/css/**","/**/*.jpeg","/**/*.png","/error","/","/login-form","/memberJoin","/find-voca","/faq","/contact","/wayToCome","/wowns","/board-home","/writing-page","/findWriting");
+//    }
 
 
 }
