@@ -169,7 +169,7 @@
                 <div class="board-2">
                     <c:forEach var="writing" items="${currentPageWritings}">
                         <span>${writing.writingNum}</span>
-                        <a href="/show-writing?writingNum=${writing.writingNum}"><span style="font-size: 20px;">${writing.title}</span></a>
+                        <span>${writing.title}</span>
                         <span>${writing.writingDate}</span>
                         <span>${writing.viewNumber}</span>
                         <span>${writing.likeNumber}</span>
@@ -179,7 +179,7 @@
             <div class="pagination">
                 <!-- 이전 그룹 링크 -->
                 <c:if test="${currentGroupFirstPage != 1}">
-                    <a href="/board-home?page=${currentGroupFirstPage - pageGroupSize}">&laquo; 이전</a>
+                    <a href="/find-writings-by-title-writer-content?page=${currentGroupFirstPage - pageGroupSize}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">&laquo; 이전</a>
                 </c:if>
 
                 <!-- 현재 페이지 그룹의 페이지 링크 forEach 문 돌림 -->
@@ -189,25 +189,25 @@
                             <span class="current-page">${i}</span>
                         </c:when>
                         <c:otherwise>
-                            <a href="/board-home?page=${i}">${i}</a>
+                            <a href="/find-writings-by-title-writer-content?page=${i}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">${i}</a>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
 
                 <!-- 다음 그룹 링크 -->
                 <c:if test="${currentGroupLastPage != totalPages}">
-                    <a href="/board-home?page=${currentGroupLastPage + 1}">다음 &raquo;</a>
+                    <a href="/find-writings-by-title-writer-content?page=${currentGroupLastPage + 1}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">다음 &raquo;</a>
                 </c:if>
             </div>
 
             <form action="/find-writings-by-title-writer-content" method="post">
                 <select name="byWhatType">
-                    <option value="title">제목</option>
-                    <option value="writer">작성자</option>
-                    <option value="content">내용</option>
+                    <option value="title" ${byWhatType == 'title' ? 'selected' : ''} >제목</option>
+                    <option value="writer" ${byWhatType == 'writer' ? 'selected' : ''} >작성자</option>
+                    <option value="content" ${byWhatType == 'content' ? 'selected' : ''} >내용</option>
                 </select>
 
-                <input type="text" name="hintToFind" />
+                <input type="text" name="hintToFind" value="${hintToFind}" />
                 <button type="submit"> 찾기 </button>
             </form>
             </div>

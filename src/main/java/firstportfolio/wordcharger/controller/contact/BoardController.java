@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -43,7 +44,6 @@ public class BoardController {
         Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);
 
 
-
         model.addAttribute("currentPageWritings", currentPageWritings);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
@@ -54,6 +54,45 @@ public class BoardController {
 
         return "/contact/boardHome";
 
+    }
+
+    @RequestMapping("find-writings-by-title-writer-content")
+    public String findWritingControllerMethod(@RequestParam String byWhatType, @RequestParam String hintToFind, @RequestParam(required = false, defaultValue = "1") Integer page, Model model){
+
+        Integer currentPage = page;
+
+        //pageSize 는 한페이지당 몇개의 글이 올라갈것인가? 의 문제이다.
+        Integer pageSize = 3;
+
+        Integer startRow = (currentPage - 1) * pageSize;
+
+
+        Map<String, Object> returnMap = writingService.findTotalWritingByTitleWriterContent(byWhatType, hintToFind, startRow, pageSize);
+        Integer findedWritingTotal = (Integer) returnMap.get("findedWritingTotal");
+        List<WritingDTOSelectVersion> currentPageWritings = (List<WritingDTOSelectVersion>)returnMap.get("currentPageWritings");
+
+        int totalPages = (int) Math.ceil((double) findedWritingTotal / pageSize);
+
+        Integer pageGroupSize = 5;
+
+        Integer currentGroup = (int) Math.ceil((double) currentPage / pageGroupSize);
+        Integer currentGroupFirstPage = (currentGroup - 1) * pageGroupSize + 1;
+        Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);
+
+
+
+        model.addAttribute("currentPageWritings", currentPageWritings);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+
+        model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
+        model.addAttribute("currentGroupLastPage", currentGroupLastPage);
+        model.addAttribute("pageGroupSize", pageGroupSize);
+
+        model.addAttribute("byWhatType", byWhatType);
+        model.addAttribute("hintToFind", hintToFind);
+
+        return "/contact/boardHomeFind";
     }
 
     @GetMapping("/writing-page")
@@ -97,6 +136,15 @@ public class BoardController {
         return "redirect:/board-home";
     }
 
+    @GetMapping("show-writing")
+    public String showWritingControllerMethod(@RequestParam String writingNum, Model model){
+
+        WritingDTOSelectVersion findedWritingByWritingNum = writingMapper.findWritingByWritingNum(writingNum);
+        model.addAttribute("findedWritingByWritingNum", findedWritingByWritingNum);
+
+        return "/contact/";
+
+    }
 
 
 }

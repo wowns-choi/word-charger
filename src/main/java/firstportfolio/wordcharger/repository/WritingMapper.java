@@ -18,6 +18,18 @@ public interface WritingMapper {
 
     List<WritingDTOSelectVersion> findCurrentPageWritings(Integer startRow, Integer pageSize);
 
+    Integer findWritingByTitle (String hintToFind);
 
+    List<WritingDTOSelectVersion> findCurrentPageWritingsByTitle(String title,Integer startRow, Integer pageSize);
+
+    Integer findWritingByWriter (String hintToFind);
+
+    List<WritingDTOSelectVersion> findCurrentPageWritingsByWriter(String writer, Integer startRow, Integer pageSize);
+    Integer findWritingByContent (String hintToFind);
+
+    List<WritingDTOSelectVersion> findCurrentPageWritingsByContent(String content, Integer startRow, Integer pageSize);
+
+
+    WritingDTOSelectVersion findWritingByWritingNum (String writingNum);
 }
 

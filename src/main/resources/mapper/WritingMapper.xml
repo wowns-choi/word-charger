@@ -33,8 +33,47 @@
         FETCH NEXT #{pageSize} ROWS ONLY
     </select>
 
+    <select id="findWritingByTitle" resultType="Integer">
+        SELECT COUNT(*) FROM writing_data
+        WHERE title LIKE #{hintToFind}
+    </select>
+
+    <select id="findCurrentPageWritingsByTitle" resultType="WritingDTOSelectVersion">
+        SELECT * FROM
+        (SELECT * FROM writing_data WHERE title LIKE #{title} )
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
 
 
+    <select id="findWritingByWriter" resultType="Integer">
+        SELECT COUNT(*) FROM writing_data
+        WHERE user_id LIKE #{hintToFind}
+    </select>
+
+    <select id="findCurrentPageWritingsByWriter" resultType="WritingDTOSelectVersion">
+        SELECT * FROM
+        (SELECT * FROM writing_data WHERE user_id LIKE #{writer} )
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <select id="findWritingByContent" resultType="Integer">
+        SELECT COUNT(*) FROM writing_data
+        WHERE content LIKE #{hintToFind}
+    </select>
+
+    <select id="findCurrentPageWritingsByContent" resultType="WritingDTOSelectVersion">
+        SELECT * FROM
+        (SELECT * FROM writing_data WHERE content LIKE #{content} )
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <select id="findWritingByWritingNum" resultType="WritingDTOSelectVersion">
+        SELECT * FROM writing_data
+        WHERE writing_num = #{writingNum}
+    </select>
 
 
 
