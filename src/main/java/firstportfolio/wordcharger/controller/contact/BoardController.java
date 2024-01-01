@@ -142,6 +142,7 @@ public class BoardController {
         WritingDTOSelectVersion findedWritingByWritingNum = writingMapper.findWritingByWritingNum(writingNum);
         model.addAttribute("findedWritingByWritingNum", findedWritingByWritingNum);
 
+
         return "/contact/";
 
     }
