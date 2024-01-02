@@ -121,8 +121,25 @@
             top: 110vh; /* 위쪽으로부터 10px */
             margin : 0 50px;
             width: calc(100% - 100px); /* 전체 너비에서 양쪽 마진을 뺀 너비 */
-            height: 3000px;
+            height: 1000px;
             border-top: 3px solid #ff8c8c;
+
+        }
+        .pagination{
+            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
+            align-items: center; /* 세로 중앙 정렬 */
+            justify-content: center; /* 가로 중앙 정렬 */
+            font-size: 25px;
+        }
+        .pagination span, .pagination a{
+            margin-right: 40px;
+        }
+        .pagination span{
+            color: #ff6b3f;
+        }
+        .pagination a{
+            text-decoration: none;
+            color: inherit;
         }
 
 
@@ -181,16 +198,28 @@
                 </div>
                 </c:forEach>
 
-                <c:forEach var="i" begin="${currentGroupFirstPage}" end="${currentGroupLastPage}">
-                    <c:choose>
-                        <c:when test="${i == currentPage}">
-                            <span>${i}</span>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/show-writing?page=${i}&writingNum=${writingNum}">${i}</a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
+                <div class="pagination">
+                    <c:if test="${currentGroupFirstPage != 1}">
+                        <a href="/show-writing?page=${currentGroupFirstPage-numberPerGroup}&writingNum=${writingNum}"> &laquo; 이전</a>
+                    </c:if>
+
+
+                    <c:forEach var="i" begin="${currentGroupFirstPage}" end="${currentGroupLastPage}">
+                        <c:choose>
+                            <c:when test="${i == currentPage}">
+                                <span>${i}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/show-writing?page=${i}&writingNum=${writingNum}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <c:if test="${currentGroupLastPage != totalPageCount}">
+                        <a href="/show-writing?page=${currentGroupLastPage + 1}&writingNum=${writingNum}">다음 &raquo;</a>
+
+                    </c:if>
+                </div>
 
             </div>
 

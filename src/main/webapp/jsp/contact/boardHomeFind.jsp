@@ -169,7 +169,7 @@
                 <div class="board-2">
                     <c:forEach var="writing" items="${currentPageWritings}">
                         <span>${writing.writingNum}</span>
-                        <span>${writing.title}</span>
+                        <a href="/show-writing?writingNum=${writing.writingNum}"><span style="font-size: 20px;">${writing.title}</span></a>
                         <span>${writing.writingDate}</span>
                         <span>${writing.viewNumber}</span>
                         <span>${writing.likeNumber}</span>

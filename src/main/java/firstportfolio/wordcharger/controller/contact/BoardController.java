@@ -17,7 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
+
 import java.util.List;
 import java.util.Map;
 
@@ -152,26 +152,32 @@ public class BoardController {
         model.addAttribute("commentDTO", new CommentDTO());
         model.addAttribute("writingNum", writingNum);
 
-        //현재 페이지
+        //현재 페이지 1
         Integer currentPage = page;
-        //코멘트가 총 몇개인지
+        log.info("currentPage========================={}", currentPage);
+        //코멘트가 총 몇개인지 26
         Integer allCommentCount = userCommentMapper.allCommentCount(writingNum);
         //한페이지당 개수
         Integer numberPerPage = 5;
-        //총페이지개수
+        //총페이지개수 6
         Integer totalPageCount = (int) Math.ceil((double) allCommentCount / numberPerPage);
         //그룹당 페이지수
         Integer numberPerGroup = 5;
-        //현재 그룹은?
-        Integer currentGroup = (int) Math.ceil((double) totalPageCount / numberPerPage);
+        //현재 그룹은? 1
+        Integer currentGroup = (int) Math.ceil((double) currentPage / numberPerGroup);
         //현재 그룹의 첫페이지
         Integer currentGroupFirstPage = (currentGroup - 1) * numberPerGroup + 1;
         //현재 그룹의 마지막 페이지
-        Integer currentGroupLastPage = Math.min(currentGroup * numberPerGroup - 1, totalPageCount);
+        Integer currentGroupLastPage = Math.min(currentGroupFirstPage + numberPerGroup - 1, totalPageCount);
+
+        log.info("currentGroupFirstPage==============={}", currentGroupFirstPage);
+        log.info("currentGroupLastPage==============={}", currentGroupLastPage);
 
         model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
         model.addAttribute("currentGroupLastPage", currentGroupLastPage);
         model.addAttribute("currentPage", currentPage);
+        model.addAttribute("numberPerGroup", numberPerGroup);
+        model.addAttribute("totalPageCount", totalPageCount);
 
 
         Integer startRow = (currentPage - 1) * numberPerPage;
