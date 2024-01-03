@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.WritingDataUserCommentMapper">
+
+    <resultMap id="writingDataUserCommentResultMap" type="WritingDataUserCommentDTO">
+
+        <result property="writingNum" column="WD_writing_num"/>
+        <result property="content" column="WD_content"/>
+        <result property="commentWritingNum" column="UC_writing_num"/>
+        <result property="commentId" column="UC_id"/>
+        <result property="commentContent" column="UC_content"/>
+
+    </resultMap>
+
+<!--    여기서 INNER JOIN 하면 안되는 이유는, -->
+<!--    INNER JOIN 하면, ON절(조건절)에 맞는 행이 하나도 없기 떄문에, -->
+<!--    아무것도 없는 행이 일단 조회가 된 다음에, 아무것도 없는 행에다가 WHERE절을 적용하기 때문이다.-->
+    <select id="findTotalMyWritingSize" resultType="Integer">
+        SELECT COUNT(*)
+        FROM writing_data WD
+        LEFT OUTER JOIN user_comment UC
+        ON WD.writing_num = UC.writing_num
+        WHERE WD.user_id=#{id} OR UC.id=#{id}
+        ORDER BY WD.writing_num
+    </select>
+
+    <select id="findMyWriting" resultMap="writingDataUserCommentResultMap">
+        SELECT
+        WD.writing_num AS WD_writing_num,
+        WD.title,
+        WD.user_id,
+        WD.is_private,
+        WD.writing_password,
+        WD.writing_date,
+        WD.content AS WD_content,
+        WD.view_number,
+        WD.like_number,
+        UC.writing_num AS UC_writing_num,
+        UC.id AS UC_id,
+        UC.content AS UC_content
+        FROM writing_data WD
+        LEFT OUTER JOIN user_comment UC
+        ON WD.writing_num = UC.writing_num
+        WHERE WD.user_id=#{id} OR UC.id=#{id}
+        ORDER BY WD.writing_num
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+    
+
+
+</mapper>

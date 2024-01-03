@@ -83,7 +83,6 @@ public class BoardController {
         Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);
 
 
-
         model.addAttribute("currentPageWritings", currentPageWritings);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
