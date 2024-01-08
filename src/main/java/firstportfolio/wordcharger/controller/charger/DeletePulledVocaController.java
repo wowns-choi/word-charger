@@ -31,14 +31,14 @@ public class DeletePulledVocaController {
 
     @PostConstruct
     public void init(){
-        countMapper.init();
-        fixedDayMapper.init();
-        includeMapper.init();
-        writingMapper.deleteAll();
-
-        for(int i=0; i<300; i++ ){
-            writingMapper.init(i);
-        }
+//        countMapper.init();
+//        fixedDayMapper.init();
+//        includeMapper.init();
+//        writingMapper.deleteAll();
+//
+//        for(int i=0; i<300; i++ ){
+//            writingMapper.init(i);
+//        }
 
 
 

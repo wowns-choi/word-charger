@@ -147,7 +147,7 @@
                 ${idIncorrectMessage}
                 <form:input class="passwordInput" path="password" placeholder="Password"/>
                 ${passwordIncorrectMessage}
-                <button type="submit"  class="loginButton" >
+                <button type="submit"  class="loginButton">
                     Login
                 </button>
             </form:form>

@@ -8,4 +8,5 @@ public interface MemberMapper {
 
     MemberDTO findMemberById(String id);
 
+
 }
