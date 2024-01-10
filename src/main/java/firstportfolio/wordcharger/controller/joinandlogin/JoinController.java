@@ -26,10 +26,23 @@ public class JoinController {
 
 
     @GetMapping("/Join-form")
-    public String joinFormControllerMethod(HttpServletRequest request, Model model){
+    public String getJoinFormControllerMethod(HttpServletRequest request, Model model){
 
         model.addAttribute("memberDTO", new MemberDTO());
         return "/login/joinForm";
+
+    }
+
+    @PostMapping("/Join-form")
+    @ResponseBody
+    public String postJoinFormControllerMethod (@ModelAttribute MemberDTO memberDTO, @RequestParam String zipCode, @RequestParam String streetAddress, @RequestParam String address,@RequestParam String detailAddress,@RequestParam String referenceItem ){
+
+        log.info(memberDTO.getId());
+        log.info(memberDTO.getPassword());
+        log.info(memberDTO.getUserName());
+        log.info(zipCode);
+
+        return "hello";
 
     }
 
