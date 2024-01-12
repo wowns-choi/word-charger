@@ -167,7 +167,7 @@
                             Login
                         </button>
                     </a>
-                    <a href="/Join-form" class="login-button">
+                    <a href="/terms-of-use" class="login-button">
                         <button type="button" class="btn btn-outline-primary">
                             Join
                         </button>

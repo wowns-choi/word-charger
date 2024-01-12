@@ -25,11 +25,15 @@ public class JoinController {
     private static final String SPECIAL_CHAR_PATTERN = ".*[!@#&()–[{}]:;',?/*~$^+=<>].*";
 
 
+    @GetMapping("/terms-of-use")
+    public String getTermsOfUse(){
+        return "/login/termsOfUse";
+    }
     @GetMapping("/Join-form")
     public String getJoinFormControllerMethod(HttpServletRequest request, Model model){
 
         model.addAttribute("memberDTO", new MemberDTO());
-        return "/login/joinForm";
+        return "/login/termsOfUse";
 
     }
 
