@@ -1,129 +1,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:import url="/jsp/bootstrapconfig/index.jsp"/>
+
 
 <html>
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
 
     <style>
-        /*이거 한글 글꼴임*/
-        @font-face {
-            font-family: 'NanumSquareNeo-Variable';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* right-WC 한글글꼴 */
-        @font-face {
-            font-family: 'MYYeongnamnu';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/MYYeongnamnu.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .full-frame{
-            width: 100vw;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: #757575;
-            font-family: 'NanumSquareNeo-Variable';
-
-        }
-        .content-container{
-            width: 35vw;
-            height: 80vh;
-            background: #fff;
-            border-radius: 10px; /* 여기를 추가하세요 */
-            text-align: center;
-
-        }
-        .inner-align{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
-            margin-top: 2vh;
-
-
-        }
-        .input-tag{
-            font-family: 'NanumSquareNeo-Variable';
-            width: 65%;
-            border-radius: 3px;
-            border: 1px solid #ccc; /* 경계선 색상과 스타일 */
-        }
-        input:focus {
-            background-color: #c7e8ff; /* 클릭 시 배경색을 노란색으로 변경 */
-        }
-
-        .join-btn{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10vh;
-        }
 
 
 
         <!--체크박스 시작-->
-
-        input {
-            display: none;
-        }
-
-        .checkbox-wrapper {
-            font-size: 15px;
-            width: 24.5vw;
-        }
-
-
-        .checkbox-wrapper input[type="checkbox"] {
+        input[type="checkbox"] {
           display: none;
         }
 
-        .checkbox-wrapper .terms-label {
-          cursor: pointer; /* 마우스를 올렸을 때, 손가락 모양으로 변하는 이유임. */
-          display: flex;
-          align-items: center;
-        }
-
-        .checkbox-wrapper .terms-label .label-text {
-          margin-left: 10px;
-        }
-
-        .checkbox-wrapper .checkbox-svg {
+        .custom-checkbox .checkbox-design {
+          /* 여기에 사용자 정의 스타일 추가 */
           width: 20px;
           height: 20px;
+          border: 2px solid #555;
+          display: inline-block;
+          cursor: pointer;
         }
 
-        .checkbox-wrapper .checkbox-box {
-          fill: rgba(207, 205, 205, 0.425);
-          stroke: #8c00ff;
-          stroke-dasharray: 800;
-          stroke-dashoffset: 800;
-          transition: stroke-dashoffset 0.6s ease-in;
+        input[type="checkbox"]:checked + .checkbox-design {
+          /* 체크박스가 선택되었을 때의 스타일 */
+          background-color: blue;
         }
 
-        .checkbox-wrapper .checkbox-tick {
-          stroke: #8c00ff;
-          stroke-dasharray: 172;
-          stroke-dashoffset: 172;
-          transition: stroke-dashoffset 0.6s ease-in;
-        }
 
-        .checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-box,
-          .checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-tick {
-          stroke-dashoffset: 0;
-        }
+
+
 
         <!--체크박스 종료-->
 
@@ -134,9 +40,12 @@
 
 
 
-    <div class="full-frame">
-        <div class="content-container">
-            <div class="inner-align">
+
+
+            <label for="myCheckbox" class="custom-checkbox">
+              <input type="checkbox" id="myCheckbox" />
+              <span class="checkbox-design"></span>
+            </label>
 
 
 
@@ -303,9 +212,6 @@
             </textarea>
 
 
-            </div>
-        </div>
-    </div>
 
 
 

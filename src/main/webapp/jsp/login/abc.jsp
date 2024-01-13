@@ -10,8 +10,8 @@
 
 
         <!--체크박스 시작-->
-        .custom-checkbox {
-          display: none;
+        input[type="checkbox"]{
+            appearance: none;
         }
 
 
