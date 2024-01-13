@@ -31,10 +31,7 @@ public class JoinController {
     }
     @GetMapping("/Join-form")
     public String getJoinFormControllerMethod(HttpServletRequest request, Model model){
-
-        model.addAttribute("memberDTO", new MemberDTO());
         return "/login/termsOfUse";
-
     }
 
     @PostMapping("/Join-form")
