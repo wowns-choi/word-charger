@@ -5,6 +5,7 @@ import firstportfolio.wordcharger.repository.MemberMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +27,21 @@ public class JoinController {
 
 
     @GetMapping("/terms-of-use")
-    public String getTermsOfUse(){
+    public String getTermsOfUseControllerMethod(){
         return "/login/termsOfUse";
     }
+    @PostMapping("/terms-of-use")
+    public String postTermsOfUseControllerMethod(@RequestParam(required = false) String myCheckbox1,@RequestParam(required = false) String myCheckbox2, @RequestParam(required = false) String myCheckbox3){
+        log.info("================{}", myCheckbox1);
+        log.info("================{}", myCheckbox2);
+        log.info("================{}", myCheckbox3);
+        return "redirect:/Join-form";
+    }
+
     @GetMapping("/Join-form")
     public String getJoinFormControllerMethod(HttpServletRequest request, Model model){
-        return "/login/termsOfUse";
+        model.addAttribute("memberDTO", new MemberDTO());
+        return "/login/joinForm";
     }
 
     @PostMapping("/Join-form")
