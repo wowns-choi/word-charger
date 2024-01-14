@@ -80,12 +80,14 @@
             <div class="inner-align">
             <form:form modelAttribute="memberDTO" method="post">
                 <form:input type="text" path="id" id="user-id" class="input-tag" placeholder="아이디"/>
+                <form:errors path="id"/>
                 <div id="user-id-status" style="font-size:11px; ">
                 </div>
 
 
 
                 <form:input type="password" path="password" id="user-password" class="input-tag" placeholder="비밀번호" style="margin-top:1.5px;"/>
+                <form:errors path="password"/>
                 <div id="user-password-status" style="font-size:11px; color: red; font-family: 'NanumSquareNeo-Variable';">
                 </div>
                 <div style="font-size:14px;">
@@ -93,36 +95,46 @@
                 </div>
 
                 <form:input type="text" path="userName" class="input-tag" placeholder="이름" style="margin-top:40px; margin-bottom:1.5px;"/>
+                <form:errors path="userName"/>
 
                 <div>
-                <input name="phoneNumberStart"type="text" style="width:25%;" placeholder="000" class="input-tag"/>
-                <input name="phoneNumberMiddle"type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
-                <input name="phoneNumberEnd"type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
+                <form:input path="phoneNumberStart" type="text" style="width:25%;" placeholder="000" class="input-tag"/>
+                <form:input path="phoneNumberMiddle" type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
+                <form:input path="phoneNumberEnd" type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
+                <br/>
+                <form:errors path="phoneNumberStart" style="width:25%;"/>
+                <form:errors path="phoneNumberMiddle" style="width:25%;"/>
+                <form:errors path="phoneNumberEnd" style="width:25%;"/>
                 </div>
 
                 <!--다음 주소 api 사용 시작-->
                 <div style="margin-top:80px;">
-                <input type="text" name="zipCode" id="sample4_postcode" class="input-tag" placeholder="우편번호">
+                <form:input type="text" path="zipCode" id="sample4_postcode" class="input-tag" placeholder="우편번호" readonly="true"/>
+                <form:errors path="zipCode"/>
                 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
                 </div>
                 <div>
-                <input type="text" name="streetAddress"id="sample4_roadAddress" class="input-tag" placeholder="도로명주소" style="margin-top:1.5px;" >
+                <form:input type="text" path="streetAddress"id="sample4_roadAddress" class="input-tag" placeholder="도로명주소" style="margin-top:1.5px;" readonly="true" />
                 </div>
                 <div>
-                <input type="text" name="address"id="sample4_jibunAddress" class="input-tag" placeholder="지번주소" style="margin-top:1.5px;">
+                <form:input type="text" path="address" id="sample4_jibunAddress" class="input-tag" placeholder="지번주소" style="margin-top:1.5px;" readonly="true"/>
                 </div>
                 <div>
                 <span id="guide" style="color:#999;display:none"></span>
                 </div>
                 <div>
-                <input type="text" name="detailAddress"id="sample4_detailAddress" class="input-tag" placeholder="상세주소" style="margin-top:1.5px;">
+                <form:input type="text" path="detailAddress" id="sample4_detailAddress" class="input-tag" placeholder="상세주소" style="margin-top:1.5px;" readonly="true"/>
                 </div>
                 <div>
-                <input type="text" name="referenceItem"id="sample4_extraAddress" class="input-tag" placeholder="참고항목" style="margin-top:1.5px;">
+                <form:input type="text" path="referenceItem" id="sample4_extraAddress" class="input-tag" placeholder="참고항목" style="margin-top:1.5px;" readonly="true" />
                 </div>
                 <!--다음 주소 api 사용 종료-->
 
-
+                <!-- 이걸 왜 안써줬냐? 이걸 써줬더니 오히려 중복으로 on 이 아니라, on,on 이 나왔음.
+                <input type="hidden" name="myCheckbox1" value="${memberDTO["myCheckbox1"]}">
+                <input type="hidden" name="myCheckbox2" value="${memberDTO["myCheckbox2"]}">
+                <input type="hidden" name="myCheckbox3" value="${memberDTO["myCheckbox3"]}">
+                -->
 
                 <div class="join-btn">
                 <input type="submit" value="회원가입"/>
@@ -133,10 +145,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
 

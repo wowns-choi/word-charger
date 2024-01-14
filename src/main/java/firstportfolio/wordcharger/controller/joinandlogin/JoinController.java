@@ -3,11 +3,13 @@ package firstportfolio.wordcharger.controller.joinandlogin;
 import firstportfolio.wordcharger.DTO.MemberDTO;
 import firstportfolio.wordcharger.repository.MemberMapper;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -35,25 +37,44 @@ public class JoinController {
         log.info("================{}", myCheckbox1);
         log.info("================{}", myCheckbox2);
         log.info("================{}", myCheckbox3);
-        return "redirect:/Join-form";
+        return "redirect:/Join-form?" + "myCheckbox1=" + myCheckbox1+ "&" + "myCheckbox2=" + myCheckbox2+ "&"  + "myCheckbox3=" + myCheckbox3;
     }
 
     @GetMapping("/Join-form")
-    public String getJoinFormControllerMethod(HttpServletRequest request, Model model){
-        model.addAttribute("memberDTO", new MemberDTO());
+    public String getJoinFormControllerMethod(HttpServletRequest request, Model model,
+        @RequestParam String myCheckbox1, @RequestParam String myCheckbox2, @RequestParam String myCheckbox3
+    ){
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setMyCheckbox1(myCheckbox1);
+        memberDTO.setMyCheckbox2(myCheckbox2);
+        memberDTO.setMyCheckbox3(myCheckbox3);
+
+        model.addAttribute("memberDTO", memberDTO);
+
         return "/login/joinForm";
     }
 
     @PostMapping("/Join-form")
-    @ResponseBody
-    public String postJoinFormControllerMethod (@ModelAttribute MemberDTO memberDTO, @RequestParam String zipCode, @RequestParam String streetAddress, @RequestParam String address,@RequestParam String detailAddress,@RequestParam String referenceItem ){
+    public String postJoinFormControllerMethod (@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult){
 
-        log.info(memberDTO.getId());
-        log.info(memberDTO.getPassword());
-        log.info(memberDTO.getUserName());
-        log.info(zipCode);
 
-        return "hello";
+        if (bindingResult.hasErrors()) {
+            return "/login/joinForm";
+        }
+
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getId());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getPassword());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getUserName());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getZipCode());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getStreetAddress());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getAddress());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getDetailAddress());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getReferenceItem());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getMyCheckbox1());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getMyCheckbox2());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getMyCheckbox3());
+
+        return "/home/home";
 
     }
 

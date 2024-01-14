@@ -114,7 +114,6 @@
 
 </head>
 <body>
-
     <!-- find Voca 모달창 시작 -->
         <div id="mymyModal" class="modal">
             <div class="modal-content">
