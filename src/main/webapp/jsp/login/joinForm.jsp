@@ -114,10 +114,10 @@
                 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
                 </div>
                 <div>
-                <form:input type="text" path="streetAddress"id="sample4_roadAddress" class="input-tag" placeholder="도로명주소" style="margin-top:1.5px;" readonly="true" />
+                <form:input type="text" path="streetAddress" id="sample4_roadAddress" class="input-tag" placeholder="도로명주소" style="margin-top:1.5px;" readonly="true" />
                 </div>
                 <div>
-                <form:input type="text" path="address" id="sample4_jibunAddress" class="input-tag" placeholder="지번주소" style="margin-top:1.5px;" readonly="true"/>
+                <form:input type="text" path="address" id="sample4_jibunAddress" class="input-tag" placeholder="지번주소" style="margin-top:1.5px;" readonly="true">
                 </div>
                 <div>
                 <span id="guide" style="color:#999;display:none"></span>
