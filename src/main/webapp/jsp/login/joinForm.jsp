@@ -10,22 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
 
     <style>
-        /*이거 한글 글꼴임*/
-        @font-face {
-            font-family: 'NanumSquareNeo-Variable';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* right-WC 한글글꼴 */
-        @font-face {
-            font-family: 'MYYeongnamnu';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/MYYeongnamnu.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
         .full-frame{
             width: 100vw;
             min-height: 100vh;
@@ -33,101 +17,110 @@
             flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
             justify-content: center;
             align-items: center;
-            text-align: center;
             background: #757575;
-            font-family: 'NanumSquareNeo-Variable';
-
         }
         .content-container{
             width: 35vw;
             height: 80vh;
             background: #fff;
-            border-radius: 10px; /* 여기를 추가하세요 */
-            text-align:left;
-            padding-left: 20px; /* 왼쪽 여유 공간 추가 */
-            padding-top : 50px;
-
-        }
-        .inner-align{
-
-
-        }
-        .input-tag{
-            font-family: 'NanumSquareNeo-Variable';
-            width: 65%;
-            border-radius: 3px;
-            border: 1px solid #ccc; /* 경계선 색상과 스타일 */
-        }
-        input:focus {
-            background-color: #c7e8ff; /* 클릭 시 배경색을 노란색으로 변경 */
-        }
-        .join-btn{
+            border-radius: 10px;
+            /* flex-box */
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10vh;
+            flex-direction: column;
+            /*padding 조절 */
+            padding-left: 3vw;
+            padding-right: 3vw;
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+            background-color: green;
+        }
+        .id-password-container{
+            width: 100%;
+            height: 15vh;
+            background-color: yellow;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+
+        }
+        .name-phone-container{
+            width: 100%;
+            height: 15vh;
+            background-color: blue;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+        }
+        .tag-for-verification-message{
+            width: 100%;
+            height: 20px;
+            background-color: purple;
         }
 
 
     </style>
 </head>
 <body>
-
-
-
     <div class="full-frame">
         <div class="content-container">
-            <div class="inner-align">
             <form:form modelAttribute="memberDTO" method="post">
-                <form:input type="text" path="id" id="user-id" class="input-tag" placeholder="아이디"/>
-                <form:errors path="id"/>
-                <div id="user-id-status" style="font-size:11px; ">
+
+                <div class="id-password-container">
+                    <form:input type="text" path="id" id="user-id" class="input-tag" placeholder="아이디" style="display: inline-block;"/>
+                    <span id="user-id-status" style="font-size:11px; display:inline-block;">
+                    </span>
+                    <div class="tag-for-verification-message" >
+                        <form:errors path="id"/>
+                    </div>
+
+
+                    <form:input type="password" path="password" id="user-password" class="input-tag" placeholder="비밀번호" style=" display:inline-block;"/>
+                    <span id="user-password-status" style="display:inline-block;">
+                    </span>
+                    <div style="font-size:14px;">
+                        비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
+                    </div>
+                    <div class="tag-for-verification-message">
+                    <form:errors path="password" class="form-errors-css"/>
+                    </div>
+                </div>
+
+                <div class="name-phone-container">
+                    <form:input type="text" path="userName" class="input-tag" placeholder="이름" />
+                    <form:errors path="userName" class="form-errors-css" />
+
+                    <div>
+                    <form:input path="phoneNumberStart" type="text" style="width:25%;" placeholder="000" class="input-tag"/>
+                    <form:input path="phoneNumberMiddle" type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
+                    <form:input path="phoneNumberEnd" type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
+                    <br/>
+                    <form:errors path="phoneNumberStart" style="width:25%;" class="form-errors-css"/>
+                    </div>
                 </div>
 
 
 
-                <form:input type="password" path="password" id="user-password" class="input-tag" placeholder="비밀번호" style="margin-top:1.5px;"/>
-                <form:errors path="password"/>
-                <div id="user-password-status" style="font-size:11px; color: red; font-family: 'NanumSquareNeo-Variable';">
-                </div>
-                <div style="font-size:14px;">
-                비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
-                </div>
-
-                <form:input type="text" path="userName" class="input-tag" placeholder="이름" style="margin-top:40px; margin-bottom:1.5px;"/>
-                <form:errors path="userName"/>
-
-                <div>
-                <form:input path="phoneNumberStart" type="text" style="width:25%;" placeholder="000" class="input-tag"/>
-                <form:input path="phoneNumberMiddle" type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
-                <form:input path="phoneNumberEnd" type="text" style="width:25%;" placeholder="0000" class="input-tag"/>
-                <br/>
-                <form:errors path="phoneNumberStart" style="width:25%;"/>
-                <form:errors path="phoneNumberMiddle" style="width:25%;"/>
-                <form:errors path="phoneNumberEnd" style="width:25%;"/>
-                </div>
 
                 <!--다음 주소 api 사용 시작-->
-                <div style="margin-top:80px;">
                 <form:input type="text" path="zipCode" id="sample4_postcode" class="input-tag" placeholder="우편번호" readonly="true"/>
-                <form:errors path="zipCode"/>
+                <form:errors path="zipCode" class="form-errors-css"/>
                 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                </div>
+
                 <div>
                 <form:input type="text" path="streetAddress" id="sample4_roadAddress" class="input-tag" placeholder="도로명주소" style="margin-top:1.5px;" readonly="true" />
+                <!--<form:errors path="streetAddress"/>-->
                 </div>
                 <div>
-                <form:input type="text" path="address" id="sample4_jibunAddress" class="input-tag" placeholder="지번주소" style="margin-top:1.5px;" readonly="true">
+                <form:input type="text" path="address" id="sample4_jibunAddress" class="input-tag" placeholder="지번주소" style="margin-top:1.5px;" readonly="true"/>
+                <!--<form:errors path="address"/>-->
                 </div>
                 <div>
                 <span id="guide" style="color:#999;display:none"></span>
                 </div>
                 <div>
-                <form:input type="text" path="detailAddress" id="sample4_detailAddress" class="input-tag" placeholder="상세주소" style="margin-top:1.5px;" readonly="true"/>
+                <form:input type="text" path="detailAddress" id="sample4_detailAddress" class="input-tag" placeholder="상세주소" style="margin-top:1.5px;" />
+                <!--<form:errors path="detailAddress"/>-->
                 </div>
                 <div>
                 <form:input type="text" path="referenceItem" id="sample4_extraAddress" class="input-tag" placeholder="참고항목" style="margin-top:1.5px;" readonly="true" />
-                </div>
                 <!--다음 주소 api 사용 종료-->
 
                 <!-- 이걸 왜 안써줬냐? 이걸 써줬더니 오히려 중복으로 on 이 아니라, on,on 이 나왔음.
@@ -139,12 +132,10 @@
                 <div class="join-btn">
                 <input type="submit" value="회원가입"/>
                 </div>
-
-
             </form:form>
-            </div>
         </div>
     </div>
+
 
 
 

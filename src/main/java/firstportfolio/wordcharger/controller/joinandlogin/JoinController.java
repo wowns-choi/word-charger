@@ -56,6 +56,25 @@ public class JoinController {
 
     @PostMapping("/Join-form")
     public String postJoinFormControllerMethod (@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult){
+        log.info("phoneNumberStart==============={}", memberDTO.getPhoneNumberStart().equals(""));
+        log.info("phoneNumberStart==============={}", memberDTO.getPhoneNumberStart()==null);
+
+        if (memberDTO.getId().equals("")) {
+            bindingResult.rejectValue("id", null, "아이디를 입력 해주세요");
+        }
+        if (memberDTO.getPassword().equals("")) {
+            bindingResult.rejectValue("password", null, "비밀번호를 입력해주세요");
+        }
+        if (memberDTO.getUserName().equals("")) {
+            bindingResult.rejectValue("userName", null, "이름을 입력해주세요");
+        }
+        if (memberDTO.getZipCode().equals("")||memberDTO.getStreetAddress().equals("")||memberDTO.getAddress().equals("")) {
+            bindingResult.rejectValue("zipCode", null, "우편번호를 찾기를 통해 주소를 찾아주세요.");
+        }
+
+        if (memberDTO.getPhoneNumberStart().equals("") || memberDTO.getPhoneNumberMiddle().equals("") || memberDTO.getPhoneNumberEnd().equals("")) {
+            bindingResult.rejectValue("phoneNumberStart", null, "전화번호를 입력해주세요");
+        }
 
 
         if (bindingResult.hasErrors()) {
