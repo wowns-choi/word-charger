@@ -1,0 +1,134 @@
+/*이거 한글 글꼴임*/
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.full-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #696969;
+    height: 100vh;
+    font-size: 14px;
+}
+.terms-of-use-container{
+    width: 35vw;
+    height: 70vh;
+    background-color: #fff;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    /* flex-box */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.terms-container{
+    align-self: center;
+    font-family: 'NanumSquareNeo-Variable';
+
+    overflow: auto;
+    width:90%;
+    height: 13vh;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 11px;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+input[type="checkbox"].custom-checkbox + label {
+  position: relative;
+  padding-left: 35px; /* checkbox 와 label 사이의 공간 */
+  cursor: pointer;
+}
+
+/* 아래 선택자는 checkbox를 선택한 게 아니라, 그 checkbox 뒤에 오는 label을 선택한 것이다. 그 label을 기준으로 이전에 가상요소를 두겠다는 것이다. */
+input[type="checkbox"].custom-checkbox + label:before {
+  /* 체크박스 모양 정의 */
+  content: '';
+  /* 왜 inline-block 이나 block 이 없을까? position:absolute 를 쓰면, block이 된다. */
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 1px solid grey;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+/* 기본 상태에서는 투명도를 0으로 설정합니다. */
+input[type="checkbox"].custom-checkbox + label:after {
+    content: "\2713";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: transparent; /* 처음 색상을 투명하게 설정 */
+    transition: color 0.3s ease; /* 색상에만 transition 적용 */
+}
+
+
+
+input[type="checkbox"].custom-checkbox:checked + label:after {
+   content: "\2713";
+   position: absolute;
+   left: 14px; /* '✔'의 좌표를 체크박스 틀에 맞게 조정 */
+   top: 50%;
+   transform: translateY(-50%);
+   color: #fff;
+
+}
+input[type="checkbox"].custom-checkbox:checked + label:before {
+    content: '';
+    border: 1px solid grey;
+    border-radius: 50%;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+    background-color: #478eff;
+}
+
+.essential-option{
+    color:red;
+    font-family: 'NanumSquareNeo-Variable';
+    font-weight: 800;
+    font-size: 11px;
+}
+.selectable-option{
+    font-family: 'NanumSquareNeo-Variable';
+    font-weight: 800;
+    font-size: 11px;
+}
+.submit-btn{
+    align-self: center;
+    width: 50%;
+    height: 10%;
+    font-family: 'NanumSquareNeo-Variable';
+    font-weight: 800;
+    font-size: 14px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
