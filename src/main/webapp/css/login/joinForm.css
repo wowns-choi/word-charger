@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.full-frame{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
+    justify-content: center;
+    align-items: center;
+    background: #757575;
+    font-family: 'NanumSquareNeo-Variable';
+}
+.content-container{
+    width: 35vw;
+    height: 80vh;
+    background: #fff;
+    border-radius: 10px;
+    /* flex-box */
+    display: flex;
+    flex-direction: column;
+    /*padding 조절 */
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+.id-password-container{
+    width: 100%;
+    height: 15vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+
+}
+.name-phone-container{
+    width: 100%;
+    height: 15vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    /* flex-box */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+
+}
+.address-container{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tag-for-verification-message{
+    width: 100%;
+    height: 20px;
+}
+.join-btn-div{
+    /*flex-box*/
+    display: flex;
+    justify-content: center;
+    align-items:center;
+
+    margin-top: 3vh;
+    height: 5vh;
+}
+
+.input-tag{
+    border: 2px; solid black;
+    border-radius: 10px;
+    background-color: #ebebeb;
+    width: 18vw;
+}
+.error-message{
+    color: #ffb0b0;
+}
+.address-btn, .join-btn{
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 3px;
+    transition-duration: 0.5s;
+}
+.address-btn:hover, .join-btn:hover{
+    background-color:black;
+    color:#fff;
+}
+.address-btn{
+    margin-top:5px;
+}
