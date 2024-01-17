@@ -10,6 +10,11 @@
         SELECT * FROM member WHERE id = #{id}
     </select>
 
+    <insert id="insertMember">
+        INSERT INTO member
+        (id, password, user_name, phone_number_start, phone_number_middle, phone_number_end, zip_code, street_address, address, detail_address, reference_item, my_checkbox_1, my_checkbox_2, my_checkbox_3)
+        VALUES (#{id},#{password},#{userName},#{phoneNumberStart},#{phoneNumberMiddle}, #{phoneNumberEnd},#{zipCode}, #{streetAddress}, #{address}, #{detailAddress}, #{referenceItem}, #{myCheckbox1}, #{myCheckbox2}, #{myCheckbox3})
+    </insert>
 
 
 </mapper>

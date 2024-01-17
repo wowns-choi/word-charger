@@ -71,15 +71,16 @@ public class JoinController {
         if (memberDTO.getZipCode().equals("")||memberDTO.getStreetAddress().equals("")||memberDTO.getAddress().equals("")) {
             bindingResult.rejectValue("zipCode", null, "우편번호를 찾기를 통해 주소를 찾아주세요.");
         }
-
         if (memberDTO.getPhoneNumberStart().equals("") || memberDTO.getPhoneNumberMiddle().equals("") || memberDTO.getPhoneNumberEnd().equals("")) {
             bindingResult.rejectValue("phoneNumberStart", null, "전화번호를 입력해주세요");
         }
-
-
         if (bindingResult.hasErrors()) {
             return "/login/joinForm";
         }
+
+        //db 에 insert 하는 쿼리 필요
+        memberMapper.insertMember(memberDTO);
+
 
         log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getId());
         log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getPassword());
@@ -97,10 +98,9 @@ public class JoinController {
 
     }
 
-    @PostMapping("check-user-id")
+    @PostMapping("check-user-id") // 아이디 중복확인 해주는 컨트롤러
     @ResponseBody
     public Map<String,Boolean> duplicateIdValidationControllerMethod(@RequestBody Map<String,String> request){
-
         String userId = request.get("userId");
         log.info("userId={}", userId);
         MemberDTO memberById = memberMapper.findMemberById(userId);
@@ -109,11 +109,9 @@ public class JoinController {
         }else{
             return Collections.singletonMap("isAvailable", false);
         }
-
-
     }
 
-    @PostMapping("check-user-password")
+    @PostMapping("check-user-password") // 비밀번호가 8~16글자인지, 영어대/소문자와 특수문자와 숫자 를 모두 사용해서 비밀번호를 조합했는지, 검증해주는 컨트롤러
     @ResponseBody
     public Map<String, Boolean> availablePasswordValidationControllerMethod(@RequestBody Map<String,String> request){
         String userPassword = request.get("userPassword");
