@@ -125,6 +125,13 @@
     <!--  find Voca 모달창 종료 -->
 
 
+    <!-- 새롭게 만든 nav바 시작 -->
+    <div id="navbar">
+        <div id=""
+
+    </div>
+
+    <!-- 새롭게 만든 nav바 종료 -->
     <!-- nav 바 시작  -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
