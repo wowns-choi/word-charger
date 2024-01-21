@@ -10,6 +10,7 @@
 <body>
 
 
+
     <nav>
         <div></div>
         <div>
@@ -28,10 +29,16 @@
             </div>
 
         </div>
-        <div>
-            <button onclick="toggleDropdown('aboutDropdown')">
+        <div class="aboutBtn-div">
+            <button id="aboutBtn">
                 ABOUT
             </button>
+            <div class="aboutBtnDropdown">
+                <div class="aboutBtnDropdown-child">
+                    안녕하세요
+                </div>
+
+            </div>
         </div>
         <div>
             <button>
@@ -66,21 +73,13 @@
         <div></div>
 
     </nav>
-
-    <!-- under-navbar-first -->
-    <div class="under-navbar-first">
-        <div id="aboutDropdown" class="dropdown-content">
-            <p>About content here...</p>
-        </div>
+    <div id="sign-in-up">
+        <a href="" id="sign-in">SIGN IN</a>
+        <a href="" id="sign-up">SIGN UP</a>
     </div>
 
-    <script>
-        function toggleDropdown(dropdownId) {
-            var dropdown = document.getElementById(dropdownId);
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        }
 
-    </script>
+
 
 
 

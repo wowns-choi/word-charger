@@ -21,6 +21,7 @@ nav {
     font-size: 12px;
     margin: 0;
     padding: 0;
+    position: fixed;
 }
 
 a {
@@ -181,7 +182,7 @@ nav>div:nth-child(11) button {
 }
 
 nav>div:nth-child(12) {
-    flex-basis: 5%;
+    flex-basis: 6%;
 }
 
 nav div {
@@ -191,29 +192,63 @@ nav div {
 }
 
 
-/* drop-down */
+/* sign-in, sign-up */
+#sign-in-up {
+    background-color: blanchedalmond;
+    display: flex;
+    font-family: 'BMJUA';
+}
 
+#sign-in {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 1px;
+    color: black;
+    font-size: 13px;
+
+}
+
+#sign-up {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 1px;
+    color: black;
+    font-size: 13px;
+}
 
 /* under-navbar-first */
-.under-navbar-first {
-    width: 100vw;
-    height: 10vh;
-    background-color: red;
-}
-
-.dropdown-content {
+.aboutBtnDropdown {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    top: 7vh;
+    width: 8vw;
+    height: 20vh;
+
 }
 
-.dropdown-content p {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+.aboutBtnDropdown-child {
+    width: 90%;
+    background-color: white;
+    height: 100%;
+    border: 0.3px solid black;
+
+}
+
+.aboutBtn-div:hover .aboutBtnDropdown {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+
 }
