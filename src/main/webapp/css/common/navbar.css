@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    height: 200vh;
 }
 
 
@@ -22,6 +23,8 @@ nav {
     margin: 0;
     padding: 0;
     position: fixed;
+    z-index: 2;
+
 }
 
 a {
@@ -67,14 +70,13 @@ nav>div:nth-child(2)>a:nth-child(1):active {
 nav>div:nth-child(3) {
     flex-basis: 4%;
     background-color: #001536;
-    font-size: 6px;
+    font-size: 7.5px;
 }
 
 #project-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 7.4px;
     color: white;
     border: 1.5px solid white;
     height: 6.5vh;
@@ -91,6 +93,7 @@ nav>div:nth-child(7),
 nav>div:nth-child(8) {
     flex-basis: 8%;
     background-color: #001536;
+    font-size: 10px;
 }
 
 nav>div:nth-child(4)>button,
@@ -101,7 +104,7 @@ nav>div:nth-child(8)>button {
     background-color: #001536;
     width: 90%;
     height: 6.5vh;
-    transition: 0.5s;
+    transition: background-color 1s, color 1s, border-radius 1s;
     color: white;
     display: flex;
     justify-content: center;
@@ -116,6 +119,8 @@ nav>div:nth-child(7)>button:hover,
 nav>div:nth-child(8)>button:hover {
     background-color: white;
     color: #c40007;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 nav>div:nth-child(4)>button:active,
@@ -152,7 +157,6 @@ nav>div:nth-child(10) input {
     height: 100%;
     background-color: white;
     font-size: 15px;
-    font-family: 'BMJUA';
     border-top-left-radius: 7px;
     border-bottom-right-radius: 7px;
     border: none;
@@ -173,7 +177,7 @@ nav>div:nth-child(11) {
 nav>div:nth-child(11) button {
     width: 100%;
     height: 93%;
-    font-family: 'BMJUA';
+    /* font-family: 'BMJUA'; */
     background-color: white;
     border: none;
     font-size: 13px;
@@ -194,15 +198,21 @@ nav div {
 
 /* sign-in, sign-up */
 #sign-in-up {
-    background-color: blanchedalmond;
+    background-color: red;
     display: flex;
-    font-family: 'BMJUA';
+    /* font-family: 'BMJUA'; */
+    height: 5vh;
+    top: 7vh;
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
 }
 
 #sign-in {
     flex-basis: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: white;
     border: none;
     border-left: 1px solid black;
@@ -211,13 +221,19 @@ nav div {
     border-radius: 1px;
     color: black;
     font-size: 13px;
+    transition-duration: 0.5s;
+}
 
+#sign-in:hover {
+    background-color: #001536;
+    color: #ffb50a
 }
 
 #sign-up {
     flex-basis: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: white;
     border: none;
     border-left: 1px solid black;
@@ -226,29 +242,97 @@ nav div {
     border-radius: 1px;
     color: black;
     font-size: 13px;
+    transition-duration: 0.5s;
 }
 
-/* under-navbar-first */
-.aboutBtnDropdown {
+#sign-up:hover {
+    background-color: #001536;
+    color: #ffb50a
+}
+
+
+/* board-btn-dropdown implementation */
+.board-btn-dropdown {
     display: none;
     position: absolute;
     top: 7vh;
     width: 8vw;
-    height: 20vh;
-
+    height: auto;
 }
 
-.aboutBtnDropdown-child {
+.board-btn-dropdown-child {
     width: 90%;
-    background-color: white;
     height: 100%;
-    border: 0.3px solid black;
-
-}
-
-.aboutBtn-div:hover .aboutBtnDropdown {
     background-color: white;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 1000;
 
+}
+
+.board-btn-dropdown-child a {
+    width: 100%;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-btn-dropdown-child>a:nth-child(1),
+.board-btn-dropdown-child>a:nth-child(2) {
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition-duration: 0.5s;
+
+}
+
+.board-btn-dropdown-child>a:nth-child(1):hover,
+.board-btn-dropdown-child>a:nth-child(2):hover {
+    background-color: #001536;
+    color: white;
+}
+
+.board-btn-dropdown-child>a:nth-child(2) {
+    background-color: white;
+
+}
+
+.board-btn-div:hover .board-btn-dropdown {
+    background-color: transparent;
+    /* border: 0.3px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; */
+    display: flex;
+    transition-duration: 1s;
+
+}
+
+
+/* picture div  */
+.picture-div {
+    margin: 0;
+    padding-top: 12vh;
+    width: 100vw;
+    height: 30vh;
+    background-color: red;
+    display: flex;
+    z-index: 0;
+}
+
+.picture-div>div:nth-child(2) {
+    width: 50%;
+    height: 100%;
+    background-image: url(./jacob-bentzinger-QiLPQeQSXD0-unsplash.jpg);
+    background-size: cover;
+    opacity: 0.9;
+}
+
+.picture-div>div:nth-child(1) {
+    width: 50%;
+    height: 100%;
+    background-color: #000d21;
 }
