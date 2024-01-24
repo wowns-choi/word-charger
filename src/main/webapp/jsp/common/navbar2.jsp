@@ -10,24 +10,18 @@
 <body>
 
 
+
     <nav>
-        <div></div>
+
         <div>
             <a href="">
-                <div>
-                    단어충전소
+                <div id="logo">
+                    <div>단어</div>
+                    <div>충전소</div>
                 </div>
             </a>
         </div>
-        <div>
-            <div id="project-text">
-                <div>Automate</div>
-                <div>English</div>
-                <div style="color:#ffb50a;">Vocabulary</div>
-                <div style="color:#ffb50a;">Memorization</div>
-            </div>
 
-        </div>
         <div>
             <button style="font-size: 13px;">
                 ABOUT
@@ -69,16 +63,30 @@
             <button type="submit">search</button>
             </form>
         </div>
-        <div></div>
+        <div>
+            <a href="" id="sign-in">SIGN IN</a>
+            <a href="" id="sign-up">SIGN UP</a>
+        </div>
 
     </nav>
-    <div id="sign-in-up">
-        <a href="" id="sign-in">SIGN IN</a>
-        <a href="" id="sign-up">SIGN UP</a>
-    </div>
+
     <div class="picture-div">
+        <div>
+
+        </div>
+        <div></div>
+    </div>
+
+    <div class="for-horizon">
         <div></div>
         <div></div>
+        <div></div>
+    </div>
+    <div>
+        영어단어를 책으로 외우신다고요?
+        혹시 이미 알고 있는 단어도 외우시고 계시지 않으신가요?
+        이미 아는 단어를 제외시킬 수만 있다면, 얼마나 많은 영어단어를 빠르게 외울 수 있을까요?
+        빠르게 더 많은 영어단어를 외우고 싶으시다면, 버튼(start for free)
     </div>
     <div>영어단어를 외운다는 것은 무엇일까요?</div>
     <div>좀 더 구체적으로 "외운다는 것" 은 무엇일까요?</div>
@@ -103,7 +111,8 @@
         놀랍고도 다행스럽게도, 우리의 뇌는 "외우는 행위"를 반복할 때마다, 기억할 수 있는 시간이 길어집니다.
         따라서, 영어단어가 머물 수 있는 시간을 측정하고, 조금씩 조금씩 시간을 늘려나간다면, 이제 더 이상 아직 방에 머물고 있는 단어를 외우느라 시간을 소비하시지는 않게 되실 거예요.
 
-
+        뿐만 아니라, 사람마다 영어단어마다 우리 머릿 속 방에 머무는 시간이 다릅니다. 그런데, 영어단어책을 챕터별로 주기를 잡아서 외우시게 된다면, 챕터 안에 있는 단어 중에 이미 머릿 속에 있는 단어도
+        외우시게 되는 문제도 있습니다.
 
 
         단어충전소는 고객님들의 머릿속에서 영어단어가 머물 수 있는 시간을 하루단위로 측정합니다.
@@ -116,10 +125,10 @@
         그래서, 단어충전소는 3일 후인 1월 10일에 다시 한번 테스트를 합니다.
         이렇게, 테스트를 통과하신 경우에는 +1일 씩 테스트 주기가 늘어나고, 테스트를 통과하시지 못하신다면 그대로입니다.
 
-
+        뭐가 빠져있어?
+        사람마다 단어마다 머릿속 방에 머무는 시간이 다르다는 것을 강조해야해.
 
     </div>
-
 
     <script src="./navbar2.js"></script>
 

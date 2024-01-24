@@ -14,8 +14,8 @@ body {
 nav {
     display: flex;
     width: 100vw;
-    height: 7vh;
-    background-color: #001536;
+    height: 8vh;
+    background-color: white;
     border-top-left-radius: 100%;
     font-family: 'BMJUA';
     letter-spacing: 1px;
@@ -24,6 +24,7 @@ nav {
     padding: 0;
     position: fixed;
     z-index: 2;
+    border-bottom: 1px solid #ededed;
 
 }
 
@@ -34,73 +35,61 @@ a {
 
 
 
+
 nav>div:nth-child(1) {
-    flex-basis: 6%;
-    background-color: #001536;
-    border-top-left-radius: 10%;
+    flex-basis: 12%;
+    background-color: white;
+    color: #001536;
+    font-size: 12px;
+
 }
 
-nav>div:nth-child(2) {
-    flex-basis: 6%;
-    background-color: #001536;
-    color: white;
-    font-size: 18px;
-}
-
-nav>div:nth-child(2)>a:nth-child(1) {
-    display: block;
+nav>div:nth-child(1)>a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 5.5vh;
     width: 99%;
-    text-align: center;
-    line-height: 5.5vh;
-    color: white;
+    color: #001536;
 }
 
-nav>div:nth-child(2)>a:nth-child(1):hover {
-    border: 1px solid white;
-    border-radius: 7%;
-}
 
-nav>div:nth-child(2)>a:nth-child(1):active {
-    border: 1px solid #ffb50a;
-    color: #ffb50a;
-    transition-duration: 0.3s;
-}
-
-nav>div:nth-child(3) {
-    flex-basis: 4%;
-    background-color: #001536;
-    font-size: 7.5px;
-}
-
-#project-text {
+#logo {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    color: white;
-    border: 1.5px solid white;
-    height: 6.5vh;
-    border-radius: 5px;
-    width: 95%;
+    border: 2px solid black;
+    width: 30%;
+    height: 100%;
+    border-radius: 50%;
+    transition: border 0.3s;
+}
+
+#logo:hover {
+    border: 2px solid #ffe7ad;
 
 }
 
+#logo:active {
+    border: 2px solid #ffc740;
+}
+
+
 /*ABOUT*/
+nav>div:nth-child(2),
+nav>div:nth-child(3),
 nav>div:nth-child(4),
 nav>div:nth-child(5),
-nav>div:nth-child(6),
-nav>div:nth-child(7),
-nav>div:nth-child(8) {
+nav>div:nth-child(6) {
     flex-basis: 8%;
-    background-color: #001536;
+    background-color: white;
     font-size: 10px;
 }
 
+nav>div:nth-child(2)>button,
+nav>div:nth-child(3)>button,
 nav>div:nth-child(4)>button,
 nav>div:nth-child(5)>button,
-nav>div:nth-child(6)>button,
-nav>div:nth-child(7)>button,
-nav>div:nth-child(8)>button {
+nav>div:nth-child(6)>button {
     background-color: #001536;
     width: 90%;
     height: 6.5vh;
@@ -112,82 +101,135 @@ nav>div:nth-child(8)>button {
     border: none;
 }
 
+nav>div:nth-child(2)>button:hover,
+nav>div:nth-child(3)>button:hover,
 nav>div:nth-child(4)>button:hover,
 nav>div:nth-child(5)>button:hover,
-nav>div:nth-child(6)>button:hover,
-nav>div:nth-child(7)>button:hover,
-nav>div:nth-child(8)>button:hover {
+nav>div:nth-child(6)>button:hover {
     background-color: white;
     color: #c40007;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 
+nav>div:nth-child(2)>button:active,
+nav>div:nth-child(3)>button:active,
 nav>div:nth-child(4)>button:active,
 nav>div:nth-child(5)>button:active,
-nav>div:nth-child(6)>button:active,
-nav>div:nth-child(7)>button:active,
-nav>div:nth-child(8)>button:active {
+nav>div:nth-child(6)>button:active {
     border-bottom: 1px solid #001536;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 
-nav>div:nth-child(9) {
-    flex-basis: 24%;
-    background-color: #001536;
+nav>div:nth-child(7) {
+    flex-basis: 6%;
+    background-color: white;
 }
 
 /* INPUT 태그 */
-nav>div:nth-child(10) {
+nav>div:nth-child(8) {
     flex-basis: 10%;
-    background-color: #001536;
+    background-color: white;
 }
 
-nav>div:nth-child(10)>form {
+nav>div:nth-child(8)>form {
     width: 99.5%;
-    height: 90%;
-    background-color: #001536;
-    display: flex;
-    align-items: center;
-}
-
-nav>div:nth-child(10) input {
-    width: 100%;
     height: 100%;
     background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+nav>div:nth-child(8) input {
+    width: 100%;
+    height: 70%;
+    background-color: #f5f5f5;
+    ;
     font-size: 15px;
     border-top-left-radius: 7px;
-    border-bottom-right-radius: 7px;
     border: none;
+    transition: background-color 0.3s;
 }
 
-nav>div:nth-child(10) input:focus {
+nav>div:nth-child(8) input:focus {
     outline: none;
+    background-color: #e0f7ff;
 }
 
-nav>div:nth-child(11) {
+nav>div:nth-child(9) {
     flex-basis: 4%;
-    background-color: #001536;
+    background-color: white;
     display: flex;
     align-items: center;
 
 }
 
-nav>div:nth-child(11) button {
+nav>div:nth-child(9) button {
     width: 100%;
-    height: 93%;
+    height: 70%;
     /* font-family: 'BMJUA'; */
-    background-color: white;
+    background-color: #f5f5f5;
     border: none;
     font-size: 13px;
-    border-bottom-left-radius: 7px;
-    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    transition: background-color 0.3s;
 }
 
-nav>div:nth-child(12) {
-    flex-basis: 6%;
+nav>div:nth-child(9) button:hover {
+    background-color: #e3e3e3;
 }
+
+nav>div:nth-child(9) button:active {
+    background-color: #d6d6d6;
+}
+
+
+nav>div:nth-child(10) {
+    flex-basis: 28%;
+    background-color: white;
+    display: flex;
+
+}
+
+#sign-in {
+    flex-basis: 15%;
+    height: 70%;
+    background-color: #f5f5f5;
+    color: #001536;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    border-top-left-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+#sign-up {
+    flex-basis: 15%;
+    height: 70%;
+    background-color: #f5f5f5;
+    color: #001536;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+
+    border-bottom-right-radius: 20px;
+    transition: background-color 0.3s;
+
+
+}
+
+#sign-in:hover {
+    background-color: #ffdcd4;
+}
+
+#sign-up:hover {
+    background-color: #97de97;
+}
+
 
 nav div {
     display: flex;
@@ -196,59 +238,6 @@ nav div {
 }
 
 
-/* sign-in, sign-up */
-#sign-in-up {
-    background-color: red;
-    display: flex;
-    /* font-family: 'BMJUA'; */
-    height: 5vh;
-    top: 7vh;
-    position: fixed;
-    width: 100vw;
-    z-index: 1;
-}
-
-#sign-in {
-    flex-basis: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border: none;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    border-radius: 1px;
-    color: black;
-    font-size: 13px;
-    transition-duration: 0.5s;
-}
-
-#sign-in:hover {
-    background-color: #001536;
-    color: #ffb50a
-}
-
-#sign-up {
-    flex-basis: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border: none;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    border-radius: 1px;
-    color: black;
-    font-size: 13px;
-    transition-duration: 0.5s;
-}
-
-#sign-up:hover {
-    background-color: #001536;
-    color: #ffb50a
-}
 
 
 /* board-btn-dropdown implementation */
@@ -315,24 +304,54 @@ nav div {
 /* picture div  */
 .picture-div {
     margin: 0;
-    padding-top: 12vh;
+    padding-top: 8vh;
     width: 100vw;
-    height: 30vh;
-    background-color: red;
+    height: 60vh;
+    /* background-color: red; */
     display: flex;
     z-index: 0;
-}
-
-.picture-div>div:nth-child(2) {
-    width: 50%;
-    height: 100%;
-    background-image: url(./jacob-bentzinger-QiLPQeQSXD0-unsplash.jpg);
-    background-size: cover;
-    opacity: 0.9;
 }
 
 .picture-div>div:nth-child(1) {
     width: 50%;
     height: 100%;
-    background-color: #000d21;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.picture-div>div:nth-child(1) div {
+    width: 99.9%;
+    height: 99.9%;
+    background-color: ;
+}
+
+.picture-div>div:nth-child(2) {
+    width: 50%;
+    height: 100%;
+    background-image: url(./henry-co--odUkx8C2gg-unsplash.jpg);
+    background-size: cover;
+    border-left: 1px solid black;
+}
+
+/* for horizon */
+.for-horizon {
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    margin-bottom: 500px;
+}
+
+.for-horizon>div:nth-child(1) {
+    flex-basis: 6%;
+}
+
+.for-horizon>div:nth-child(2) {
+    flex-basis: 88%;
+    border-bottom: 2px solid black;
+}
+
+.for-horizon>div:nth-child(3) {
+    flex-basis: 6%;
 }
