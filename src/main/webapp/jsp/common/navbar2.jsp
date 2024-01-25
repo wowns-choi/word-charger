@@ -9,8 +9,6 @@
 </head>
 <body>
 
-
-
     <nav>
 
         <div>
@@ -56,7 +54,7 @@
         <div></div>
         <div>
             <form action="">
-                <input type="" placeholder="영단어 찾기">
+                <input type="" placeholder="Find Voca">
 
         </div>
         <div>
@@ -72,28 +70,63 @@
 
     <div class="picture-div">
         <div>
+            <div></div>
+            <div>
+                <p>The most efficient English word memorization application</p>
+
+                <p>혹시...
+                </p>
+                <p id="third-ptag">
+                    <span>알고 있는 영어단어</span>
+                    <span>인데도 외우고 계시지 않나요?</span>
+                </p>
+                <p>이미 아는 단어를 제외시킬 수만 있다면? </p>
+                <p>빠르게, 더 많이
+                </p>
+                <p>영어단어를 외우고
+                    싶으시다면,<a href="###"><button id="start-for-free">start for free</button></a></p>
+
+
+
+            </div>
 
         </div>
         <div></div>
     </div>
+
+
 
     <div class="for-horizon">
         <div></div>
         <div></div>
         <div></div>
     </div>
-    <div>
-        영어단어를 책으로 외우신다고요?
-        혹시 이미 알고 있는 단어도 외우시고 계시지 않으신가요?
-        이미 아는 단어를 제외시킬 수만 있다면, 얼마나 많은 영어단어를 빠르게 외울 수 있을까요?
-        빠르게 더 많은 영어단어를 외우고 싶으시다면, 버튼(start for free)
+
+
+    <div id="main-text-container">
+        <div id="main-text-left-container"></div>
+        <div id="main-text-right-container">
+            <div>영어단어를 <span style="color:#fc8d2b;">"외운다는 것"</span>은 무엇일까요? </div>
+            <div>좀 더 구체적으로 <span style="color:#fc5f2b">"외운다는 것"</span> 은 무엇일까요?</div>
+            <div>영어단어 학습의 시작은, <span style="color:#01918d;">"외운다는 것"</span>의 의미를 정의하는 것에서부터 시작합니다.</div>
+            <div>
+            </div>
+            <div>
+                머릿속에 빈 방이 있다고 생각해봅시다. &nbsp;그 빈 방에 영어단어가 머물고 있도록 하는 것을 우리는 "외운다" 라고 합니다.
+            </div>
+            <div style="margin-top:1vh;">
+                빈 방에 들어온 영어단어가 평생 머물고 있으면 좋겠지만, 영어단어는 금새 방을 나가버리기 때문에,
+            </div>
+            <div>우리는 영어단어가 그 방에서 나가지 않도록 하기 위해서 계속해서 외우는 행위를 하는 것입니다.</div>
+            <div style="margin-top:0.3vh;">
+                <img src="./rinke-dohmen-sChB2oEimc8-unsplash.jpg"
+                    style="margin-top:3vh;width:5%; border:1px solid black;border-radius:50%; opacity:0.9; height:5vh;">
+            </div>
+        </div>
     </div>
-    <div>영어단어를 외운다는 것은 무엇일까요?</div>
-    <div>좀 더 구체적으로 "외운다는 것" 은 무엇일까요?</div>
-    <div>머릿속에 빈 방이 있다고 생각해봅시다 </div>
-    <div>그 빈 방에 영어단어가 머물고 있도록 하는 것을 우리는 "외운다" 라고 합니다.</div>
-    <div>빈 방에 들어온 영어단어가 평생 머물고 있으면 좋겠지만, 영어단어는 금새 방을 뛰쳐나가곤 하는데요.</div>
-    <div>그래서, 우리는 영어단어가 그 방에서 나가지 않도록 계속해서 외우는 행위를 하곤 하지요.</div>
+
+
+
     <div>
         그런데, 큰 문제는
         영어단어가 그 방에서 나갔는지 아니면 머물고 있는지를 알 수 없다는 점에 있습니다. 우리는 영어단어가 도망갈까 두려운 마음에 실제로는 영어단어가 방에 있는데도 "외우는 행위"를 하게 되는데요.
@@ -130,9 +163,8 @@
 
     </div>
 
+
     <script src="./navbar2.js"></script>
-
-
 
 
 
