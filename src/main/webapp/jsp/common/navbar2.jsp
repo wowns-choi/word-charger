@@ -106,60 +106,110 @@
     <div id="main-text-container">
         <div id="main-text-left-container"></div>
         <div id="main-text-right-container">
-            <div>영어단어를 <span style="color:#fc8d2b;">"외운다는 것"</span>은 무엇일까요? </div>
-            <div>좀 더 구체적으로 <span style="color:#fc5f2b">"외운다는 것"</span> 은 무엇일까요?</div>
-            <div>영어단어 학습의 시작은, <span style="color:#01918d;">"외운다는 것"</span>의 의미를 정의하는 것에서부터 시작합니다.</div>
+            <div style="font-size: 30px; ">단어충전소: <span style="color:#fc8d2b;">영어단어 학습의 혁신</span></div>
+            <div style="margin-top:0.5vh;"><span style="color:#fc5f2b">
+                    “반복 학습”</span> 해라? 아니요. 정확하게 말하면, <span style="color:#01918d;">“효율적인 반복학습”</span> 을 해야 합니다
+            </div>
+            <div style="margin-top:0.5vh">“반복 학습”에는 우리의 시간이라는 비용이 들기 때문에, 최대한 효율적으로 반복 학습을 진행해야 합니다.</div>
             <div>
             </div>
             <div>
-                머릿속에 빈 방이 있다고 생각해봅시다. &nbsp;그 빈 방에 영어단어가 머물고 있도록 하는 것을 우리는 "외운다" 라고 합니다.
+                그렇다면, 영어단어를 효율적으로 반복 학습한다는 것은 어떤 의미일까요?
             </div>
-            <div style="margin-top:1vh;">
-                빈 방에 들어온 영어단어가 평생 머물고 있으면 좋겠지만, 영어단어는 금새 방을 나가버리기 때문에,
+            <div style="margin-top:0.5vh;">
+                아는 단어는 보지 않고, 모르는 단어만을 추려서 암기해야 합니다. 모든 사람이 영어단어를 기억할 수 있는 시간이 동일하다면, 한 사람이 어떠한 영어단어를 외우든 외웠을 때 기억할 수 있는
+                시간이
+                동일하다면, 모르는 단어가 무엇인지 파악하기가 굉장히
+                수월했을 것입니다.
             </div>
-            <div>우리는 영어단어가 그 방에서 나가지 않도록 하기 위해서 계속해서 외우는 행위를 하는 것입니다.</div>
-            <div style="margin-top:0.3vh;">
-                <img src="./rinke-dohmen-sChB2oEimc8-unsplash.jpg"
-                    style="margin-top:3vh;width:5%; border:1px solid black;border-radius:50%; opacity:0.9; height:5vh;">
+            <div
+                style="margin-top:2vh;     font-family: 'KNUTRUTHTTF';
+                font-size:20px; font-weight: bold;  border-bottom:1px solid black; width:96%; height: 4vh; display:flex; justify-content: baseline; align-items: center;">
+                그러나 문제는
+                “개인마다” “단어마다” 단어를
+                외웠을 때에 기억되는
+                시간이 다르다는 것입니다.</div>
+            <div style="margin-top:1vh;     font-family: 'S-CoreDream-3Light';
+            ">1) “개인마다”</div>
+            <div style="margin-top:1vh;     font-family: 'S-CoreDream-3Light';
+            ">
+                30명의 학생들에게 2시간 동안 100개의 단어를 외우도록 한 후, 단어시험을 보게 하면, 어떤 학생들은 100개를 다 맞추기도 하고, 어떤 학생들은 30개 정도만 맞추기도 합니다.
+                암기력의 차이일
+                수도 있겠고, 선행학습을 했던 학생들도 있을 수 있고, 살아오면서 영어를 접할 기회가 많았던 학생들도 있을 수 있습니다. 그러나, 중요한 점은 학생들 개인마다 단어를 외웠을 때에 단어를
+                기억할 수 있는
+                시간이 다르다는 점에 있습니다.
             </div>
+            <div style="margin-top:1vh;     font-family: 'S-CoreDream-3Light';
+            ">1) “단어마다”</div>
+            <div style="margin-top:1vh;     font-family: 'S-CoreDream-3Light';
+            ">또한 한 명의 학생에게 100개의 단어를 외우도록 하는 경우에도, 어떤 단어는 잠깐 봤는데도 이상하게 기억에 오래 남기도 하고, 어떤 단어는 몇 번을 다시 봐도 기억이 나지 않는 단어도
+                있습니다.</div>
+            <div style="margin-top:1vh;     font-family: 'S-CoreDream-3Light';
+            "> 이렇게 개인마다 단어마다 단어를 기억할 수 있는 시간의 차이는 상당합니다.
+                그럼에도 불구하고, 일률적으로 흔히 말하는 에빙하우스의 망각곡선에 따라 “학습한 이후 10분 이내에 한번, 24시간 이내에 한번, 일주일 이내 한번, 1달 이내 1번” 의 법칙을 따라
+                개인간 단어간
+                차이는 무시한 채 학습을 진행한다면, 어떤 사람에게는 이미 암기했는데 또 암기해야 하기 때문에 비효율적일 수도 있고, 어떤 사람에게는 암기하기에 부족한 횟수일 수도 있습니다.</div>
+            <div
+                style="margin-top:2vh;     font-family: 'KNUTRUTHTTF';
+            font-size:20px; font-weight: bold;  border-bottom:1px solid black; width:79%; height: 4vh; display:flex; justify-content: baseline; align-items: center;">
+                그렇다면, 개인마다 단어마다 기억할 수 있는 시간을 측정해두면 되지 않을까요? </div>
+            <div style="margin-top:1vh;     font-family: 'S-CoreDream-3Light';
+            "> 그런데, 학생 스스로가 단어 하나하나 얼마동안 기억이 가능한지 측정하는 것은 엄청난 수고로움을 동반합니다.
+                그래서, 단어충전소 프로젝트는 개인마다 단어마다 기억할 수 있는 시간을 측정해드립니다.</div>
+
+            <div
+                style="margin-top:2vh;     font-family: 'KNUTRUTHTTF';
+            font-size:20px; font-weight: bold;  border-bottom:1px solid black; width:43%; height: 4vh; display:flex; justify-content: baseline; align-items: center;">
+                단어충전소 프로젝트는 이렇게 동작합니다. </div>
+            <div style="margin-top:1vh;     font-family: 'S-CoreDream-3Light';
+            ">
+                예를 들어, 1월 1일에 처음 단어충전소를 이용한다고 가정하겠습니다.
+
+                1월 1일에 아래와 같이 construct complicated 라는 단어를 알고 있는지 테스트합니다.
+
+                1일 후인, 1월 2일에 아래와 같이 construct complicated 라는 단어를 알고 있는지 테스트합니다.
+                이때, construct 는 맞추었고, complicated 는 틀렸다고 해보겠습니다.
+
+                1) 맞춘 경우 (construct)
+                맞춘 경우에는 하루씩 테스트 주기가 늘어납니다. 그래서 construct 는 2일 뒤인 1월 4일에 다시 테스트를 보게 됩니다. 그렇다면, 1월 4일에도 construct 를 맞추었다면?
+                3일 뒤인
+                1월 7일에 테스트를 보게 됩니다.
+
+                2) 틀린 경우 (complicated)
+                틀린 경우에는 테스트 주기가 늘어나지 않습니다. 그래서 complicated 는 1일 뒤인 1월 3일에 다시 테스트를 보게 됩니다.
+
+                학생분들은 Charger 페이지에서 오늘 테스트할 단어가 있는지 확인하고 테스트할 단어가 있다고 표시되어있을 경우에 테스트해주기만 해주시면 됩니다. 나머지는 단어충전소 프로젝트의
+                알고리즘에 의해
+                자동으로 처리됩니다.
+
+                시간을 아끼세요. 10개의 단어 중 3개의 단어를 이미 외우고 계시다고 가정할 경우, 이를 비율로 환산하면 1000개를 외웠을 때에는 300개는 안봐도 되는 단어가 됩니다. 효율적인
+                영어단어 암기
+                프로젝트 단어충전소와 함께 하세요.
+
+            </div>
+
+
         </div>
     </div>
 
 
 
     <div>
-        그런데, 큰 문제는
-        영어단어가 그 방에서 나갔는지 아니면 머물고 있는지를 알 수 없다는 점에 있습니다. 우리는 영어단어가 도망갈까 두려운 마음에 실제로는 영어단어가 방에 있는데도 "외우는 행위"를 하게 되는데요.
-        "외우는 행위"는 우리의 시간을 소비하기 때문에,
-        이는 비효율적인 공부로 이어지게 됩니다.
-
-        만약, 우리가 우리 머릿속의 방에 영어단어가 아직 머물고 있는지, 아니면 나갔는지를 알 수만 있다면, 외우는 행위를 좀 더 적게 할 수 있지 않을까요?
-
-        그렇다면, 어떻게 하면, 영어단어가 머물고 있는지 알 수 있을까요?
 
 
-        영어단어가 머물 수 있었던 시간을 측정하면 되지 않을까요?
-        만약, 영어단어가 3일동안 우리 머릿속에 머물렀다면, 최소한 3일동안은 이 단어를 보지 않아도 될테니까요.
-
-        놀랍고도 다행스럽게도, 우리의 뇌는 "외우는 행위"를 반복할 때마다, 기억할 수 있는 시간이 길어집니다.
-        따라서, 영어단어가 머물 수 있는 시간을 측정하고, 조금씩 조금씩 시간을 늘려나간다면, 이제 더 이상 아직 방에 머물고 있는 단어를 외우느라 시간을 소비하시지는 않게 되실 거예요.
-
-        뿐만 아니라, 사람마다 영어단어마다 우리 머릿 속 방에 머무는 시간이 다릅니다. 그런데, 영어단어책을 챕터별로 주기를 잡아서 외우시게 된다면, 챕터 안에 있는 단어 중에 이미 머릿 속에 있는 단어도
-        외우시게 되는 문제도 있습니다.
 
 
-        단어충전소는 고객님들의 머릿속에서 영어단어가 머물 수 있는 시간을 하루단위로 측정합니다.
-        예를 들어, 1월 1일에 understand 이해하다 라는 단어를 외웠다고 해보겠습니다.
-        1월 2일 고객님이 understand 가 "이해하다"라는 것을 알고 계시다면, 단어충전소는 고객님의 머릿속에 understand라는 단어가 최소한 하루는 머물수 있다고 판단하고, 이번에는 2일 후인
-        1월 4일에 다시 한번 테스트를 합니다.
-        1월 4일에도 고객님이 기억하고 계시다면, 이번에는 3일 후인 1월 7일에 다시 한번 테스트를 진행합니다.
-        그렇다면, 만약 1월 7일에 있는 테스트에서 맞추지 못하신다면, 어떻게 될까요?
-        2일동안은 understand가 머물고 있다는 것을 확인했으니, 3일 후에 다시 한번 보는게 합리적이지 않을까요?
-        그래서, 단어충전소는 3일 후인 1월 10일에 다시 한번 테스트를 합니다.
-        이렇게, 테스트를 통과하신 경우에는 +1일 씩 테스트 주기가 늘어나고, 테스트를 통과하시지 못하신다면 그대로입니다.
 
-        뭐가 빠져있어?
-        사람마다 단어마다 머릿속 방에 머무는 시간이 다르다는 것을 강조해야해.
+
+
+
+
+
+
+
+
+
+
 
     </div>
 

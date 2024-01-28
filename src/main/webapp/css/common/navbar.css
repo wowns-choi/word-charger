@@ -511,7 +511,7 @@ nav div {
     display: flex;
     flex-direction: column;
     padding-left: 30px;
-
+    padding-right: 30px;
 }
 
 #main-text-right-container>div:nth-child(1),
