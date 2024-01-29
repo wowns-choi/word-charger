@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    height: 200vh;
 }
 
 
@@ -503,7 +502,138 @@ nav div {
 
 #main-text-left-container {
     flex-basis: 40%;
+    font-family: 'S-CoreDream-3Light';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 0px;
 
+}
+
+#top-text-div {
+    width: 80%;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+}
+
+#subscribe-a {
+    margin-top: 1px;
+    width: 80%;
+    display: flex;
+    height: 15vh;
+}
+
+
+#left-a {
+    flex-basis: 60%;
+    background-color: #f2f2f2;
+    margin-right: 1px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #002447;
+    transition: background-color 0.3s, color 0.3s, border-radius 0.3s;
+
+}
+
+#left-a:hover {
+    background-color: #001536;
+    color: white;
+
+}
+
+#left-a:active {
+    border-radius: 10px;
+}
+
+#left-a>div:nth-child(1) {
+    font-size: 19px;
+    margin-top: 30px;
+}
+
+#left-a>div:nth-child(2) {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+#left-a>div:nth-child(3) {
+    margin-top: 2px;
+    font-size: 12px;
+}
+
+#right-a {
+    flex-basis: 40%;
+    background-color: #f2f2f2;
+    color: #002447;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s, border-radius 0.3s;
+}
+
+#right-a:hover {
+    background-color: #001536;
+    color: white;
+
+}
+
+#right-a:active {
+    border-radius: 10px;
+}
+
+#right-a>div:nth-child(1) {
+    font-size: 19px;
+    margin-top: 30px;
+}
+
+#right-a>div:nth-child(2) {
+    font-size: 19px;
+    margin-top: 5px;
+}
+
+#learn-from-wisdom {
+    margin-top: 2vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 80%;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+#learn-from-wisdom>div:nth-child(1) {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    font-size: 20px;
+    background-color: transparent;
+    width: 80%;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.wisdom-english {
+    margin-top: 2vh;
+}
+
+.wisdom-hangle {
+    font-size: 12px;
+}
+
+#wisdom-word {
+    width: 80%;
+    border-top: 1px solid black;
+    margin-top: 2vh;
+    padding-top: 20px;
+    text-align: center;
+}
+
+#learn-from-wisdom:hover {
+    background-color: #ffece8;
 }
 
 #main-text-right-container {
