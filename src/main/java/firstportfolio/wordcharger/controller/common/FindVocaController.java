@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
@@ -16,10 +17,13 @@ import java.util.Map;
 public class FindVocaController {
 
     private final FindVocaService findVocaService;
-
+    private final RestTemplate restTemplate;
     @PostMapping("/find-voca")
     @ResponseBody
     public Map<String, String> findVocaControllerMethod(@RequestParam String voca){
+
+
+
         Map<String, String> containVocaAndCorrect = findVocaService.findWordByVocaFromWordTable(voca);
         return containVocaAndCorrect;
     }
