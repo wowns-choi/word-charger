@@ -30,8 +30,11 @@
                 <p>빠르게, 더 많이
                 </p>
                 <p>영어단어를 외우고 싶으시다면,
-                    <a href="###"><button id="start-for-free">start for free</button></a>
+                    <a href="/find-voca"><button id="start-for-free">start for free</button></a>
                 </p>
+                <form action="/find-voca"method="post">
+
+                </form>
 
 
 

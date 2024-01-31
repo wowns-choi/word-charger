@@ -334,3 +334,65 @@ nav div {
 
 }
 
+/*밑은 findVoca modal 창 css */
+.modal{
+    width: 100vw;
+    height: 50vh;
+    background-color: transparent;
+    display:none;
+}
+.modal2{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content{
+    width: 30%;
+    height: 70%;
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    transition: background-color 0.5s;
+    margin-top: 10vh;
+}
+.modal-content:hover{
+    background-color: #ababab;
+}
+.modal-content > div:nth-child(1){
+    flex-basis:10%;
+}
+
+.modal-content > div:nth-child(2) {
+    flex-basis:90%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
+.close{
+    font-size: 30px;
+    transition: color 0.3s;
+    cursor : pointer;
+    margin-left: 10px;
+}
+.close:hover{
+    color: #fc5f2b;
+}
+#modalText, #correctAnswer{
+   font-family: 'BMJUA';
+   flex-basis: 50%;
+   width: 100%;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 30px;
+
+}
+#correctAnswer{
+    margin-bottom: 50px;
+}
+
+

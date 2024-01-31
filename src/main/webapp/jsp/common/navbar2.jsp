@@ -6,34 +6,59 @@
     <title>제목</title>
     <script src="https://kit.fontawesome.com/670206db20.js" crossorigin="anonymous"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#myForm').submit(function(e) {
-                    e.preventDefault();
+    <style>
 
-                    var voca = $('[name="voca"]').val();
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                    $(document).ready(function() {
+                        $('#myForm').submit(function(e) {
+                            e.preventDefault();
 
-                    $.ajax({
-                        type: "POST",
-                        url: "/find-voca",
-                        data: { voca : voca },
-                        success: function(response) {
-                            $('#modalText').text(response.voca);
-                            $('#correctAnswer').text(response.correct);
-                            $('#mymyModal').show();
-                            console.log("hello");
-                        }
+                            var voca = $('[name="voca"]').val();
+
+                            $.ajax({
+                                type: "POST",
+                                url: "/find-voca",
+                                data: { voca : voca },
+                                success: function(response) {
+                                    $('#modalText').text(response.voca);
+                                    $('#correctAnswer').text(response.translated);
+                                    $('#mymyModal').show();
+                                    const modal= document.querySelector("#mymyModal")
+                                    modal.style.display = "flex";
+                                    modal.style.justifyContent = "center";
+                                    modal.style.alignItems = "center";
+                                }
+                            });
+                        });
+
+                        $('.close').click(function() {
+                            $('#mymyModal').hide();
+                        });
                     });
-                });
+                </script>
 
-                $('.close').click(function() {
-                    $('#mymyModal').hide();
-                });
-            });
-        </script>
+
+
 </head>
 <body>
+    <!-- find Voca 모달창 시작 -->
+        <div id="mymyModal" class="modal">
+            <span class="modal-content">
+                <div>
+                    <span class="close">&times;</span>
+                </div>
+                <div>
+                    <p id="modalText"></p>
+                    <p id="correctAnswer"></p>
+                </div>
+            </span>
+        </div>
+    <!--  find Voca 모달창 종료 -->
+
+
+
 <!--navbar 시작-->
     <nav>
         <div>
@@ -78,8 +103,8 @@
         </div>
         <div></div>
         <div>
-            <form action="">
-                <input type="" placeholder="Find Voca">
+            <form action="/find-voca" method="post" id="myForm">
+                <input type="text" name="voca" placeholder="Find Voca">
         </div>
         <div>
             <button type="submit">search</button>
@@ -92,6 +117,9 @@
 
     </nav>
 <!--navbar 종료-->
+
+
+
 
 </body>
 </html>
