@@ -45,9 +45,9 @@ public class JoinController {
         @RequestParam String myCheckbox1, @RequestParam String myCheckbox2, @RequestParam String myCheckbox3
     ){
         MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setMyCheckbox1(myCheckbox1);
-        memberDTO.setMyCheckbox2(myCheckbox2);
-        memberDTO.setMyCheckbox3(myCheckbox3);
+//        memberDTO.setMyCheckbox1(myCheckbox1);
+//        memberDTO.setMyCheckbox2(myCheckbox2);
+//        memberDTO.setMyCheckbox3(myCheckbox3);
 
         model.addAttribute("memberDTO", memberDTO);
 
@@ -56,8 +56,6 @@ public class JoinController {
 
     @PostMapping("/Join-form")
     public String postJoinFormControllerMethod (@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult){
-        log.info("phoneNumberStart==============={}", memberDTO.getPhoneNumberStart().equals(""));
-        log.info("phoneNumberStart==============={}", memberDTO.getPhoneNumberStart()==null);
 
         if (memberDTO.getId().equals("")) {
             bindingResult.rejectValue("id", null, "아이디를 입력 해주세요");
@@ -68,12 +66,12 @@ public class JoinController {
         if (memberDTO.getUserName().equals("")) {
             bindingResult.rejectValue("userName", null, "이름을 입력해주세요");
         }
-        if (memberDTO.getZipCode().equals("")||memberDTO.getStreetAddress().equals("")||memberDTO.getAddress().equals("")) {
-            bindingResult.rejectValue("zipCode", null, "우편번호를 찾기를 통해 주소를 찾아주세요.");
-        }
-        if (memberDTO.getPhoneNumberStart().equals("") || memberDTO.getPhoneNumberMiddle().equals("") || memberDTO.getPhoneNumberEnd().equals("")) {
-            bindingResult.rejectValue("phoneNumberStart", null, "전화번호를 입력해주세요");
-        }
+//        if (memberDTO.getZipCode().equals("")||memberDTO.getStreetAddress().equals("")||memberDTO.getAddress().equals("")) {
+//            bindingResult.rejectValue("zipCode", null, "우편번호를 찾기를 통해 주소를 찾아주세요.");
+//        }
+//        if (memberDTO.getPhoneNumberStart().equals("") || memberDTO.getPhoneNumberMiddle().equals("") || memberDTO.getPhoneNumberEnd().equals("")) {
+//            bindingResult.rejectValue("phoneNumberStart", null, "전화번호를 입력해주세요");
+//        }
         if (bindingResult.hasErrors()) {
             return "/login/joinForm";
         }
@@ -82,17 +80,7 @@ public class JoinController {
         memberMapper.insertMember(memberDTO);
 
 
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getId());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getPassword());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getUserName());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getZipCode());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getStreetAddress());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getAddress());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getDetailAddress());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getReferenceItem());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getMyCheckbox1());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getMyCheckbox2());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}",memberDTO.getMyCheckbox3());
+
 
         return "/home/home";
 

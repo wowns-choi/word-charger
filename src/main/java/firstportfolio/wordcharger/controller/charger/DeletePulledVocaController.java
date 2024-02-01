@@ -29,12 +29,5 @@ public class DeletePulledVocaController {
         return "redirect:/zero-to-hundred";
     }
 
-    @PostConstruct
-    public void init(){
-        countMapper.init();
-        fixedDayMapper.init();
-        includeMapper.init();
-        writingMapper.deleteAll();
 
-    }
 }
