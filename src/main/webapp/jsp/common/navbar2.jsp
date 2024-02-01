@@ -111,8 +111,8 @@
             </form>
         </div>
         <div>
-            <a href="" id="sign-in">SIGN IN</a>
-            <a href="" id="sign-up">SIGN UP</a>
+            <a href="/login-form" id="sign-in">SIGN IN</a>
+            <a href="/terms-of-use" id="sign-up">SIGN UP</a>
         </div>
 
     </nav>

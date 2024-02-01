@@ -24,6 +24,9 @@ import java.util.Map;
 @Slf4j
 public class FindVocaController {
 
+    private static final String NOT_HANGLE_REG_EXP = "^[^가-힣]*$";
+    private static final String NOT_ENGLISH_REG_EXP = "^[^a-zA-Z]*$";
+
     private final FindVocaService findVocaService;
     @PostMapping("/find-voca")
     @ResponseBody
@@ -43,7 +46,14 @@ public class FindVocaController {
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 
-        String responseBody = post(apiURL, requestHeaders, text);
+        String responseBody = null;
+        if(voca.matches((NOT_HANGLE_REG_EXP))){
+            //영어 주면 한글 번역해주는 것
+             responseBody = post1(apiURL, requestHeaders, text);
+        }else if(voca.matches(NOT_ENGLISH_REG_EXP)){
+             responseBody = post2(apiURL, requestHeaders, text);
+        }
+
 
         System.out.println(responseBody);
 
@@ -74,9 +84,36 @@ public class FindVocaController {
 
 
     }
-    private static String post(String apiUrl, Map<String, String> requestHeaders, String text){
+    private static String post1(String apiUrl, Map<String, String> requestHeaders, String text){
         HttpURLConnection con = connect(apiUrl);
         String postParams = "source=en&target=ko&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
+        try {
+            con.setRequestMethod("POST");
+            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
+                con.setRequestProperty(header.getKey(), header.getValue());
+            }
+
+            con.setDoOutput(true);
+            try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+                wr.write(postParams.getBytes());
+                wr.flush();
+            }
+
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 응답
+                return readBody(con.getInputStream());
+            } else {  // 에러 응답
+                return readBody(con.getErrorStream());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("API 요청과 응답 실패", e);
+        } finally {
+            con.disconnect();
+        }
+    }
+    private static String post2(String apiUrl, Map<String, String> requestHeaders, String text){
+        HttpURLConnection con = connect(apiUrl);
+        String postParams = "source=ko&target=en&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
         try {
             con.setRequestMethod("POST");
             for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
