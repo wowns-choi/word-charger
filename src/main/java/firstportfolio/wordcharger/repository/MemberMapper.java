@@ -1,13 +1,13 @@
 package firstportfolio.wordcharger.repository;
 
-import firstportfolio.wordcharger.DTO.MemberDTO;
+import firstportfolio.wordcharger.DTO.MemberJoinDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemberMapper {
 
-    MemberDTO findMemberById(String id);
+    MemberJoinDTO findMemberById(String userId);
 
-    void insertMember(MemberDTO memberDTO);
+    void insertMember(String id, String password, String userName);
 
 }

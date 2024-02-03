@@ -1,18 +1,17 @@
 package firstportfolio.wordcharger.DTO;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class MemberDTO {
-    public String id;
+public class MemberJoinDTO {
+    public Integer id;
+    public String userId;
 
     public String password;
 
     public String userName;
 
     public String zipCode;
-
     public String phoneNumberStart;
     public String phoneNumberMiddle;
     public String phoneNumberEnd;

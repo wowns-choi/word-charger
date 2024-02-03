@@ -17,11 +17,11 @@
             <form:form modelAttribute="memberDTO" method="post">
 
                 <div class="id-password-container">
-                    <form:input type="text" path="id" id="user-id" class="input-tag" placeholder="아이디" style="display: inline-block;"/>
+                    <form:input type="text" path="userId" id="user-id" class="input-tag" placeholder="아이디" style="display: inline-block;"/>
                     <span id="user-id-status" style="font-size:11px; display:inline-block;">
                     </span>
                     <div class="tag-for-verification-message" >
-                        <form:errors path="id" class="error-message"/>
+                        <form:errors path="userId" class="error-message"/>
                     </div>
 
 

@@ -1,5 +1,5 @@
 package firstportfolio.wordcharger.logininterceptor;
-import firstportfolio.wordcharger.DTO.MemberDTO;
+import firstportfolio.wordcharger.DTO.MemberJoinDTO;
 import firstportfolio.wordcharger.repository.MemberMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,15 +31,15 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
 
         //키가 loginedMember 인 세션이 존재하니?
-        MemberDTO loginedMember = (MemberDTO)session.getAttribute("loginedMember");
+        MemberJoinDTO loginedMember = (MemberJoinDTO)session.getAttribute("loginedMember");
         if(loginedMember==null){
             log.info("세션이 있긴한데, loginedMember 라는 세션은 없다");
             response.sendRedirect("/?modal=true");
             return false;
         }
-        String id = loginedMember.getId();
+        String id = loginedMember.getUserId();
         //비밀번호가 맞니?
-        MemberDTO findedMember = memberMapper.findMemberById(id);
+        MemberJoinDTO findedMember = memberMapper.findMemberById(id);
         if (findedMember.getPassword().equals(loginedMember.getPassword())) {
             return true;
         }

@@ -239,6 +239,7 @@ nav>div:nth-child(10) {
     transition: background-color 0.3s;
 }
 
+
 #sign-up {
     flex-basis: 15%;
     height: 70%;
@@ -252,7 +253,13 @@ nav>div:nth-child(10) {
 
     border-bottom-right-radius: 20px;
     transition: background-color 0.3s;
+}
 
+#welcome{
+
+}
+
+#logout{
 
 }
 
