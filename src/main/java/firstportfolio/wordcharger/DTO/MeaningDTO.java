@@ -3,7 +3,7 @@ package firstportfolio.wordcharger.DTO;
 import lombok.Data;
 
 @Data
-public class WordDTO {
+public class MeaningDTO {
     public Integer wordId;
-    public String word;
+    public String wordMeaning;
 }

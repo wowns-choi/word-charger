@@ -1,10 +1,7 @@
 package firstportfolio.wordcharger.controller.joinandlogin;
 
 import firstportfolio.wordcharger.DTO.MemberJoinDTO;
-import firstportfolio.wordcharger.repository.AddressMapper;
-import firstportfolio.wordcharger.repository.MemberMapper;
-import firstportfolio.wordcharger.repository.PhoneMapper;
-import firstportfolio.wordcharger.repository.TermsOfAgreementMapper;
+import firstportfolio.wordcharger.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +22,8 @@ public class JoinController {
     private final AddressMapper addressMapper;
     private final PhoneMapper phoneMapper;
     private final TermsOfAgreementMapper termsOfAgreementMapper;
+    private final WordMapper wordMapper;
+    private final UserWordMapper userWordMapper;
 
     private static final String LENGTH_PATTERN = "^.{8,16}$";
     private static final String LETTER_PATTERN = ".*[A-Za-z].*";
@@ -111,6 +110,7 @@ public class JoinController {
         memberJoinDTO.getAddress(), memberJoinDTO.getDetailAddress(), memberJoinDTO.getReferenceItem());
         phoneMapper.insertPhone(findMember.getId(), memberJoinDTO.getPhoneNumberStart(), memberJoinDTO.getPhoneNumberMiddle(), memberJoinDTO.getPhoneNumberEnd());
         termsOfAgreementMapper.insertTermsOfAgreement(findMember.getId(), memberJoinDTO.getMyCheckbox1(), memberJoinDTO.getMyCheckbox2(), memberJoinDTO.getMyCheckbox3());
+
         return "/home/home";
     }
 

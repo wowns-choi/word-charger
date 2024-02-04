@@ -6,10 +6,10 @@ import jakarta.servlet.http.HttpSession;
 
 public class FindLoginedMemberIdUtil {
 
-    public static String findLoginedMember(HttpServletRequest request){
+    public static Integer findLoginedMember(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
-        String id = loginedMember.getUserId();
+        Integer id = loginedMember.getId();
         return id;
     }
 }

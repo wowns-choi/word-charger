@@ -158,7 +158,7 @@
         <!--버튼시작-->
             <div class="button_containering">
                     <div class="atagAndTextContainer">
-                        <a class="atag" href="/zero-to-hundred" style="text-decoration: none;">
+                        <a class="atag" href="/zero-to-hundred?startWordId=1&endWordId=100" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
                                 <span>001 ~ 100</span>
                             </button>

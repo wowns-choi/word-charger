@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.UserWordMapper">
+
+    <insert id="initUserWord">
+        INSERT INTO user_word
+            (MEMBER_ID, WORD_ID, DAYS_REMEMBERED, NEXT_REVIEW_DATE)
+            VALUES (#{memberId}, #{wordId}, 1, TRUNC(SYSDATE))
+    </insert>
+
+    <select id="findWordId" resultType="Integer">
+        SELECT word_id FROM user_word
+        WHERE word_id BETWEEN #{startWordInteger} AND #{endWordInteger} AND member_id = #{memberId} AND next_review_date &lt;= TRUNC(SYSDATE)
+    </select>
+
+
+
+</mapper>

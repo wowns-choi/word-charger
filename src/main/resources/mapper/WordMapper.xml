@@ -5,9 +5,10 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.WordMapper">
 
-    <select id="findByVoca" resultType="WordDTO">
-        SELECT * FROM word WHERE voca = #{voca}
+    <select id="findByWordId" resultType="String">
+        SELECT word FROM word WHERE WORD_ID = #{wordId}
     </select>
+
 
 
 </mapper>
