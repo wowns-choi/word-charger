@@ -1,12 +1,11 @@
 package firstportfolio.wordcharger.controller.joinandlogin;
 
-import firstportfolio.wordcharger.DTO.MemberDTO;
-import firstportfolio.wordcharger.repository.MemberMapper;
+import firstportfolio.wordcharger.DTO.MemberJoinDTO;
+import firstportfolio.wordcharger.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +19,11 @@ import java.util.Map;
 @Slf4j
 public class JoinController {
     private final MemberMapper memberMapper;
-
+    private final AddressMapper addressMapper;
+    private final PhoneMapper phoneMapper;
+    private final TermsOfAgreementMapper termsOfAgreementMapper;
+    private final WordMapper wordMapper;
+    private final UserWordMapper userWordMapper;
 
     private static final String LENGTH_PATTERN = "^.{8,16}$";
     private static final String LETTER_PATTERN = ".*[A-Za-z].*";
@@ -44,46 +47,79 @@ public class JoinController {
     public String getJoinFormControllerMethod(HttpServletRequest request, Model model,
         @RequestParam String myCheckbox1, @RequestParam String myCheckbox2, @RequestParam String myCheckbox3
     ){
-        MemberDTO memberDTO = new MemberDTO();
-//        memberDTO.setMyCheckbox1(myCheckbox1);
-//        memberDTO.setMyCheckbox2(myCheckbox2);
-//        memberDTO.setMyCheckbox3(myCheckbox3);
 
-        model.addAttribute("memberDTO", memberDTO);
+        MemberJoinDTO memberJoinDTO = new MemberJoinDTO();
+        memberJoinDTO.setMyCheckbox1(myCheckbox1);
+        memberJoinDTO.setMyCheckbox2(myCheckbox2);
+        memberJoinDTO.setMyCheckbox3(myCheckbox3);
 
+
+        model.addAttribute("memberDTO", memberJoinDTO);
         return "/login/joinForm";
     }
 
     @PostMapping("/Join-form")
-    public String postJoinFormControllerMethod (@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult){
 
-        if (memberDTO.getId().equals("")) {
-            bindingResult.rejectValue("id", null, "아이디를 입력 해주세요");
+    public String postJoinFormControllerMethod (@Valid @ModelAttribute MemberJoinDTO memberJoinDTO, BindingResult bindingResult){
+        log.info("phoneNumberStart==============={}", memberJoinDTO.getPhoneNumberStart().equals(""));
+        log.info("phoneNumberStart==============={}", memberJoinDTO.getPhoneNumberStart()==null);
+
+
+//        if (memberJoinDTO.getUserId().equals("")) {
+        if (memberJoinDTO.getUserId().equals("") ) {
+            bindingResult.rejectValue("userId", null, "아이디를 입력 해주세요");
         }
-        if (memberDTO.getPassword().equals("")) {
+        if (memberJoinDTO.getPassword().equals("")) {
             bindingResult.rejectValue("password", null, "비밀번호를 입력해주세요");
         }
-        if (memberDTO.getUserName().equals("")) {
+        if (memberJoinDTO.getUserName().equals("")) {
             bindingResult.rejectValue("userName", null, "이름을 입력해주세요");
         }
-//        if (memberDTO.getZipCode().equals("")||memberDTO.getStreetAddress().equals("")||memberDTO.getAddress().equals("")) {
-//            bindingResult.rejectValue("zipCode", null, "우편번호를 찾기를 통해 주소를 찾아주세요.");
-//        }
-//        if (memberDTO.getPhoneNumberStart().equals("") || memberDTO.getPhoneNumberMiddle().equals("") || memberDTO.getPhoneNumberEnd().equals("")) {
-//            bindingResult.rejectValue("phoneNumberStart", null, "전화번호를 입력해주세요");
-//        }
+
+        if (memberJoinDTO.getZipCode().equals("")|| memberJoinDTO.getStreetAddress().equals("")|| memberJoinDTO.getAddress().equals("")) {
+            bindingResult.rejectValue("zipCode", null, "우편번호를 찾기를 통해 주소를 찾아주세요.");
+        }
+        if (memberJoinDTO.getPhoneNumberStart().equals("") || memberJoinDTO.getPhoneNumberMiddle().equals("") || memberJoinDTO.getPhoneNumberEnd().equals("")) {
+            bindingResult.rejectValue("phoneNumberStart", null, "전화번호를 입력해주세요");
+        }
+
         if (bindingResult.hasErrors()) {
             return "/login/joinForm";
         }
 
-        //db 에 insert 하는 쿼리 필요
-        memberMapper.insertMember(memberDTO);
+        //checkbox value : on => 1 , null => 0  변환
+        if(memberJoinDTO.getMyCheckbox1().equals("on")){
+            memberJoinDTO.setMyCheckbox1("1");
+        } else{
+            memberJoinDTO.setMyCheckbox1("0");
+        }
+
+        if(memberJoinDTO.getMyCheckbox2().equals("on")){
+            memberJoinDTO.setMyCheckbox2("1");
+        } else{
+            memberJoinDTO.setMyCheckbox2("0");
+        }
 
 
+        if(memberJoinDTO.getMyCheckbox3().equals("on")){
+            memberJoinDTO.setMyCheckbox3("1");
+        } else{
+            memberJoinDTO.setMyCheckbox3("0");
+        }
+
+        //db 에 insert 하는 쿼리 필요.
+        //member 테이블에 id password userName insert.
+        memberMapper.insertMember(memberJoinDTO.getUserId(), memberJoinDTO.getPassword(), memberJoinDTO.getUserName());
+        //방금 넣은 member테이블의 행을 다시 꺼내와서, sequence로 넣어
+        MemberJoinDTO findMember = memberMapper.findMemberById(memberJoinDTO.getUserId());
+
+        addressMapper.insertAddress(findMember.getId(), memberJoinDTO.getZipCode(), memberJoinDTO.getStreetAddress(),
+        memberJoinDTO.getAddress(), memberJoinDTO.getDetailAddress(), memberJoinDTO.getReferenceItem());
+        phoneMapper.insertPhone(findMember.getId(), memberJoinDTO.getPhoneNumberStart(), memberJoinDTO.getPhoneNumberMiddle(), memberJoinDTO.getPhoneNumberEnd());
+        termsOfAgreementMapper.insertTermsOfAgreement(findMember.getId(), memberJoinDTO.getMyCheckbox1(), memberJoinDTO.getMyCheckbox2(), memberJoinDTO.getMyCheckbox3());
 
 
         return "/home/home";
-
     }
 
     @PostMapping("check-user-id") // 아이디 중복확인 해주는 컨트롤러
@@ -91,7 +127,7 @@ public class JoinController {
     public Map<String,Boolean> duplicateIdValidationControllerMethod(@RequestBody Map<String,String> request){
         String userId = request.get("userId");
         log.info("userId={}", userId);
-        MemberDTO memberById = memberMapper.findMemberById(userId);
+        MemberJoinDTO memberById = memberMapper.findMemberById(userId);
         if (memberById == null) {
             return Collections.singletonMap("isAvailable", true);
         }else{

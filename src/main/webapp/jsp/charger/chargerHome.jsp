@@ -135,7 +135,7 @@
 <body>
 
 <!--네브 바 -->
-    <c:import url="/jsp/common/loginedNavbar.jsp" />
+    <c:import url="/jsp/common/loginedNavbar2.jsp" />
 <!--네브 바 종료 -->
 
     <div class="exclude">
@@ -158,13 +158,13 @@
         <!--버튼시작-->
             <div class="button_containering">
                     <div class="atagAndTextContainer">
-                        <a class="atag" href="/zero-to-hundred" style="text-decoration: none;">
+                        <a class="atag" href="/zero-to-hundred?startWordId=1&endWordId=100" style="text-decoration: none;">
                             <button class="bts" style="font-size:18px;">
                                 <span>001 ~ 100</span>
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+                            충전할 단어가 개  있습니다.
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -174,7 +174,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -184,7 +184,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -194,7 +194,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -204,7 +204,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
 
@@ -218,7 +218,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -228,7 +228,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -238,7 +238,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -248,7 +248,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
                     <div class="atagAndTextContainer">
@@ -258,7 +258,7 @@
                             </button>
                         </a>
                         <div>
-                            충전할 단어가 ${zeroToHundredTodayAmount}개  있습니다.
+
                         </div>
                     </div>
             </div>

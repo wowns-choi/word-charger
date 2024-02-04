@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.TermsOfAgreementMapper">
+
+    <insert id="insertTermsOfAgreement">
+        INSERT INTO terms_of_agreement
+        (ID, MEMBER_ID, CHECKBOX_ONE, CHECKBOX_TWO, CHECKBOX_THREE )
+        VALUES (MEMBER_SEQUENCE.NEXTVAL,#{memberId},#{checkboxOne},#{checkboxTwo},#{checkboxThree})
+    </insert>
+
+</mapper>

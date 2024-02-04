@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface WordMapper {
 
-    WordDTO findByVoca(String voca);
+    String findByWordId(Integer wordId);
 
 
 

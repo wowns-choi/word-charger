@@ -6,14 +6,16 @@
 <mapper namespace="firstportfolio.wordcharger.repository.MemberMapper">
 
 
-    <select id="findMemberById" resultType="MemberDTO">
-        SELECT * FROM member WHERE id = #{id}
+    <select id="findMemberById" resultType="MemberJoinDTO">
+        SELECT * FROM member WHERE USER_ID = #{userId}
     </select>
 
     <insert id="insertMember">
         INSERT INTO member
-        (ID, USER_ID,PASSWORD,USER_NAME)
-        VALUES (MEMBER_SEQUENCE.NEXTVAL, #{id},#{password},#{userName})
+
+        (ID, USER_ID, PASSWORD, USER_NAME)
+        VALUES (MEMBER_SEQUENCE.NEXTVAL,#{id},#{password},#{userName})
+
     </insert>
 
 

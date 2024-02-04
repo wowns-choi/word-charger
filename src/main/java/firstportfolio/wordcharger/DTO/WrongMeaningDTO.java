@@ -3,7 +3,9 @@ package firstportfolio.wordcharger.DTO;
 import lombok.Data;
 
 @Data
-public class WordDTO {
+public class WrongMeaningDTO {
+
     public Integer wordId;
-    public String word;
+    public String wrongMeaning;
+
 }

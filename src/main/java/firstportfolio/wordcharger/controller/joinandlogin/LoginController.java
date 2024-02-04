@@ -1,7 +1,7 @@
 package firstportfolio.wordcharger.controller.joinandlogin;
 
 import firstportfolio.wordcharger.DTO.LoginDTO;
-import firstportfolio.wordcharger.DTO.MemberDTO;
+import firstportfolio.wordcharger.DTO.MemberJoinDTO;
 import firstportfolio.wordcharger.repository.MemberMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,7 +32,7 @@ public class LoginController {
         String id = loginDTO.getId();
         String password = loginDTO.getPassword();
         //db Member 테이블에서 아이디를 찾아와서 여기있는 password랑 같은지 봐야겠지.
-        MemberDTO findedMember = memberMapper.findMemberById(id);
+        MemberJoinDTO findedMember = memberMapper.findMemberById(id);
         try {
             if (!findedMember.getPassword().equals(password)) {
                 request.setAttribute("passwordIncorrectMessage", "비밀번호가 일치하지 않습니다.");
