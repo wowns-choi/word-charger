@@ -8,6 +8,6 @@ import java.util.List;
 @Mapper
 public interface ExampleSentenceMapper {
 
-    List<String> findExampleSentence (Integer wordId);
+    ExampleSentenceDTO findExampleSentence (Integer wordId);
 
 }

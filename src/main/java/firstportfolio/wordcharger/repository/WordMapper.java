@@ -8,6 +8,8 @@ public interface WordMapper {
 
     String findByWordId(Integer wordId);
 
+    Integer findByWord(String word);
+
 
 
 }

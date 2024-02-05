@@ -52,12 +52,16 @@ public class ZeroToHundredController {
 
 
         Integer testWordId = wordIdList2.get(0); //첫번째로 나온 wordId. 이걸로 뭘 할 수 있는데? 의미와 예문 찾아야지
+        log.info("testWordId = {}", testWordId);
         //단어 찾기
         String findWord = wordMapper.findByWordId(testWordId);
+        log.info("findWord = {}", findWord);
         //의미 찾기
         List<String> meaning = meaningMapper.findMeaning(testWordId);
+        log.info("meaning ={}", meaning);
         //오답 찾기
         List<String> wrongMeaning = wrongMeaningMapper.findWrongMeaning(testWordId);
+        log.info("wrongMeaning={}", wrongMeaning);
 
         List<String> answer = new ArrayList<>();
         for(int i=0; i<meaning.size();i++){
@@ -66,16 +70,16 @@ public class ZeroToHundredController {
         for(int i=0; i<wrongMeaning.size();i++){
             answer.add(wrongMeaning.get(i));
         }
+
+
+
         request.setAttribute("voca", findWord);
         request.setAttribute("answer", answer);
 
 
-//        //예문 찾기
-//        List<String> exampleSentence = exampleSentenceMapper.findExampleSentence(testWordId);
 
 
         return "/charger/zeroToHundredQuestion";
-
     }
 
 

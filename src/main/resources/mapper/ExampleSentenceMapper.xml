@@ -6,8 +6,8 @@
 <mapper namespace="firstportfolio.wordcharger.repository.ExampleSentenceMapper">
 
 
-    <select id="findExampleSentence" resultType="String">
-        SELECT example_sentence FROM example_sentence
+    <select id="findExampleSentence" resultType="ExampleSentenceDTO">
+        SELECT * FROM example_sentence
         WHERE word_id = #{wordId}
     </select>
 
