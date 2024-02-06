@@ -2,7 +2,6 @@ package firstportfolio.wordcharger.controller.introduction;
 
 
 import firstportfolio.wordcharger.DTO.MemberJoinDTO;
-import firstportfolio.wordcharger.repository.CountMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

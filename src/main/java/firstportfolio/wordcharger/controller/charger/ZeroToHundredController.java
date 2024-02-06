@@ -1,6 +1,7 @@
 package firstportfolio.wordcharger.controller.charger;
 
 
+import firstportfolio.wordcharger.DTO.UserWordDTO;
 import firstportfolio.wordcharger.repository.*;
 import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,19 +40,24 @@ public class ZeroToHundredController {
 
 
 
-        List<Integer> wordIdList = userWordMapper.findWordId(startWordIdInteger, endWordIdInteger, id);
-
-        //여기서 만약에, user_word 테이블에 초기화가 안되어 있다면? 초기화를 해줘야함.
-        if (wordIdList.isEmpty()) {
-            for(int i=0; i<endWordIdInteger-startWordIdInteger; i++){
+        List<UserWordDTO> findUserWordDTO = userWordMapper.findRowByIdAndWordId(id, startWordIdInteger);
+        //만약에, user_wrod 테이블에 행이 아예 존재하지 않을 경우, init(초기화) 해줌.
+        if (findUserWordDTO.isEmpty()) {
+            log.info("emptyemptyemptyemptyemptyemptyemptyemptyempty");
+            for(int i=startWordIdInteger; i<=endWordIdInteger; i++){
                 userWordMapper.initUserWord(id, i);
             }
         }
 
-        List<Integer> wordIdList2 = userWordMapper.findWordId(startWordIdInteger, endWordIdInteger, id);
+        List<Integer> wordIdList = userWordMapper.findWordId(startWordIdInteger, endWordIdInteger, id);
 
+        if (wordIdList.isEmpty()) {
+            // 오늘 외울 단어가 더 이상 존재하지 않을 경우.
+            log.info("여기들어왔나???여기들어왔나???여기들어왔나???여기들어왔나???");
+            return "/charger/todayFinish";
+        }
 
-        Integer testWordId = wordIdList2.get(0); //첫번째로 나온 wordId. 이걸로 뭘 할 수 있는데? 의미와 예문 찾아야지
+        Integer testWordId = wordIdList.get(0); //첫번째로 나온 wordId. 이걸로 뭘 할 수 있는데? 의미와 예문 찾아야지
         log.info("testWordId = {}", testWordId);
         //단어 찾기
         String findWord = wordMapper.findByWordId(testWordId);

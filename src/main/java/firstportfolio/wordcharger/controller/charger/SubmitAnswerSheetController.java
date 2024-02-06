@@ -1,8 +1,6 @@
 package firstportfolio.wordcharger.controller.charger;
 
 
-import firstportfolio.wordcharger.DTO.WordDTO;
-import firstportfolio.wordcharger.repository.FixedDayMapper;
 import firstportfolio.wordcharger.repository.MeaningMapper;
 import firstportfolio.wordcharger.repository.UserWordMapper;
 import firstportfolio.wordcharger.repository.WordMapper;

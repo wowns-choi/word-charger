@@ -11,6 +11,13 @@
             VALUES (#{memberId}, #{wordId}, 1, TRUNC(SYSDATE))
     </insert>
 
+
+    <select id="findRowByIdAndWordId" resultType="UserWordDTO">
+        SELECT * FROM user_word
+        WHERE member_id = #{id}
+        AND word_id = #{wordId}
+    </select>
+
     <select id="findWordId" resultType="Integer">
         SELECT word_id FROM user_word
         WHERE word_id BETWEEN #{startWordInteger} AND #{endWordInteger} AND member_id = #{memberId} AND next_review_date &lt;= TRUNC(SYSDATE)
