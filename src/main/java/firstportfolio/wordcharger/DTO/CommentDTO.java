@@ -2,10 +2,20 @@ package firstportfolio.wordcharger.DTO;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Data
 public class CommentDTO {
-    public String writingNum;
-    public String id;
-    public String content;
+
+    private Integer id;
+    private Integer postId;
+    private Integer memberId;
+    private String content;
+    private Date createDate;
+    private Integer parentCommentId;
+
+    private List<CommentDTO> replies = new ArrayList<>();
 
 }

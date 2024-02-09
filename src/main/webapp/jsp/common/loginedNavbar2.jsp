@@ -91,11 +91,13 @@
         </div>
         <div class="board-btn-div">
             <button id="board-btn" style="font-size: 13px;">
+                <a href="/board-home">
                 BOARD
+                </a>
             </button>
             <div class="board-btn-dropdown">
                 <div class="board-btn-dropdown-child">
-                    <a href=""> 게시판</a>
+                    <a href="/board-home"> 게시판</a>
                     <a href=""> 내가 작성한 글</a>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:import url="/jsp/bootstrapconfig/index.jsp"/>
 
 <html>
 <head>
@@ -160,11 +159,11 @@
         <div class="rightpunch">
 
             <div class="my-up-container-in-right">
-                ${findedWritingByWritingNum.title}
+                ${findPost.title}
             </div>
 
             <div class="my-middle-container-in-right">
-                <textarea style="width:100%; height:100%; border:2px solid black; border-radius:5px; background-color:#dedede;" readOnly> ${findedWritingByWritingNum.content} </textarea>
+                <textarea style="width:100%; height:100%; border:2px solid black; border-radius:5px; background-color:#dedede;" readOnly> ${findPost.content} </textarea>
             </div>
 
             <div class="comment">
@@ -172,30 +171,31 @@
             </div>
 
             <div class="user-id">
-                ${loginedMemberId}
+<%--                ${loginedMemberId}--%>
             </div>
 
             <div class="comment-insert-form">
-                <form:form modelAttribute="commentDTO" method="post">
-                <form:textarea path="content" style="width:70%; height:100px; border:2px solid black;"/>
-                <form:hidden path="id" value="${loginedMemberId}"/>
+                <form method="post">
+                    <textarea name="content" style="width:70%; height:100px; border:2px solid black;"></textarea>
+                <input type="hidden" name="postId" value="${findPost.id}"/>
+                <input type="hidden" name="memberId" value="${findPost.memberId}"/>
                 <button type="submit" class="button-register" id="writing-button" style="margin-top:0.3vh;"> 등록 </button>
-                </form:form>
+                </form>
             </div>
 
             <div class="comment-container">
-
-                <c:forEach var="c" items="${findedCommentList}">
-                <div style="margin-top: 20px; width:50%;">
-                    <div style="font-size: 12px; font-weight: bold; color:#ff3d3d; ">
-                        <span style="border: 2px solid black; border-radius: 5px; box-shadow: 0 0 0 2px white, 0 0 0 4px black;">
-                        ${c.id}
-                        </span>
+                <c:forEach var="a" items="${listFinded}">
+                    <div style="margin-top: 20px; width:50%;">
+                        <div style="font-size: 12px; font-weight: bold; color:#ff3d3d; ">
+                            <span style="border: 2px solid black; border-radius: 5px; box-shadow: 0 0 0 2px white, 0 0 0 4px black;">
+                            ${a.id}
+                            </span>
+                        </div>
+                        <div>
+                        <div>
+                            <!--${a.content}-->
+                        </div>
                     </div>
-                    <div>
-                        ${c.content}
-                    </div>
-                </div>
                 </c:forEach>
 
                 <div class="pagination">

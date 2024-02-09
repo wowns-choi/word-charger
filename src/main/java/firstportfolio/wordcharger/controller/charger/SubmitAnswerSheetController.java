@@ -22,7 +22,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class SubmitAnswerSheetController {
 
-    private final FixedDayMapper fixedDayMapper;
 
     //여기부터
     private final WordMapper wordMapper;

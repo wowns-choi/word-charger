@@ -118,7 +118,7 @@
             <div class="my-up-container-in-right">
                 글 작성
             </div>
-            <form:form modelAttribute="writingDTO" method="post">
+            <form:form modelAttribute="postGenerateDTO" method="post">
             <div class="my-middle-container-in-right">
                 <div style="width:100%">
                     <span style="width:15%; margin-left:7.5vw;">
@@ -134,8 +134,8 @@
                         작성자 :
                     </span>
                     <span>
-                        ${id}
-                        <form:hidden path="userId" value="${id}"/>
+                        ${userId}
+                        <form:hidden path="memberId" value="${id}"/>
                     </span>
                 </div>
                 <div style="width:100%">
@@ -143,7 +143,7 @@
                         비밀글로 작성하기
                     </span>
                     <span>
-                       <form:checkbox path="secretWritingCheckBox" id="secretWritingCheckBox"/>
+                       <form:checkbox path="is_private" id="secretWritingCheckBox"/>
                     </span>
                 </div>
                 <div style="width:100%; ${show ? 'display:block;' : 'display:none;'} " id="hiddenPasswordInput">
@@ -151,7 +151,7 @@
                         비밀번호 :
                     </span>
                     <span>
-                       <form:input type="password" path="writingPassword" />
+                       <form:input type="password" path="postPassword" />
                        <span style="color:#ff6b3f; background-color:#fff;" >${notInsertPassword}</span>
                     </span>
                 </div>

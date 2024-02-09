@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 @RequiredArgsConstructor
 public class HomeController {
-    private final CountMapper countMapper;
 
     @GetMapping("/")
     public String homeControllerMethod(HttpServletRequest request) {

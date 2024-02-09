@@ -97,7 +97,7 @@
         }
         .board{
             display: grid;
-            grid-template-columns: 1fr 4fr 2fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
             align-items: center; /* 세로축 중앙 정렬 */
             justify-items: center; /* 가로축 중앙 정렬 */
             border-bottom: 1px solid black;
@@ -106,7 +106,7 @@
         }
         .board-2{
             display: grid;
-            grid-template-columns: 1fr 4fr 2fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
             align-items: center; /* 세로축 중앙 정렬 */
             justify-items: center; /* 가로축 중앙 정렬 */
             border-bottom: 1px solid #878787;
@@ -167,17 +167,15 @@
                     <span>작성자</span>
                     <span>작성날짜</span>
                     <span>조회수</span>
-                    <span>좋아요</span>
                 </div>
 
                 <div class="board-2">
                     <c:forEach var="writing" items="${currentPageWritings}">
-                        <span>${writing.writingNum}</span>
-                        <a href="/show-writing?writingNum=${writing.writingNum}"><span style="font-size: 20px;">${writing.title}</span></a>
-                        <span>${writing.userId}</span>
+                        <span>${writing.id}</span>
+                        <a href="/show-writing?postId=${writing.id}"><span style="font-size: 20px;">${writing.title}</span></a>
+                        <span>${writing.memberId}</span>
                         <span>${writing.writingDate}</span>
                         <span>${writing.viewNumber}</span>
-                        <span>${writing.likeNumber}</span>
                     </c:forEach>
                 </div>
 
@@ -217,6 +215,7 @@
                         <button type="submit"> 찾기 </button>
                     </form>
                 </div>
+
             </div>
         </div>
 </div>
