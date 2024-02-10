@@ -1,6 +1,5 @@
 package firstportfolio.wordcharger.controller.charger;
 
-import firstportfolio.wordcharger.repository.UserWordMapper;
 import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

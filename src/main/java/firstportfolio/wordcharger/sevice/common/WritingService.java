@@ -1,7 +1,5 @@
 package firstportfolio.wordcharger.sevice.common;
 
-import firstportfolio.wordcharger.DTO.WritingDTOSelectVersion;
-import firstportfolio.wordcharger.repository.WritingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
