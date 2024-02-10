@@ -17,4 +17,6 @@ public interface PostsMapper {
     public Integer selectPostByMemberIdAndTitle(Integer memberId, String title);
 
     public PostsDTO findPostById(Integer postId);
+
+    public List<PostsDTO> findPostByMemberId(Integer memberId);
 }

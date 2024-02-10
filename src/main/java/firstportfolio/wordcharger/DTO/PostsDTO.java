@@ -10,8 +10,8 @@ public class PostsDTO {
     private Integer id;
     private Integer memberId;
     private String title;
-    private Integer is_private;
-    private Date writing_date;
+    private Integer isPrivate;
+    private Date writingDate;
     private String content;
 
     //post_view 테이블
@@ -20,5 +20,6 @@ public class PostsDTO {
     //post_password 테이블
     private String postPassword;
 
+    private String userId;
 
 }

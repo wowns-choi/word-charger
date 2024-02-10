@@ -18,4 +18,6 @@ public class CommentDTO {
 
     private List<CommentDTO> replies = new ArrayList<>();
 
+    private String userId;
+
 }

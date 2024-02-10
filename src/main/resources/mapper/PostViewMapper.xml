@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.PostViewMapper">
+
+    <update id="updateByPostId">
+        UPDATE post_view
+        SET view_number = view_number + 1
+        WHERE post_id = #{postId}
+    </update>
+
+    <select id="findPostViewCountByPostId" resultType="Integer">
+        SELECT view_number FROM post_view
+        WHERE post_id = #{postId}
+
+    </select>
+
+
+
+
+
+
+</mapper>

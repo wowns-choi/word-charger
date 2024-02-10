@@ -11,7 +11,22 @@
         ORDER BY create_date ASC
     </select>
 
+    <insert id="insertComment">
+        INSERT INTO comments
+        (id, post_id, member_id, content, create_date, parent_comment_id)
+        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, SYSDATE, NULL)
+    </insert>
 
+    <insert id="insertComment2">
+        INSERT INTO comments
+            (id, post_id, member_id, content, create_date, parent_comment_id)
+        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, SYSDATE, #{parentCommentId})
+    </insert>
+
+    <select id="findPostIdByMemberId" resultType="Integer">
+        SELECT post_id FROM comments
+        WHERE member_id = #{memberId}
+    </select>
 
 
 

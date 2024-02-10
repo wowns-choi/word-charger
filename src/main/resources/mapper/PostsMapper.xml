@@ -33,6 +33,11 @@
         WHERE id = #{postId}
     </select>
 
+    <select id="findPostByMemberId" resultType="PostsDTO">
+        SELECT * FROM posts
+        WHERE member_id = #{memberId}
+    </select>
+
 
 
 

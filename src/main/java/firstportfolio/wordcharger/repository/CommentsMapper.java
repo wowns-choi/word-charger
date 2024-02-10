@@ -9,5 +9,9 @@ import java.util.List;
 public interface CommentsMapper {
     List<CommentDTO> findCommentsByPostId (Integer postId);
 
+    void insertComment (Integer postId, Integer memberId, String content);
 
+    void insertComment2 (Integer postId, Integer memberId, String content, Integer parentCommentId);
+
+    List<Integer> findPostIdByMemberId(Integer memberId);
 }

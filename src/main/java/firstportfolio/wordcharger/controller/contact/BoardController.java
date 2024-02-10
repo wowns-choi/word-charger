@@ -26,11 +26,14 @@ import java.util.Map;
 @Slf4j
 public class BoardController {
     private final WritingMapper writingMapper;
+    private final MemberMapper memberMapper;
     private final WritingService writingService;
     private final UserCommentMapper userCommentMapper;
     private final PostsMapper postsMapper;
     private final PostPasswordMapper postPasswordMapper;
     private final CommentsMapper commentsMapper;
+    private final PostViewMapper postViewMapper;
+
     @GetMapping("/board-home")
     public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
 
@@ -66,7 +69,7 @@ public class BoardController {
     }
 
     @RequestMapping("find-writings-by-title-writer-content")
-    public String findWritingControllerMethod(@RequestParam String byWhatType, @RequestParam String hintToFind, @RequestParam(required = false, defaultValue = "1") Integer page, Model model){
+    public String findWritingControllerMethod(@RequestParam String byWhatType, @RequestParam String hintToFind, @RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
 
         Integer currentPage = page;
 
@@ -78,7 +81,7 @@ public class BoardController {
 
         Map<String, Object> returnMap = writingService.findTotalWritingByTitleWriterContent(byWhatType, hintToFind, startRow, pageSize);
         Integer findedWritingTotal = (Integer) returnMap.get("findedWritingTotal");
-        List<WritingDTOSelectVersion> currentPageWritings = (List<WritingDTOSelectVersion>)returnMap.get("currentPageWritings");
+        List<WritingDTOSelectVersion> currentPageWritings = (List<WritingDTOSelectVersion>) returnMap.get("currentPageWritings");
 
         int totalPages = (int) Math.ceil((double) findedWritingTotal / pageSize);
 
@@ -107,7 +110,7 @@ public class BoardController {
     public String boardWritingPageControllerMethod(Model model, HttpServletRequest request) {
         model.addAttribute("postGenerateDTO", new PostGenerateDTO());
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
         model.addAttribute("id", loginedMember.getId());
         model.addAttribute("userId", loginedMember.getUserId());
@@ -164,13 +167,17 @@ public class BoardController {
 
     //이 아래부터 시작
     @GetMapping("show-writing")
-    public String showWritingControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page ,@RequestParam Integer postId, Model model, HttpServletRequest request){
+    public String showWritingControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, @RequestParam Integer postId, Model model, HttpServletRequest request) {
 
 
         //post테이블의 아이디컬럼 값으로 게시글을 찾아와야함.
         PostsDTO findPost = postsMapper.findPostById(postId);
 
         model.addAttribute("findPost", findPost);
+
+        //post_view +1 update
+        postViewMapper.updateByPostId(findPost.getId());
+
 
         //만약, 비밀번호가 있는 게시글이라면, 비밀번호창을 띄워줘야지. //
 //        if(findPost.getIs_private() == 1){
@@ -179,9 +186,9 @@ public class BoardController {
 
 
 //   지워     WritingDTOSelectVersion findedWritingByWritingNum = writingMapper.findWritingByWritingNum(postId);
-  // 지워     model.addAttribute("findedWritingByWritingNum", findedWritingByWritingNum);
+        // 지워     model.addAttribute("findedWritingByWritingNum", findedWritingByWritingNum);
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
         model.addAttribute("loginedMemberId", loginedMember);
 
@@ -214,7 +221,7 @@ public class BoardController {
 
         List<CommentDTO> parentCommentList = new ArrayList<>();
 
-        for(CommentDTO comment : findComments){
+        for (CommentDTO comment : findComments) {
             if (comment.getParentCommentId() == null) {
                 parentCommentList.add(comment);
             }
@@ -260,18 +267,59 @@ public class BoardController {
             listFinded.add(commentDTO);
         }
 
+        for (int i = 0; i < listFinded.size(); i++) {
+            CommentDTO commentDTO = listFinded.get(i);
+            Integer id = commentDTO.getMemberId();
+            String findUserId = memberMapper.findUserIdById(id);
+            listFinded.get(i).setUserId(findUserId);
+            log.info("userId={}", findUserId);
+            log.info("commentDTO LOG========={}", commentDTO);
+        }
+
+        for (int i = 0; i < listFinded.size(); i++) {
+            if (listFinded.get(i).getReplies() != null) {
+                for (CommentDTO child : listFinded.get(i).getReplies()) {
+                    Integer id = child.getMemberId();
+                    String findUserId = memberMapper.findUserIdById(id);
+                    child.setUserId(findUserId);
+
+                }
+            }
+        }
+
         model.addAttribute("findedCommentList", listFinded);
         log.info("findedCommentList aaaaaaaaaaaaaaaaaaaaa= {}", listFinded);
 
         return "/contact/showWriting";
 
     }
+
     @PostMapping("show-writing")
-    public String InsertCommentControllerMethod(@RequestParam String content, @RequestParam String postId, @RequestParam String memberId){
+    public String InsertCommentControllerMethod(@RequestParam String content, @RequestParam Integer postId, @RequestParam String memberId) {
+        log.info("content=============={}", content);
+        log.info("content=============={}", postId);
+        log.info("content=============={}", memberId);
+
+        MemberJoinDTO findMember = memberMapper.findMemberById(memberId);
+
+
+        commentsMapper.insertComment(postId, findMember.getId(), content);
+        return "redirect:/show-writing?postId=" + postId;
+//
 //        userCommentMapper.insertComment(commentDTO.getWritingNum(), commentDTO.getId(), commentDTO.getContent());
 //        return "redirect:/show-writing?writingNum=" + commentDTO.getWritingNum();
-        return "hello";
+//        return "hello";
     }
 
+    @PostMapping("/reply-save")
+    public String replySave(@RequestParam String content, @RequestParam String postId, @RequestParam String memberId, @RequestParam String parentCommentId){
+        log.info("content={}", content);
+        log.info("postId={}", postId);
+        log.info("memberId={}", memberId);
+        log.info("parentCommentId={}", parentCommentId);
 
+        commentsMapper.insertComment2(Integer.valueOf(postId), Integer.valueOf(memberId), content, Integer.valueOf(parentCommentId));
+
+        return "redirect:/show-writing?postId=" + postId;
+    }
 }

@@ -10,6 +10,10 @@
         SELECT * FROM member WHERE USER_ID = #{userId}
     </select>
 
+    <select id="findUserIdById" resultType="String">
+        SELECT user_id FROM member WHERE id = #{id}
+    </select>
+
     <insert id="insertMember">
         INSERT INTO member
 

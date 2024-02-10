@@ -171,34 +171,54 @@
             </div>
 
             <div class="user-id">
-<%--                ${loginedMemberId}--%>
+                ${loginedMemberId.userId}
             </div>
 
             <div class="comment-insert-form">
                 <form method="post">
-                    <textarea name="content" style="width:70%; height:100px; border:2px solid black;"></textarea>
-                <input type="hidden" name="postId" value="${findPost.id}"/>
-                <input type="hidden" name="memberId" value="${findPost.memberId}"/>
+                <textarea name="content" style="width:70%; height:100px; border:2px solid black;"></textarea>
+<%--                <input type="hidden" name="postId" value="${findPost.id}"/>
+                    이거, 포함시키니까, postId 가 두 번 보내져서 오류를 발생시킴. 이유를 모르겠음.
+--%>
+                <input type="hidden" name="memberId" value="${loginedMemberId.userId}"/>
                 <button type="submit" class="button-register" id="writing-button" style="margin-top:0.3vh;"> 등록 </button>
                 </form>
             </div>
 
-            <div class="comment-container">
-                <c:forEach var="a" items="${listFinded}">
-                    <div style="margin-top: 20px; width:50%;">
-                        <div style="font-size: 12px; font-weight: bold; color:#ff3d3d; ">
-                            <span style="border: 2px solid black; border-radius: 5px; box-shadow: 0 0 0 2px white, 0 0 0 4px black;">
-                            ${a.id}
-                            </span>
-                        </div>
+            <div class="comment-container" >
+                <c:forEach var="a" items="${findedCommentList}">
+                    <div style="margin-top: 20px; width:50%; background-color: blue">
+                            <div style="font-size: 12px; font-weight: bold; color:#ff3d3d; ">
+                                <span style="border: 2px solid black; border-radius: 5px; box-shadow: 0 0 0 2px white, 0 0 0 4px black;">
+                                ${a.userId}
+                                </span>
+                            </div>
                         <div>
-                        <div>
-                            <!--${a.content}-->
-                        </div>
+                            <div>
+                                ${a.content}
+                            </div>
+                            <button id="click-me">click me</button>
+                            <div id="textarea-reply" style="display: none; width:100px; height: 100px;">
+                                <form action="/reply-save" method="post">
+                                <textarea name="content"  cols="30" rows="10"></textarea>
+                                    <input type="hidden" name="postId" value="${findPost.id}">
+                                    <input type="hidden" name="memberId" value="${loginedMemberId.id}">
+                                    <input type="hidden" name="parentCommentId" value="${a.id}">
+                                    <button type="submit">등록</button>
+                                </form>
+                            </div>
+                            <c:forEach var="reply" items="${a.replies}">
+                                <div class="reply">
+                                        ${reply.userId}
+                                </div>
+                                <div class="reply">
+                                        ${reply.content}
+                                </div>
+                            </c:forEach>
                     </div>
                 </c:forEach>
 
-                <div class="pagination">
+                <div class="pagination" style="background-color: red;">
                     <c:if test="${currentGroupFirstPage != 1}">
                         <a href="/show-writing?page=${currentGroupFirstPage-numberPerGroup}&writingNum=${writingNum}"> &laquo; 이전</a>
                     </c:if>
@@ -210,7 +230,7 @@
                                 <span>${i}</span>
                             </c:when>
                             <c:otherwise>
-                                <a href="/show-writing?page=${i}&writingNum=${writingNum}">${i}</a>
+                                <a href="/show-writing?page=${i}&postId=${findPost.id}">${i}</a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -228,13 +248,9 @@
 </div>
 
 <script>
-    document.getElementById('secretWritingCheckBox').addEventListener('change', function(){
-        var hiddenPasswordInput = document.getElementById('hiddenPasswordInput');
-        if(this.checked){
-            hiddenPasswordInput.style.display = 'block';
-        } else{
-            hiddenPasswordInput.style.display = 'none';
-        }
+
+    document.getElementById('click-me').addEventListener('click', function(){
+        document.getElementById('textarea-reply').style.display = 'block';
     });
 </script>
 
