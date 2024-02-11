@@ -71,41 +71,37 @@
         </div>
 
         <div>
-            <button style="font-size: 13px;">
+            <a href="/" style="font-size: 13px;">
                 ABOUT
-            </button>
+            </a>
         </div>
         <div>
-            <button style="font-size: 13px;">
+            <a href="/payment" style="font-size: 13px;">
                 <i class="fa-solid fa-dollar-sign"></i>
-            </button>
+            </a>
         </div>
         <div>
 
-            <button style="font-size: 13px;">
-                <a href="/charger-home">
+            <a href="/charger-home" style="font-size: 13px;">
                 CHARGER
-                </a>
-            </button>
+            </a>
 
         </div>
         <div class="board-btn-div">
-            <button id="board-btn" style="font-size: 13px;">
-                <a href="/board-home">
+            <a href="/board-home" id="board-btn" style="font-size: 13px;">
                 BOARD
-                </a>
-            </button>
+            </a>
             <div class="board-btn-dropdown">
                 <div class="board-btn-dropdown-child">
                     <a href="/board-home"> 게시판</a>
-                    <a href=""> 내가 작성한 글</a>
+                    <a href="/my-writing"> 내가 작성한 글</a>
                 </div>
             </div>
         </div>
         <div>
-            <button style="font-size: 13px;">
+            <a href="/faq" style="font-size: 13px;">
                 FAQ
-            </button>
+            </a>
         </div>
         <div></div>
         <div>

@@ -38,6 +38,17 @@
         WHERE member_id = #{memberId}
     </select>
 
+    <select id="findPostByTitle" resultType="PostsDTO">
+        SELECT * FROM posts
+        WHERE title = #{hintToFind}
+    </select>
+
+    <select id="findPostByContent" resultType="PostsDTO">
+        SELECT * FROM posts
+        WHERE content LIKE #{hintToFind}
+    </select>
+
+
 
 
 

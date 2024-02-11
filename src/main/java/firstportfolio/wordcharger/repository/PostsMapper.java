@@ -19,4 +19,11 @@ public interface PostsMapper {
     public PostsDTO findPostById(Integer postId);
 
     public List<PostsDTO> findPostByMemberId(Integer memberId);
+
+    public List<PostsDTO> findPostByTitle(String hintToFind);
+
+    public List<PostsDTO> findPostByContent (String content);
+
+
+
 }

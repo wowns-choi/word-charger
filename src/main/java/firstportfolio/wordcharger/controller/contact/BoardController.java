@@ -3,8 +3,6 @@ package firstportfolio.wordcharger.controller.contact;
 import firstportfolio.wordcharger.DTO.*;
 import firstportfolio.wordcharger.repository.*;
 
-import firstportfolio.wordcharger.sevice.common.WritingService;
-import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -25,10 +23,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class BoardController {
-    private final WritingMapper writingMapper;
     private final MemberMapper memberMapper;
-    private final WritingService writingService;
-    private final UserCommentMapper userCommentMapper;
+
     private final PostsMapper postsMapper;
     private final PostPasswordMapper postPasswordMapper;
     private final CommentsMapper commentsMapper;
@@ -70,29 +66,60 @@ public class BoardController {
 
     @RequestMapping("find-writings-by-title-writer-content")
     public String findWritingControllerMethod(@RequestParam String byWhatType, @RequestParam String hintToFind, @RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
+//    title, writer, content 으로 posts 찾기
 
+        List<PostsDTO> findPostsList = new ArrayList<>();
+
+    //title 로 찾아볼까?
+        if (byWhatType.equals("title")) {
+            findPostsList = postsMapper.findPostByTitle(hintToFind);
+        }
+
+        if (byWhatType.equals("writer")) {
+            MemberJoinDTO findMember = memberMapper.findMemberById(hintToFind);
+            Integer id = findMember.getId();
+            findPostsList = postsMapper.findPostByMemberId(id);
+        }
+
+        if (byWhatType.equals("content")) {
+            findPostsList = postsMapper.findPostByContent(hintToFind);
+        }
+
+        //현재 페이지
         Integer currentPage = page;
 
-        //pageSize 는 한페이지당 몇개의 글이 올라갈것인가? 의 문제이다.
-        Integer pageSize = 3;
+        //총 post 수
+        Integer totalPosts = findPostsList.size();
 
-        Integer startRow = (currentPage - 1) * pageSize;
+        // 페이지당 몇 개의 post 가 보여질 것인가?
+        Integer pageSize = 5;
 
+        //총 페이지 수
+        Integer totalPages = (int)Math.ceil((double)totalPosts/pageSize);
 
-        Map<String, Object> returnMap = writingService.findTotalWritingByTitleWriterContent(byWhatType, hintToFind, startRow, pageSize);
-        Integer findedWritingTotal = (Integer) returnMap.get("findedWritingTotal");
-        List<WritingDTOSelectVersion> currentPageWritings = (List<WritingDTOSelectVersion>) returnMap.get("currentPageWritings");
-
-        int totalPages = (int) Math.ceil((double) findedWritingTotal / pageSize);
-
+        //그룹 당 페이지 수
         Integer pageGroupSize = 5;
 
+        //현재 페이지가 속한 그룹
         Integer currentGroup = (int) Math.ceil((double) currentPage / pageGroupSize);
+
+        //현재 그룹 첫번째 페이지
         Integer currentGroupFirstPage = (currentGroup - 1) * pageGroupSize + 1;
         Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);
 
+        //현재 페이지 posts 들.
+        Integer startRow = (currentPage - 1) * pageSize;
 
-        model.addAttribute("currentPageWritings", currentPageWritings);
+        List<PostsDTO> currentPagePosts = new ArrayList<>();
+
+        for (int i = startRow; i < Math.min(startRow + 5, findPostsList.size()); i++) {
+            currentPagePosts.add(findPostsList.get(i));
+        }
+
+
+
+
+        model.addAttribute("currentPageWritings", currentPagePosts);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
 

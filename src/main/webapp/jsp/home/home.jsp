@@ -18,30 +18,44 @@
         <div>
             <div></div>
             <div>
-                <p>The most efficient English word memorization application</p>
+                <p><!--he most efficient <br>
+                    English word memorization <br> application--></p>
 
-                <p>혹시...
+                <p>
+<%--                    혹시--%>
                 </p>
                 <p id="third-ptag">
-                    <span>알고 있는 영어단어</span>
-                    <span>인데도 외우고 계시지 않나요?</span>
+<%--                    <span>알고 있는</span> 영어단어--%>
+<%--                    <span>인데도 외우고 계시지 않나요?</span>--%>
                 </p>
-                <p>이미 아는 단어를 제외시킬 수만 있다면? </p>
-                <p>빠르게, 더 많이
-                </p>
-                <p>영어단어를 외우고 싶으시다면,
-                    <a href="/find-voca"><button id="start-for-free">start for free</button></a>
-                </p>
-                <form action="/find-voca"method="post">
+                <p><span style="opacity: 0.3; ">아는 단어는 빼고,</span> <br>
+                    모르는 단어만 외우게 해주는 서비스 <br>
+                    단어충전소와 함께 하세요 <br>
+                </p> <!--4번째 p 태그 끝-->
+<%--                <p style="margin-top: 20px;">--%>
+<%--                    단어충전소와 함께 하세요--%>
+<%--                </p>--%>
 
-                </form>
-
-
+                    <a href="/find-voca" id="start-for-free">start for free</a>
 
             </div>
 
         </div>
-        <div></div>
+        <div>
+            <div>
+                <div id="picture-text">
+                    <div>오늘의 문장</div>
+                    <div class="english-text">I am not going to let my life be <span style="color:#fc5f2b">defined</span> by failure.</div>
+                    <div class="hangle-text" style="margin-bottom: 10px;">나는 실패에 의해 내 인생이 결정되지 않도록 할 것이다.</div>
+                    <div class="english-text">I will have it <span style="color:#fc5f2b">defined</span> by effort - Vincent van Gogh</div>
+                    <div class="hangle-text">노력에 의해 결정되도록 할 것이다. - 빈센트 반 고흐</div>
+                    <div class="english-text" style="margin-top:10px; border-top:1px solid black; width:80%; height:15%;display:flex; justify-content: center; align-items: center;"><span style="color:#fc5f2b">define</span> : 정의하다, 결정하다, 규정하다 </div>
+
+
+                </div>
+            </div>
+            <div></div>
+        </div> <!-- 사진-->
     </div>
 
 
@@ -73,19 +87,6 @@
             </div>
             <div style="background-color: #001536; width:80%; height:0.3vh; margin-top:2vh;"></div>
             <div style=" font-size:10px; margin-top:1vh;">구독은 언제든지 취소하실 수 있습니다.</div>
-            <div id="learn-from-wisdom">
-                <div>명언으로 자연스럽게 영단어 익히기</div>
-                <div class="wisdom-english">I am not going to let my life be <span style="color:#fc5f2b">defined</span>
-                    by failure. </div>
-                <div class="wisdom-hangle">나는 실패에 의해 내 인생이 결정되지 않도록 할 것이다.</div>
-                <div class="wisdom-english">I will have it <span style="color:#fc5f2b">defined</span> by effort -
-                    Vincent van Gogh</div>
-                <div class="wisdom-hangle">노력에 의해 결정되도록 할 것이다. - 빈센트 반 고흐</div>
-                <div id="wisdom-word"><span style="color:#fc5f2b">define</span> : 정의하다, 결정하다, 규정하다</div>
-
-
-
-            </div>
         </div>
         <div id="main-text-right-container">
             <div style="font-size: 30px; ">단어충전소: <span style="color:#fc8d2b;">영어단어 학습의 혁신</span></div>
