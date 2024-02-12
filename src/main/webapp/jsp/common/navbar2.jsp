@@ -9,8 +9,8 @@
     <style>
 
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script>
+<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
+            <!--<script>
                     $(document).ready(function() {
                         $('#myForm').submit(function(e) {
                             e.preventDefault();
@@ -38,13 +38,14 @@
                         });
                     });
                 </script>
+                -->
 
 
 
 </head>
 <body>
     <!-- find Voca 모달창 시작 -->
-        <div id="mymyModal" class="modal">
+        <!--<div id="mymyModal" class="modal">
             <span class="modal-content">
                 <div>
                     <span class="close">&times;</span>
@@ -54,7 +55,7 @@
                     <p id="correctAnswer"></p>
                 </div>
             </span>
-        </div>
+        </div> -->
     <!--  find Voca 모달창 종료 -->
 
 
@@ -103,14 +104,14 @@
             </a>
         </div>
         <div>
-            <form action="/find-voca" method="post" id="myForm">
+<%--            <form action="/find-voca" method="post" id="myForm">--%>
         </div>
         <div>
-                <input type="text" name="voca" placeholder="Find Voca">
+<%--                <input type="text" name="voca" placeholder="Find Voca">--%>
         </div>
         <div>
-            <button type="submit">search</button>
-            </form>
+<%--            <button type="submit">search</button>--%>
+<%--            </form>--%>
         </div>
         <div>
             <a href="/login-form" id="sign-in">SIGN IN</a>
