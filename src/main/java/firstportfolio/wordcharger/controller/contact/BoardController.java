@@ -3,6 +3,7 @@ package firstportfolio.wordcharger.controller.contact;
 import firstportfolio.wordcharger.DTO.*;
 import firstportfolio.wordcharger.repository.*;
 
+import firstportfolio.wordcharger.sevice.board.PaginationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -29,107 +30,56 @@ public class BoardController {
     private final PostPasswordMapper postPasswordMapper;
     private final CommentsMapper commentsMapper;
     private final PostViewMapper postViewMapper;
-
+    private final PaginationService paginationService;
     @GetMapping("/board-home")
     public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
+        Integer currentPage = page; // 현재 페이지
+        Integer pageSize = 20; // 페이지당 보여질 post 의 수
+        Integer totalPosts = postsMapper.findAllPostsCount(); // 모든 post 의 개수
+        Integer pageGroupSize = 9; // 그룹당 페이지의 개수
 
-        Integer currentPage = page;
-        Integer pageSize = 20;
-
-        Integer totalWritings = postsMapper.findAllPostsCount(); //모든 writing의 "개수"를 가져옴
-
-        //totalWritings 를 double 타입으로 바꾸면, pageSize 는 int->double 로 자동형변환
-        //Math.ceil 은 0이 아닌 소수점이 존재하는 무조건 올림처리해버림.
-        Integer totalPages = (int) Math.ceil((double) totalWritings / pageSize);
-
+        // 현재 페이지가 보여줘야 하는 PostsDTO 객체들을 담은 List자료구조
         int startRow = (currentPage - 1) * pageSize;
         List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePosts(startRow, pageSize);
-        // 지울 것List<WritingDTOSelectVersion> currentPageWritings = writingService.findCurrentPageWritings(startRow, pageSize);
 
-        Integer pageGroupSize = 9;
-        Integer currentGroup = (int) Math.ceil((double) currentPage / pageGroupSize);
-        Integer currentGroupFirstPage = (currentGroup - 1) * pageGroupSize + 1;
-        Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);
-
-
-        model.addAttribute("currentPageWritings", currentPagePosts);
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalPages", totalPages);
-
-        model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
-        model.addAttribute("currentGroupLastPage", currentGroupLastPage);
-        model.addAttribute("pageGroupSize", pageGroupSize);
+        //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePosts, model);
 
         return "/contact/boardHome";
-
     }
 
     @RequestMapping("find-writings-by-title-writer-content")
     public String findWritingControllerMethod(@RequestParam String byWhatType, @RequestParam String hintToFind, @RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
-//    title, writer, content 으로 posts 찾기
 
         List<PostsDTO> findPostsList = new ArrayList<>();
-
-    //title 로 찾아볼까?
+        //title 로 찾기
         if (byWhatType.equals("title")) {
             findPostsList = postsMapper.findPostByTitle(hintToFind);
         }
-
+        //writer 로 찾기
         if (byWhatType.equals("writer")) {
             MemberJoinDTO findMember = memberMapper.findMemberById(hintToFind);
             Integer id = findMember.getId();
             findPostsList = postsMapper.findPostByMemberId(id);
         }
-
+        //content 로 찾기
         if (byWhatType.equals("content")) {
             findPostsList = postsMapper.findPostByContent(hintToFind);
         }
 
-        //현재 페이지
-        Integer currentPage = page;
 
-        //총 post 수
-        Integer totalPosts = findPostsList.size();
+        Integer currentPage = page; //현재 페이지
+        Integer pageSize = 5; // 페이지당 보여질 post 의 수
+        Integer totalPosts = findPostsList.size();  // 모든 post 의 개수
+        Integer pageGroupSize = 5; // 그룹당 페이지의 개수
 
-        // 페이지당 몇 개의 post 가 보여질 것인가?
-        Integer pageSize = 5;
-
-        //총 페이지 수
-        Integer totalPages = (int)Math.ceil((double)totalPosts/pageSize);
-
-        //그룹 당 페이지 수
-        Integer pageGroupSize = 5;
-
-        //현재 페이지가 속한 그룹
-        Integer currentGroup = (int) Math.ceil((double) currentPage / pageGroupSize);
-
-        //현재 그룹 첫번째 페이지
-        Integer currentGroupFirstPage = (currentGroup - 1) * pageGroupSize + 1;
-        Integer currentGroupLastPage = Math.min(currentGroupFirstPage + pageGroupSize - 1, totalPages);
-
-        //현재 페이지 posts 들.
+        // 현재 페이지가 보여줘야 하는 PostsDTO 객체들을 담은 List자료구조 : currentPagePosts
         Integer startRow = (currentPage - 1) * pageSize;
-
         List<PostsDTO> currentPagePosts = new ArrayList<>();
-
         for (int i = startRow; i < Math.min(startRow + 5, findPostsList.size()); i++) {
             currentPagePosts.add(findPostsList.get(i));
         }
-
-
-
-
-        model.addAttribute("currentPageWritings", currentPagePosts);
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalPages", totalPages);
-
-        model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
-        model.addAttribute("currentGroupLastPage", currentGroupLastPage);
-        model.addAttribute("pageGroupSize", pageGroupSize);
-
-        model.addAttribute("byWhatType", byWhatType);
-        model.addAttribute("hintToFind", hintToFind);
-
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePosts, model);
         return "/contact/boardHomeFind";
     }
 
@@ -148,7 +98,6 @@ public class BoardController {
     @PostMapping("/writing-page")
     public String boardWritingPagePostMappingControllerMethod(@Valid @ModelAttribute PostGenerateDTO writingDTO, BindingResult bindingResult, Model model) {
 
-        log.info("1111111111111111111111111111111111111111");
 
         String title = writingDTO.getTitle();
         Integer memberId = writingDTO.getMemberId();
@@ -156,81 +105,51 @@ public class BoardController {
         String writingPassword = writingDTO.getPostPassword();
         String content = writingDTO.getContent();
 
-        log.info("secretWritingCheckbox=================", secretWritingCheckBox);
-
         if (bindingResult.hasErrors()) {
             if (secretWritingCheckBox.equals(true)) {
                 model.addAttribute("show", true);
             }
-            log.info("bindingResult ==============={}", bindingResult);
-            log.info("22222222222222222222222222222222222222222222222222222");
             return "contact/writingPage";
         }
-
 
         if (secretWritingCheckBox.equals(true)) {
             if (writingPassword.equals("")) {
                 model.addAttribute("show", true);
                 model.addAttribute("notInsertPassword", "비밀번호를 안쓰셨어요");
-                log.info("333333333333333333333333333333333333333333333333333");
                 return "/contact/writingPage";
             }
         }
 
         Integer isPrivate = secretWritingCheckBox ? 1 : 0;
-        log.info("4444444444444444444444444444444444444444444444444");
         postsMapper.insertPost(title, memberId, isPrivate, content); //posts 테이블에 insert
         //비밀번호는 post_password 테이블에 넣어야 함.
         //그러려면, 방금 insert 된 posts 테이블의 행에 id 컬럼값을 알아야 하므로, 조회한다.
         Integer findPostId = postsMapper.selectPostByMemberIdAndTitle(memberId, title);
         postPasswordMapper.insertPostPassword(findPostId, writingPassword); //비밀번호를 post_password테이블에 넣음
-        log.info("5555555555555555555555555555555555555555555555");
-        //writingMapper.insertWriting(title, userId, isPrivate, writingPassword, content);
 
-        log.info("6666666666666666666666666666666666666666666666666666");
         return "redirect:/board-home";
     }
 
 
-    //이 아래부터 시작
+
     @GetMapping("show-writing")
     public String showWritingControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, @RequestParam Integer postId, Model model, HttpServletRequest request) {
 
 
         //post테이블의 아이디컬럼 값으로 게시글을 찾아와야함.
         PostsDTO findPost = postsMapper.findPostById(postId);
-
         model.addAttribute("findPost", findPost);
 
-        //post_view +1 update
+        //post_view +1 update : 조회수 1 올리는 작업
         postViewMapper.updateByPostId(findPost.getId());
 
-
-        //만약, 비밀번호가 있는 게시글이라면, 비밀번호창을 띄워줘야지. //
-//        if(findPost.getIs_private() == 1){
-//            return "";
-//        }
-
-
-//   지워     WritingDTOSelectVersion findedWritingByWritingNum = writingMapper.findWritingByWritingNum(postId);
-        // 지워     model.addAttribute("findedWritingByWritingNum", findedWritingByWritingNum);
 
         HttpSession session = request.getSession(false);
         MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
         model.addAttribute("loginedMemberId", loginedMember);
 
-//        model.addAttribute("commentDTO", new CommentDTO());
-//        model.addAttribute("writingNum", postId);
-
-        //--------------------------------------------------------
-
-        //현재 페이지 1
-        Integer currentPage = page;
-        log.info("currentPage========================={}", currentPage);
-
+        //----------자식 댓글(리플) 을 부모 객체에 끼워넣는 작업 시작----------
         List<CommentDTO> findComments = commentsMapper.findCommentsByPostId(postId);//찾아옴
-
-
         Map<Integer, CommentDTO> commentMap = new HashMap<>();
 
         for (CommentDTO comment : findComments) {
@@ -254,40 +173,23 @@ public class BoardController {
             }
         }
 
-        //전체 코멘트 개수
-        Integer allCommentCount = parentCommentList.size();
-        //한 페이지당 댓글 개수
-        Integer numberPerPage = 5;
 
-        //총 페이지 개수
-        Integer totalPageCount = (int) Math.ceil((double) allCommentCount / numberPerPage);
+
+        //--------페이징 시작----------
+        Integer currentPage = page; // 현재 페이지
+
+        //한 페이지당 댓글 개수
+        Integer pageSize = 5;
+        //전체 코멘트 개수
+        Integer totalPosts = parentCommentList.size(); //전체 comment 의 개수
 
         //그룹당 페이지수
-        Integer numberPerGroup = 5;
-
-        //현재 그룹은?
-        Integer currentGroup = (int) Math.ceil((double) currentPage / numberPerGroup);
-
-        //현재 그룹의 첫페이지
-        Integer currentGroupFirstPage = (currentGroup - 1) * numberPerGroup + 1;
-        //현재 그룹의 마지막 페이지
-        Integer currentGroupLastPage = Math.min(currentGroupFirstPage + numberPerGroup - 1, totalPageCount);
-
-        log.info("currentGroupFirstPage==============={}", currentGroupFirstPage);
-        log.info("currentGroupLastPage==============={}", currentGroupLastPage);
-
-        model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
-        model.addAttribute("currentGroupLastPage", currentGroupLastPage);
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("numberPerGroup", numberPerGroup);
-        model.addAttribute("totalPageCount", totalPageCount);
+        Integer pageGroupSize = 5;
 
         // 게시물 5개 주는 거는 아래 코드로 됬음.
-        Integer startRow = (currentPage - 1) * numberPerPage;
+        Integer startRow = (currentPage - 1) * pageSize;
 
         List<CommentDTO> listFinded = new ArrayList<>();
-        log.info("startRow==========={}", startRow);
-        log.info("findedCommentList = {}", listFinded);
 
         for (int i = startRow; i < Math.min(parentCommentList.size(), startRow + 5); i++) {
             CommentDTO commentDTO = parentCommentList.get(i);
@@ -299,8 +201,6 @@ public class BoardController {
             Integer id = commentDTO.getMemberId();
             String findUserId = memberMapper.findUserIdById(id);
             listFinded.get(i).setUserId(findUserId);
-            log.info("userId={}", findUserId);
-            log.info("commentDTO LOG========={}", commentDTO);
         }
 
         for (int i = 0; i < listFinded.size(); i++) {
@@ -309,13 +209,11 @@ public class BoardController {
                     Integer id = child.getMemberId();
                     String findUserId = memberMapper.findUserIdById(id);
                     child.setUserId(findUserId);
-
                 }
             }
         }
 
-        model.addAttribute("findedCommentList", listFinded);
-        log.info("findedCommentList aaaaaaaaaaaaaaaaaaaaa= {}", listFinded);
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, listFinded, model);
 
         return "/contact/showWriting";
 
@@ -323,30 +221,14 @@ public class BoardController {
 
     @PostMapping("show-writing")
     public String InsertCommentControllerMethod(@RequestParam String content, @RequestParam Integer postId, @RequestParam String memberId) {
-        log.info("content=============={}", content);
-        log.info("content=============={}", postId);
-        log.info("content=============={}", memberId);
-
         MemberJoinDTO findMember = memberMapper.findMemberById(memberId);
-
-
         commentsMapper.insertComment(postId, findMember.getId(), content);
         return "redirect:/show-writing?postId=" + postId;
-//
-//        userCommentMapper.insertComment(commentDTO.getWritingNum(), commentDTO.getId(), commentDTO.getContent());
-//        return "redirect:/show-writing?writingNum=" + commentDTO.getWritingNum();
-//        return "hello";
     }
 
     @PostMapping("/reply-save")
     public String replySave(@RequestParam String content, @RequestParam String postId, @RequestParam String memberId, @RequestParam String parentCommentId){
-        log.info("content={}", content);
-        log.info("postId={}", postId);
-        log.info("memberId={}", memberId);
-        log.info("parentCommentId={}", parentCommentId);
-
         commentsMapper.insertComment2(Integer.valueOf(postId), Integer.valueOf(memberId), content, Integer.valueOf(parentCommentId));
-
         return "redirect:/show-writing?postId=" + postId;
     }
 }

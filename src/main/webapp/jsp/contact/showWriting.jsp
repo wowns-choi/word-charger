@@ -186,16 +186,16 @@
             </div>
 
             <div class="comment-container" >
-                <c:forEach var="a" items="${findedCommentList}">
+                <c:forEach var="comment" items="${currentPagePosts}">
                     <div style="margin-top: 20px; width:50%; background-color: blue">
                             <div style="font-size: 12px; font-weight: bold; color:#ff3d3d; ">
                                 <span style="border: 2px solid black; border-radius: 5px; box-shadow: 0 0 0 2px white, 0 0 0 4px black;">
-                                ${a.userId}
+                                ${comment.userId}
                                 </span>
                             </div>
                         <div>
                             <div>
-                                ${a.content}
+                                ${comment.content}
                             </div>
                             <button id="click-me">click me</button>
                             <div id="textarea-reply" style="display: none; width:100px; height: 100px;">
@@ -203,11 +203,11 @@
                                 <textarea name="content"  cols="30" rows="10"></textarea>
                                     <input type="hidden" name="postId" value="${findPost.id}">
                                     <input type="hidden" name="memberId" value="${loginedMemberId.id}">
-                                    <input type="hidden" name="parentCommentId" value="${a.id}">
+                                    <input type="hidden" name="parentCommentId" value="${comment.id}">
                                     <button type="submit">등록</button>
                                 </form>
                             </div>
-                            <c:forEach var="reply" items="${a.replies}">
+                            <c:forEach var="reply" items="${comment.replies}">
                                 <div class="reply">
                                         ${reply.userId}
                                 </div>
@@ -220,7 +220,7 @@
 
                 <div class="pagination" style="background-color: red;">
                     <c:if test="${currentGroupFirstPage != 1}">
-                        <a href="/show-writing?page=${currentGroupFirstPage-numberPerGroup}&writingNum=${writingNum}"> &laquo; 이전</a>
+                        <a href="/show-writing?page=${currentGroupFirstPage-pageGroupSize}&postId=${findPost.id}"> &laquo; 이전</a>
                     </c:if>
 
 
@@ -236,7 +236,7 @@
                     </c:forEach>
 
                     <c:if test="${currentGroupLastPage != totalPageCount}">
-                        <a href="/show-writing?page=${currentGroupLastPage + 1}&writingNum=${writingNum}">다음 &raquo;</a>
+                        <a href="/show-writing?page=${currentGroupLastPage + 1}&postId=${findPost.id}">다음 &raquo;</a>
 
                     </c:if>
                 </div>

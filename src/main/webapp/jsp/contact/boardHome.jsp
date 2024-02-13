@@ -170,12 +170,12 @@
                 </div>
 
                 <div class="board-2">
-                    <c:forEach var="writing" items="${currentPageWritings}">
-                        <span>${writing.id}</span>
-                        <a href="/show-writing?postId=${writing.id}"><span style="font-size: 20px;">${writing.title}</span></a>
-                        <span>${writing.memberId}</span>
-                        <span>${writing.writingDate}</span>
-                        <span>${writing.viewNumber}</span>
+                    <c:forEach var="post" items="${currentPagePosts}">
+                        <span>${post.id}</span>
+                        <a href="/show-writing?postId=${post.id}"><span style="font-size: 20px;">${post.title}</span></a>
+                        <span>${post.memberId}</span>
+                        <span>${post.writingDate}</span>
+                        <span>${post.viewNumber}</span>
                     </c:forEach>
                 </div>
 

@@ -22,8 +22,6 @@ public class JoinController {
     private final AddressMapper addressMapper;
     private final PhoneMapper phoneMapper;
     private final TermsOfAgreementMapper termsOfAgreementMapper;
-    private final WordMapper wordMapper;
-    private final UserWordMapper userWordMapper;
 
     private static final String LENGTH_PATTERN = "^.{8,16}$";
     private static final String LETTER_PATTERN = ".*[A-Za-z].*";

@@ -18,19 +18,19 @@ public class HomeController {
 
     @GetMapping("/")
     public String homeControllerMethod(HttpServletRequest request) {
+        //세션 자체가 없다.
         HttpSession session = request.getSession(false);
         if (session == null) {
-            log.info("session==null");
             return "/home/home";
         }
+
+        //세션은 있는데, loginedMember 라는 키의 세션은 없다.
         MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
-
         if (loginedMember == null) {
-            log.info("session이 있긴 한데, loginedMember 라는 키의 세션은 없다");
             return "/home/home";
         }
-        log.info("세션이 있고, loginedMember라는 키의 세션이 있다");
 
+        //loginedMember 라는 키의 세션이 있다.
         return "/home/loginedHome2";
     }
 
