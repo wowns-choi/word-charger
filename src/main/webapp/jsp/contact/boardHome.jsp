@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="find-by-title-writer-content">
-                    <form action="/find-writings-by-title-writer-content" method="post">
+                    <form action="/find-posts-by-title-writer-content" method="post">
                         <select name="byWhatType">
                             <option value="title">제목</option>
                             <option value="writer">작성자</option>

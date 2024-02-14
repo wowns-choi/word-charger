@@ -167,7 +167,7 @@
                 <div class="board-2">
                     <c:forEach var="post" items="${currentPagePosts}">
                         <span>${post.id}</span>
-                        <a href="/show-writing?writingNum=${post.id}"><span style="font-size: 20px;">${post.title}</span></a>
+                        <a href="/show-writing?postId=${post.id}"><span style="font-size: 20px;">${post.title}</span></a>
                         <span>${post.memberId}</span>
                         <span>${post.writingDate}</span>
                         <span>${post.viewNumber}</span>

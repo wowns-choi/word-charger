@@ -1,4 +1,4 @@
-package firstportfolio.wordcharger.sevice.board;
+package firstportfolio.wordcharger.sevice.board.common;
 
 import firstportfolio.wordcharger.DTO.PostsDTO;
 import jakarta.transaction.Transactional;

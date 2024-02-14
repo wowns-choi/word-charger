@@ -175,11 +175,11 @@
             </div>
 
             <div class="comment-insert-form">
-                <form method="post">
+                <form action="/insert-comment" method="post">
                 <textarea name="content" style="width:70%; height:100px; border:2px solid black;"></textarea>
-<%--                <input type="hidden" name="postId" value="${findPost.id}"/>
-                    이거, 포함시키니까, postId 가 두 번 보내져서 오류를 발생시킴. 이유를 모르겠음.
---%>
+                <input type="hidden" name="postId" value="${findPost.id}"/>
+
+
                 <input type="hidden" name="memberId" value="${loginedMemberId.userId}"/>
                 <button type="submit" class="button-register" id="writing-button" style="margin-top:0.3vh;"> 등록 </button>
                 </form>
