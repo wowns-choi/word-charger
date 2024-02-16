@@ -1,17 +1,13 @@
 package firstportfolio.wordcharger.controller.board;
 
-import firstportfolio.wordcharger.DTO.MemberJoinDTO;
 import firstportfolio.wordcharger.DTO.PostGenerateDTO;
-import firstportfolio.wordcharger.repository.PostPasswordMapper;
-import firstportfolio.wordcharger.repository.PostsMapper;
+import firstportfolio.wordcharger.sevice.board.InsertPostService;
+import firstportfolio.wordcharger.sevice.board.ShowWritingFormService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,21 +16,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 @Slf4j
 public class WritingPageController {
-    private final PostsMapper postsMapper;
-    private final PostPasswordMapper postPasswordMapper;
+    private final ShowWritingFormService showWritingFormService;
+    private final InsertPostService insertPostService;
+
     @GetMapping("/writing-page")
     public String boardWritingPageControllerMethod(Model model, HttpServletRequest request) {
-        model.addAttribute("postGenerateDTO", new PostGenerateDTO());
-
-        HttpSession session = request.getSession(false);
-        MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
-        model.addAttribute("id", loginedMember.getId());
-        model.addAttribute("userId", loginedMember.getUserId());
+        showWritingFormService.showWritingForm(model, request);
         return "/contact/writingPage";
     }
 
     @PostMapping("/writing-page")
-    public String boardWritingPagePostMappingControllerMethod(@Valid @ModelAttribute PostGenerateDTO pageGenerateDTO, BindingResult bindingResult, Model model) {
+    public String boardWritingPagePostMappingControllerMethod(@ModelAttribute PostGenerateDTO pageGenerateDTO, Model model) {
 
         String title = pageGenerateDTO.getTitle();
         Integer memberId = pageGenerateDTO.getMemberId();
@@ -42,13 +34,7 @@ public class WritingPageController {
         String writingPassword = pageGenerateDTO.getPostPassword();
         String content = pageGenerateDTO.getContent();
 
-        if (bindingResult.hasErrors()) {
-            if (secretWritingCheckBox.equals(true)) {
-                model.addAttribute("show", true);
-            }
-            return "contact/writingPage";
-        }
-
+        //비밀글로 하기 체크했으면서, 비밀번호를 안썻을 경우의 처리 로직.
         if (secretWritingCheckBox.equals(true)) {
             if (writingPassword.equals("")) {
                 model.addAttribute("show", true);
@@ -57,10 +43,7 @@ public class WritingPageController {
             }
         }
 
-        Integer isPrivate = secretWritingCheckBox ? 1 : 0;
-        postsMapper.insertPost(title, memberId, isPrivate, content);
-        Integer findPostId = postsMapper.selectPostByMemberIdAndTitle(memberId, title);
-        postPasswordMapper.insertPostPassword(findPostId, writingPassword);
+        insertPostService.insertPost(title, memberId, secretWritingCheckBox, writingPassword, content);
         return "redirect:/board-home";
     }
 

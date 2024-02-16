@@ -20,13 +20,8 @@
 
     <insert id="insertPost">
         INSERT INTO posts (id, member_id, title, is_private, writing_date, content)
-        values (POSTS_SEQUENCE.NEXTVAL, #{memberId}, #{title}, #{isPrivate}, SYSDATE, #{content})
+        values (#{selectNextSequenceValue}, #{memberId}, #{title}, #{isPrivate}, SYSDATE, #{content})
     </insert>
-
-    <select id="selectPostByMemberIdAndTitle" resultType="Integer">
-        SELECT id FROM posts
-        WHERE member_id = #{memberId} AND title = #{title}
-    </select>
 
     <select id="findPostById" resultType="PostsDTO">
         SELECT * FROM posts
@@ -49,7 +44,10 @@
     </select>
 
 
-
+    <!--시퀀스의 다음값 얻어오기-->
+    <select id="selectNextSequenceValue" resultType="Integer">
+        SELECT POSTS_SEQUENCE.NEXTVAL FROM DUAL
+    </select>
 
 
 

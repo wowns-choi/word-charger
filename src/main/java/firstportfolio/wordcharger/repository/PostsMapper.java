@@ -12,9 +12,8 @@ public interface PostsMapper {
 
     public List<PostsDTO> findCurrentPagePosts(Integer startRow, Integer pageSize);
 
-    public void insertPost (String title, Integer memberId, Integer isPrivate, String content);
+    public void insertPost (Integer selectNextSequenceValue, String title, Integer memberId, Integer isPrivate, String content);
 
-    public Integer selectPostByMemberIdAndTitle(Integer memberId, String title);
 
     public PostsDTO findPostById(Integer postId);
 
@@ -24,6 +23,6 @@ public interface PostsMapper {
 
     public List<PostsDTO> findPostByContent (String content);
 
-
+    public Integer selectNextSequenceValue ();
 
 }

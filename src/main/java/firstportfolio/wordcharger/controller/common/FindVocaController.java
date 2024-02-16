@@ -76,12 +76,6 @@ public class FindVocaController {
         } catch (IOException e) {
             throw new RuntimeException("JSON 파싱 실패", e);
         }
-
-
-
-        //--------------------------
-
-
     }
     private static String post1(String apiUrl, Map<String, String> requestHeaders, String text){
         HttpURLConnection con = connect(apiUrl);

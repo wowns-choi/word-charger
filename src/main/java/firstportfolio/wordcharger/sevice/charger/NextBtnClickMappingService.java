@@ -1,24 +1,22 @@
+package firstportfolio.wordcharger.sevice.charger;
 
-package firstportfolio.wordcharger.controller.charger;
-
-import firstportfolio.wordcharger.repository.*;
-import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
-import jakarta.servlet.http.HttpServletRequest;
+import firstportfolio.wordcharger.repository.WordMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Controller
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 @RequiredArgsConstructor
 @Slf4j
-public class NextBtnZeroToHundredConnectivityController {
-
+@Service
+@Transactional
+public class NextBtnClickMappingService {
     private final WordMapper wordMapper;
 
-    @GetMapping("/next-btn-zero-to-hundred-connectivity")
-    public String connectivityControllerMethod(@RequestParam String vocabulary, HttpServletRequest request) {
+    public Map<String, String> getStartWordId(String vocabulary){
         Integer findWordId = wordMapper.findByWord(vocabulary);
 
         String startWordId = null;
@@ -56,9 +54,10 @@ public class NextBtnZeroToHundredConnectivityController {
             endWordId = "1000";
         }
 
-        return "redirect:/zero-to-hundred?startWordId="+startWordId + "&endWordId=" + endWordId;
+        Map<String, String> returnMap = new ConcurrentHashMap<>();
+        returnMap.put("startWordId", startWordId);
+        returnMap.put("endWordId", endWordId);
+
+        return returnMap;
     }
-
-
 }
-

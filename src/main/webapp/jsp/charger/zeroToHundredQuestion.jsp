@@ -40,7 +40,7 @@
                                 let endWordId = response.endWordId;
 
                                 setTimeout(function(){
-                                    window.location.href="/zero-to-hundred?startWordId="+startWordId+"&endWordId="+endWordId;
+                                    window.location.href="/get-words-for-study?startWordId="+startWordId+"&endWordId="+endWordId;
                                 },1100);
                             } else if(response.trueOrFalseBox=="incorrect"){
                                 window.location.href="/explanation-page?vocabulary="+vocabulary;
