@@ -18,6 +18,6 @@ public class ExplanationPageController {
     @GetMapping("/explanation-page")
     public String explanationPageControllerMethod(@RequestParam String vocabulary, Model model){
         explanationPageService.getCorrectionForMistakenWord(vocabulary, model);
-        return "/charger/explanationPage2";
+        return "/charger/explain";
     }
 }

@@ -23,7 +23,7 @@
                     var vocabulary = $('[name="vocabulary"]').val();
 
                     e.preventDefault();
-                    window.location.href="/next-btn-zero-to-hundred-connectivity?vocabulary="+vocabulary;
+                    window.location.href="/next-btn-click-connectivity?vocabulary="+vocabulary;
                 });
             });
         </script>

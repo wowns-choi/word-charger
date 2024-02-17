@@ -104,10 +104,14 @@
             </a>
         </div>
         <div>
+            <form action="/find-voca" method="post" id="myForm">
         </div>
         <div>
+            <input type="text" name="voca" placeholder="Find Voca">
         </div>
         <div>
+            <button type="submit">search</button>
+            </form>
         </div>
         <div>
             <div id="welcome">${loginedMember.userName}님 어서오세요!</div>

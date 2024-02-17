@@ -19,7 +19,7 @@ public class NextBtnClickMappingController {
 
     private final NextBtnClickMappingService nextBtnClickMappingService;
 
-    @GetMapping("/next-btn-zero-to-hundred-connectivity")
+    @GetMapping("/next-btn-click-connectivity")
     public String connectivityControllerMethod(@RequestParam String vocabulary, HttpServletRequest request) {
         Map<String, String> returnMap = nextBtnClickMappingService.getStartWordId(vocabulary);
         return "redirect:/get-words-for-study?startWordId="+returnMap.get("startWordId") + "&endWordId=" + returnMap.get("endWordId");

@@ -67,7 +67,7 @@ public class GetWordsForStudyService {
 
         model.addAttribute("voca", findWord);
         model.addAttribute("answer", answer);
-        return "/charger/zeroToHundredQuestion";
+        return "/charger/question";
 
     }
 }

@@ -1,0 +1,45 @@
+#blue-container{
+    padding-top: 8vh;
+    width: 100vw;
+    height: 75vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+#inner-container{
+    margin-top: 15vh;
+    width:40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'S-CoreDream-3Light';
+}
+#answer-container{
+    width:40%;
+    height: 40%;
+    display:flex;
+    flex-direction:column;
+}
+.answerSheetButton{
+    width:100%;
+    color:black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius:3px;
+    font-size: 18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom: 2vh;
+    cursor: pointer;
+        height: 5vh;
+    transition: color 0.3s, background-color 0.3s;
+}
+.answerSheetButton:hover{
+    color: white;
+    background-color: #001536;
+}
+
+
