@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class InsertMemberService {
-    MemberMapper memberMapper;
-    AddressMapper addressMapper;
-    PhoneMapper phoneMapper;
-    TermsOfAgreementMapper termsOfAgreementMapper;
+    private final MemberMapper memberMapper;
+    private final AddressMapper addressMapper;
+    private final PhoneMapper phoneMapper;
+    private final TermsOfAgreementMapper termsOfAgreementMapper;
 
     public void insertMember(MemberJoinDTO changedMemberJoinDTO){
         //db 에 insert 하는 쿼리 필요.

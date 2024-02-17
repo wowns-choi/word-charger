@@ -20,7 +20,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class JoinController {
-    private final MemberMapper memberMapper;
     private final JoinService joinService;
     private final InsertMemberService insertMemberService;
 
@@ -39,7 +38,7 @@ public class JoinController {
         memberJoinDTO.setMyCheckbox2(myCheckbox2);
         memberJoinDTO.setMyCheckbox3(myCheckbox3);
 
-        model.addAttribute("memberDTO", memberJoinDTO);
+        model.addAttribute("memberJoinDTO", memberJoinDTO);
         return "/login/joinForm";
     }
 

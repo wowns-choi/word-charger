@@ -14,7 +14,7 @@
 <body>
     <div class="full-frame">
         <div class="content-container">
-            <form:form modelAttribute="memberDTO" method="post">
+            <form:form modelAttribute="memberJoinDTO" method="post">
 
                 <div class="id-password-container">
                     <form:input type="text" path="userId" id="user-id" class="input-tag" placeholder="아이디" style="display: inline-block;"/>
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="name-phone-container">
-                    <form:input type="text" path="userName" class="input-tag" placeholder="이름" />
+                    <form:input type="text" path="userName" id="name-input" class="input-tag" placeholder="이름" />
                     <div class="tag-for-verification-message" >
                         <form:errors path="userName"  class="error-message"/>
                     </div>
@@ -98,6 +98,9 @@
 
     <!-- passwordValidation -->
         <script src="../../js/login/passwordValidation.js"></script>
+
+    <!-- idDuplicateCheck -->
+        <script src="../../js/login/nameValidation.js"></script>
 
     <!-- 다음 api script 태그 시작 -->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

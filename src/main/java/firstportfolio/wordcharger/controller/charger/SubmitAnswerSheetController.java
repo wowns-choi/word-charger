@@ -27,7 +27,6 @@ public class SubmitAnswerSheetController {
     @PostMapping("/submit-answer-sheet")
     @ResponseBody
     public Map<String, String> submitAnswerSheetControllerMethod(@RequestParam String vocabulary, @RequestParam String userAnswer, HttpServletRequest request){
-
         Map<String, String> trueOrFalseMap = submitAnswerSheetService.evaluateAnswer(vocabulary, userAnswer, request);
         return trueOrFalseMap;
     }

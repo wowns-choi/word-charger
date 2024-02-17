@@ -1,41 +1,47 @@
+let passwordInput = document.getElementById('user-password');
+let statusExpressSpan = document.getElementById('user-password-status');
 
-document.getElementById('user-password').addEventListener('input', function(){
-        var userPassword = this.value;
+passwordInput.addEventListener('input', function(){
+    statusExpressSpan.style.color = 'red';
+    let userPassword = this.value; //passwordInput 의 값
+    if(userPassword == ''){
+        statusExpressSpan.innerText = '';
+        return;
+    }
 
-        if(userPassword==''){
-            document.getElementById('user-password-status').innerText = '';
-            return; // 만약, 아무것도 입력하지 않은 상태라면, 이 함수를 빠져나가서 아무 문구도 안나오게 함.
-        }
+    const lengthPattern = /^.{8,16}$/;
+    const letterPattern = /.*[A-Za-z].*/;
+    const numberPattern = /.*[0-9].*/;
+    const specialCharPattern = /.*[!@#&()–[{}\]:;',?/*~$^+=<>].*/;
 
-        fetch('check-user-password', {
-            method: 'POST',
-            body: JSON.stringify({userPassword: userPassword}),
-            headers: {
-                'Content-Type' : 'application/json'
-            }
-        })
 
-        .then(response => response.json())
+    // 길이 검사
+    if (!lengthPattern.test(userPassword)) {
+        statusExpressSpan.innerText = '비밀번호는 8자 이상 16자 이하이어야 합니다.';
+        return;
+    }
 
-        .then(data => {
-            if(data.insufficientLength){
-                document.getElementById('user-password-status').innerText='8~16글자 사이어야 합니다.';
-                document.getElementById('user-password-status').style.color='red';
-            }else if(data.englishNotIncluded){
-                document.getElementById('user-password-status').innerText='영문이 포함되지 않았습니다';
-                document.getElementById('user-password-status').style.color='red';
-            }else if(data.specialCharactersNotIncluded){
-                document.getElementById('user-password-status').innerText='특수문자가 포함되지 않았습니다.';
-                document.getElementById('user-password-status').style.color='red';
-            }else if(data.numberNotIncluded){
-                document.getElementById('user-password-status').innerText='숫자가 포함되지 않았습니다.';
-                document.getElementById('user-password-status').style.color='red';
-            }else{
-                document.getElementById('user-password-status').innerText='사용가능한 비밀번호입니다.';
-                document.getElementById('user-password-status').style.color='#0066ff';
-            }
+    // 알파벳 문자 검사
+    if (!letterPattern.test(userPassword)) {
+        statusExpressSpan.innerText = '비밀번호에는 최소 한 개의 알파벳 문자가 포함되어야 합니다.';
+        return;
+    }
 
-        });
+    // 숫자 검사
+    if (!numberPattern.test(userPassword)) {
+        statusExpressSpan.innerText = '비밀번호에는 최소 한 개의 숫자가 포함되어야 합니다.';
+        return;
+    }
+
+    // 특수 문자 검사
+    if (!specialCharPattern.test(userPassword)) {
+        statusExpressSpan.innerText = '비밀번호에는 최소 한 개의 특수 문자가 포함되어야 합니다.';
+        return;
+    }
+
+    statusExpressSpan.style.color = 'blue';
+    // 모든 조건을 통과한 경우
+    statusExpressSpan.innerText = '적합한 비밀번호 입니다!'; // 아무 메시지도 표시하지 않음
 
 
 
