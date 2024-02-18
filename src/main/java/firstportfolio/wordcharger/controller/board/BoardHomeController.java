@@ -21,6 +21,6 @@ public class BoardHomeController {
     @GetMapping("/board-home")
     public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
         boardHomeService.findAllPosts(page, model);
-        return "/contact/boardHome";
+        return "/contact/boardHome2";
     }
 }

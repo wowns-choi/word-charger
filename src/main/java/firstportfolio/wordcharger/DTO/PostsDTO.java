@@ -12,6 +12,7 @@ public class PostsDTO {
     private String title;
     private Integer isPrivate;
     private Date writingDate;
+    private String stringWritingDate;
     private String content;
 
     //post_view 테이블
@@ -21,5 +22,6 @@ public class PostsDTO {
     private String postPassword;
 
     private String userId;
+
 
 }

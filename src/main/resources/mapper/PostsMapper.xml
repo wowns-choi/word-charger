@@ -9,10 +9,20 @@
         SELECT COUNT(*) FROM POSTS
     </select>
 
+<!--    <select id="findCurrentPagePosts" resultType="PostsDTO">-->
+<!--        SELECT posts.*, post_view.view_number-->
+<!--        FROM posts-->
+<!--        LEFT OUTER JOIN post_view ON posts.id = post_view.post_id-->
+<!--        ORDER BY posts.id DESC-->
+<!--        OFFSET #{startRow} ROWS-->
+<!--        FETCH NEXT #{pageSize} ROWS ONLY-->
+<!--    </select>-->
+
     <select id="findCurrentPagePosts" resultType="PostsDTO">
-        SELECT posts.*, post_view.view_number
+        SELECT posts.*, post_view.view_number, member.user_id
         FROM posts
         LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
+        LEFT OUTER JOIN member ON posts.member_id = member.id
         ORDER BY posts.id DESC
         OFFSET #{startRow} ROWS
         FETCH NEXT #{pageSize} ROWS ONLY

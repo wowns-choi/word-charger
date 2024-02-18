@@ -46,7 +46,7 @@ public class GetWordsForStudyService {
 
         if (wordIdList.isEmpty()) {
             // 오늘 외울 단어가 더 이상 존재하지 않을 경우.
-            return "/charger/todayFinish";
+            return "/charger/finish";
         }
 
         Integer testWordId = wordIdList.get(0); //첫번째로 나온 wordId. 이걸로 뭘 할 수 있는데? 의미와 예문 찾아야지

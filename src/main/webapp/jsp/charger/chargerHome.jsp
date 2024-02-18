@@ -27,7 +27,7 @@
                         <a href="/get-words-for-study?startWordId=1&endWordId=2">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                1 개
+                                ${a} 개
                             </div>
                         </a>
                         <div>1~100</div>
@@ -36,7 +36,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                2 개
+                                ${b} 개
                             </div>
                         </a>
                         <div>101~200</div>
@@ -45,7 +45,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                3 개
+                                ${c} 개
                             </div>
                         </a>
                         <div>201~300</div>
@@ -54,7 +54,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                4 개
+                                ${d} 개
                             </div>
                         </a>
                         <div>301~400</div>
@@ -63,7 +63,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                5 개
+                                ${e} 개
                             </div>
                         </a>
                         <div>401~500</div>
@@ -74,7 +74,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                6 개
+                                ${f} 개
                             </div>
                         </a>
                         <div>501~600</div>
@@ -83,7 +83,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                7 개
+                                ${g} 개
                             </div>
                         </a>
                         <div>601~700</div>
@@ -92,7 +92,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                8 개
+                                ${h} 개
                             </div>
                         </a>
                         <div>701~800</div>
@@ -101,7 +101,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                9 개
+                                ${i} 개
                             </div>
                         </a>
                         <div>801~900</div>
@@ -110,7 +110,7 @@
                         <a href="/home">
                             <div>오늘 외워야할 단어</div>
                             <div>
-                                10 개
+                                ${j} 개
                             </div>
                         </a>
                         <div>901~1000</div>

@@ -28,7 +28,7 @@ public class ChargerHomeService {
         List<Integer> todayCountList = new ArrayList<>();
 
         for(int i=1; i<11; i++){
-            List<Integer> wordId = userWordMapper.findWordId(i*100 -99, i*100, id);
+            List<Integer> wordId = userWordMapper.findWordId((i*100) -99, i*100, id);
             int size = wordId.size();
             todayCountList.add(size);
         }

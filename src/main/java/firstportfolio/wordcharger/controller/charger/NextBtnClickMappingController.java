@@ -1,7 +1,6 @@
 
 package firstportfolio.wordcharger.controller.charger;
 
-import firstportfolio.wordcharger.repository.*;
 import firstportfolio.wordcharger.sevice.charger.NextBtnClickMappingService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
