@@ -35,6 +35,6 @@ public class ShowPostController {
                                               HttpServletRequest request) {
 
         showPostService.showPost(page, postId, model, request);
-        return "/contact/showWriting";
+        return "/contact/showPost";
     }
 }

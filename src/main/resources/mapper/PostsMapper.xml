@@ -38,19 +38,37 @@
         WHERE id = #{postId}
     </select>
 
-    <select id="findPostByMemberId" resultType="PostsDTO">
-        SELECT * FROM posts
-        WHERE member_id = #{memberId}
+    <select id="findPostByTitle" resultType="PostsDTO">
+        SELECT posts.*, member.user_id
+        FROM posts
+        LEFT OUTER JOIN member ON posts.member_id = member.id
+        WHERE title = #{hintToFind}
+        ORDER BY posts.id DESC
     </select>
 
-    <select id="findPostByTitle" resultType="PostsDTO">
-        SELECT * FROM posts
-        WHERE title = #{hintToFind}
+<!--    SELECT * FROM posts-->
+<!--    WHERE title = #{hintToFind}-->
+
+    <select id="findPostByMemberId" resultType="PostsDTO">
+<!--        SELECT * FROM posts-->
+<!--        WHERE member_id = #{memberId}-->
+        SELECT posts.*, member.user_id
+        FROM posts
+        LEFT OUTER JOIN member ON posts.member_id = member.id
+        WHERE member_id = #{hintToFind}
+        ORDER BY posts.id DESC
     </select>
 
     <select id="findPostByContent" resultType="PostsDTO">
-        SELECT * FROM posts
+
+<!--        SELECT * FROM posts-->
+<!--        WHERE content LIKE #{hintToFind}-->
+        SELECT posts.*, member.user_id
+        FROM posts
+        LEFT OUTER JOIN member ON posts.member_id = member.id
         WHERE content LIKE #{hintToFind}
+        ORDER BY posts.id DESC
+
     </select>
 
 

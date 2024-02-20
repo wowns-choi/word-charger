@@ -68,25 +68,24 @@
 .board{
     display: grid;
     grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
-    align-items: center; /* 세로축 중앙 정렬 */
-    justify-items: center; /* 가로축 중앙 정렬 */
+    align-items: center;
+    justify-items: center;
     font-size: 12px;
 
 }
 .board-2{
     display: grid;
     border-bottom: 1px solid lightgray;
-    grid-template-rows: repeat(20, 40px); /* 각 행의 높이 설정 */
-
 }
 
 .post-row{
     display: grid;
     grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
-    align-items: center; /* 세로축 중앙 정렬 */
-    justify-items: center; /* 가로축 중앙 정렬 */
-    border-bottom: 1px solid lightgray; /* 각 게시물 하단에 밑줄 추가 */
+    align-items: center;
+    justify-items: center;
+    border-bottom: 1px solid lightgray;
     font-size: 12px;
+    min-height: 40px; /*각 행의 높이 조절*/
 }
 a{
     text-decoration: none;

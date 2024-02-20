@@ -5,167 +5,72 @@
 
 <html>
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
-
-    <style>
-        /*이거 한글 글꼴임*/
-        @font-face {
-            font-family: 'NanumSquareNeo-Variable';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* right-WC 한글글꼴 */
-        @font-face {
-            font-family: 'MYYeongnamnu';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/MYYeongnamnu.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .fullpagecontainer{
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-        }
-
-
-        .leftpunch{
-            width: 30vw;
-            height: 100vh;
-            background: blue;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            color: white;
-            z-index: 1;
-        }
-
-        .rightpunch{
-            width: 70vw;
-            height: 100vh;
-            background: #fff;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
-            color: black;
-            z-index: 8;
-            margin-top: 4vh;
-            font-family: 'MYYeongnamnu';
-        }
-        .my-up-container-in-right{
-            width: 70vw;
-            height:15vh;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            font-size: 40px;
-
-
-        }
-        .my-middle-container-in-right{
-            width: 70vw;
-            height: 15vh;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
-            border-bottom: 1px solid black;
-
-        }
-        .button-in-middle-container{
-            width:5vw;
-            border: none;
-            border: 2px solid black;
-            border-radius: 10px;
-            background-color: #fafafa;
-            margin-right: 1vw;
-            transition: background-color 0.5s ease; /* 배경색 변경을 0.5초 동안 부드럽게 진행 */
-
-
-        }
-        .button-in-middle-container:hover{
-            background-color: #ffdead;
-        }
-        .my-down-container-in-right{
-            width: 70vw;
-            height: 64vh;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
-
-        }
-
-    </style>
+    <link rel="stylesheet" href="../../css/board/writingPage.css">
 </head>
 <body>
 
 
-<!-- 사이드 바 -->
-    <c:import url="/jsp/common/sideBar.jsp" />
-<!-- 사이드 바 종료 -->
+<!--네브 바 -->
+    <c:import url="/jsp/common/loginedNavbar2.jsp" />
+<!--네브 바 종료 -->
 
-    <div class="fullpagecontainer">
-        <div class="leftpunch">
+    <div id="writing-area">
+        <div id="page-title">
+            글 작성
+            <form:form modelAttribute="postGenerateDTO" method="post">
+
         </div>
 
-        <div class="rightpunch">
+        <div id="first">
+            <!-- 비밀글로 할건지 여부 + 비밀번호 input, 등록 버튼 -->
+            <div></div>
+            <div>
 
-            <div class="my-up-container-in-right">
-                글 작성
+                <div>
+                    비밀글로 작성하기
+                    <form:checkbox path="is_private" id="secretWritingCheckBox"/>
+                </div>
             </div>
-            <form:form modelAttribute="postGenerateDTO" method="post">
-            <div class="my-middle-container-in-right">
-                <div style="width:100%">
-                    <span style="width:15%; margin-left:7.5vw;">
-                        제목 :
-                    </span>
-                    <span style="width:85%;">
-                        <form:input path="title" style="width:70%; border: 1px solid black;border-radius:5px;"/>
-                        <span style="color:#ff6b3f; background-color:#fff;"><form:errors path="title" /></span>
-                    </span>
-                </div>
-                <div style="width:100%">
-                    <span style="width:15%; margin-left:7.5vw;">
-                        작성자 :
-                    </span>
-                    <span>
-                        ${userId}
-                        <form:hidden path="memberId" value="${id}"/>
-                    </span>
-                </div>
-                <div style="width:100%">
-                    <span style="width:15%; margin-left:7.5vw;">
-                        비밀글로 작성하기
-                    </span>
-                    <span>
-                       <form:checkbox path="is_private" id="secretWritingCheckBox"/>
-                    </span>
-                </div>
+            <div>
                 <div style="width:100%; ${show ? 'display:block;' : 'display:none;'} " id="hiddenPasswordInput">
-                    <span style="width:15%; margin-left:7.5vw;">
-                        비밀번호 :
-                    </span>
-                    <span>
-                       <form:input type="password" path="postPassword" />
-                       <span style="color:#ff6b3f; background-color:#fff;" >${notInsertPassword}</span>
-                    </span>
+                            비밀번호 :
+                           <form:input type="password" path="postPassword" id="password-input"/>
+                           <span style="color:#ff6b3f; background-color:#fff;" >${notInsertPassword}</span>
                 </div>
-
-
             </div>
-
-            <div class="my-down-container-in-right">
-                <form:textarea path="content" style="width:80%; height:70%; border:2px solid black; border-radius:5px;"/>
+            <div>
                 <button type="submit" class="button-in-middle-container" id="writing-button" style="margin-top:0.3vh;"> 글 작성 </button>
             </div>
-            </form:form>
+            <div></div>
         </div>
-</div>
+
+        <div id="second">
+            <!-- 작성자(유저 아이디) + 제목 -->
+            <div></div>
+            <div>
+                <div>
+                    작성자 : ${userId}
+                    <form:hidden path="memberId" value="${id}"/>
+                    <input type="hidden" name="userId" value="${userId}">
+                </div>
+                <div>
+                    <form:input path="title" style="width:70%; height: 50%; border: 1px solid black;border-radius:5px;" placeholder="제목을 입력해주세요"/>
+                    <span style="color:#ff6b3f; background-color:#fff;"><form:errors path="title" /></span>
+                </div>
+            </div>
+            <div></div>
+        </div>
+
+        <div id="third">
+            <div></div>
+            <div>
+                <form:textarea path="content" style="width:100%; height:60%; border:1px solid lightgray; border-radius:5px; resize: none;"/>
+            </div>
+            <div></div>
+        </div>
+
+        </form:form>
+    </div>
 
 <script>
     document.getElementById('secretWritingCheckBox').addEventListener('change', function(){
@@ -177,7 +82,5 @@
         }
     });
 </script>
-
-
 </body>
 </html>

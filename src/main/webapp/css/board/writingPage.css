@@ -1,0 +1,101 @@
+#writing-area{
+    padding-top: 8vh;
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'S-CoreDream-3Light';
+}
+#page-title{
+    flex-basis: 20%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+#first{
+    flex-basis: 8%;
+    width: 100%;
+    display:flex;
+}
+#first>div:nth-child(1),
+#first>div:nth-child(5){
+    flex-basis: 20%;
+}
+#first>div:nth-child(2){
+    flex-basis: 12%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+            border-top: 2.5px solid #001942;
+
+}
+#first>div:nth-child(3){
+    flex-basis: 33%;
+    display: flex;
+    align-items: center;
+        border-top: 2.5px solid #001942;
+
+}
+#password-input{
+    width:50%;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    background-color: #f7fcff;
+
+}
+
+
+#first>div:nth-child(4){
+    flex-basis: 15%;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+        border-top: 2.5px solid #001942;
+
+}
+
+#second{
+    flex-basis: 16%;
+    width: 100%;
+    display:flex;
+
+}
+#second>div:nth-child(1),
+#second>div:nth-child(3){
+    flex-basis: 20%;
+}
+#second>div:nth-child(2){
+    flex-basis: 60%;
+    border-top: 1px solid lightgray;
+    display:flex;
+    flex-direction:column;
+}
+#second>div:nth-child(2)>div:nth-child(1){
+    flex-basis: 20%;
+}
+#second>div:nth-child(2)>div:nth-child(2){
+    flex-basis: 80%;
+    display: flex;
+
+}
+
+
+#third{
+    flex-basis: 56%;
+    width: 100%;
+    display:flex;
+}
+#third>div:nth-child(1),
+#third>div:nth-child(3){
+    flex-basis: 20%;
+}
+#third>div:nth-child(2){
+    flex-basis: 60%;
+    display:flex;
+    justify-cotent: center;
+    align-items: flex-start;
+}

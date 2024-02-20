@@ -3,6 +3,7 @@ package firstportfolio.wordcharger.sevice.board;
 import firstportfolio.wordcharger.DTO.PostsDTO;
 import firstportfolio.wordcharger.repository.PostsMapper;
 import firstportfolio.wordcharger.sevice.board.common.PaginationService;
+import firstportfolio.wordcharger.sevice.board.common.WritingDateChangeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class BoardHomeService {
 
     private final PostsMapper postsMapper;
     private final PaginationService paginationService;
+    private final WritingDateChangeService writingDateChangeService;
 
     public void findAllPosts(Integer page, Model model){
         Integer currentPage = page; // 현재 페이지
@@ -34,23 +36,11 @@ public class BoardHomeService {
         int startRow = (currentPage - 1) * pageSize;
         List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePosts(startRow, pageSize);
 
-        for (PostsDTO post : currentPagePosts) {
-            Date date = post.getWritingDate();
-            // Date -> Instant -> LocalDateTime 변환
-            LocalDateTime localDateTime = date.toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDateTime();
-
-            // DateTimeFormatter를 사용하여 년-월-일 형식으로 포맷팅
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String formattedDate = localDateTime.format(formatter);
-            post.setStringWritingDate(formattedDate);
-
-        }
-
+        // 이 changeDate 메서드는 작성날짜를 xxxx(년)-xx(월)-xx(일) 로 표시해주기 위한 것이다.
+        List<PostsDTO> postsList = writingDateChangeService.changeDate(currentPagePosts);
 
         //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
-        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePosts, model);
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, postsList, model);
 
     }
 }
