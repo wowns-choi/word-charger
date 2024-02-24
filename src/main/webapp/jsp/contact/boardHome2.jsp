@@ -57,7 +57,7 @@
                             <!--제목, 작성자, 내용 으로 게시글 찾기 -->
                             <form action="/find-posts-by-title-writer-content" method="post">
                                 <select name="byWhatType">
-                                    <option value="title">제목</option>
+                                    <option value="title">제목</option>성
                                     <option value="writer">작성자</option>
                                     <option value="content">내용</option>
                                 </select>

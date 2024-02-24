@@ -14,13 +14,13 @@
     <insert id="insertComment">
         INSERT INTO comments
         (id, post_id, member_id, content, create_date, parent_comment_id)
-        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, SYSDATE, NULL)
+        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, #{now}, NULL)
     </insert>
 
     <insert id="insertComment2">
         INSERT INTO comments
             (id, post_id, member_id, content, create_date, parent_comment_id)
-        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, SYSDATE, #{parentCommentId})
+        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, #{now}, #{parentCommentId})
     </insert>
 
     <select id="findPostIdByMemberId" resultType="Integer">

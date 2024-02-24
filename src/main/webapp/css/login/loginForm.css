@@ -1,0 +1,35 @@
+#full-container{
+    width: 100vw;
+    height: 100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'S-CoreDream-3Light';
+
+}
+#full-container>div:nth-child(1),
+#full-container>div:nth-child(3){
+    flex-basis: 15%;
+    width: 100%;
+}
+#full-container>div:nth-child(2){
+    flex-basis: 70%;
+    width: 100%;
+    display:flex;
+
+}
+#left-container,
+#right-container{
+    flex-basis: 35%;
+    height: 100%;
+
+}
+#mid-container{
+    flex-basis: 30%;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+}
+

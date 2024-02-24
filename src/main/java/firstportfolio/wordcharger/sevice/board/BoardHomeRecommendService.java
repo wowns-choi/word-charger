@@ -11,18 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-@Slf4j
 @Transactional
-public class BoardHomeService {
-
+@Slf4j
+@RequiredArgsConstructor
+@Service
+public class BoardHomeRecommendService {
     private final PostsMapper postsMapper;
     private final PaginationService paginationService;
     private final WritingDateChangeService writingDateChangeService;
@@ -36,7 +31,7 @@ public class BoardHomeService {
 
         // 현재 페이지가 보여줘야 하는 PostsDTO 객체들을 담은 List자료구조
         int startRow = (currentPage - 1) * pageSize;
-        List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePosts(startRow, pageSize);
+        List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePostsRecommendVersion(startRow, pageSize);
 
         //조회수는 또 post_view 테이블에 있기 때문에 그걸 지금 currentPagePosts 라는 List자료구조에 넣어줘야 함.
         for (PostsDTO post : currentPagePosts) {

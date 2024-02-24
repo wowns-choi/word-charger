@@ -20,4 +20,6 @@ public class CommentDTO {
 
     private String userId;
 
+    private String stringCreateDate;
+
 }

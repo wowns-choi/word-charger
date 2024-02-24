@@ -11,6 +11,7 @@ public interface PostsMapper {
     public Integer findAllPostsCount ();
 
     public List<PostsDTO> findCurrentPagePosts(Integer startRow, Integer pageSize);
+    public List<PostsDTO> findCurrentPagePostsRecommendVersion(Integer startRow, Integer pageSize);
 
     public void insertPost (Integer selectNextSequenceValue, String title, Integer memberId, Integer isPrivate, String content);
 

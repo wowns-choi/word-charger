@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div>
-                <button type="submit" class="button-in-middle-container" id="writing-button" style="margin-top:0.3vh;"> 글 목록으로 </button>
+                <a href="/board-home" class="button-in-middle-container" id="board-home-btn" style="margin-top:0.3vh;"> 글 목록으로 </a>
             </div>
             <div></div>
         </div>
@@ -55,6 +55,8 @@
             <div></div>
             <div>
                 <textarea path="content" style="width:100%; height:60%; border:1px solid lightgray;  resize: none;" readOnly>${findPost.content}</textarea>
+                <div style="width: 100%; height: 10%;"></div>
+                <div id="thumb-up-div"><span><i class="fa-solid fa-thumbs-up"></i> &nbsp 추천</span> &nbsp &nbsp <span id="like-number">${likeNumber}</span> </div>
             </div>
             <div></div>
         </div>
@@ -93,57 +95,91 @@
         <!-- 댓글 대댓글 표시하기 -->
         <div id="comment-reply-area">
             <div></div>
-            <div >
+            <div>
                 <c:forEach var="comment" items="${currentPagePosts}" >
-                    <div style="width:100%; background-color: #ededed;">
+                    <div style="width:100%; margin-top: 1vh; border-top: 1px solid lightgray;">
                             <div>
-                                <span>
-                                ${comment.userId}
+                                <span style="font-weight: bold; font-size: 17px;">
+                                    ${comment.userId}
+                                </span>
+                                <span style="font-size: 9px;">
+                                   ${comment.stringCreateDate}
                                 </span>
                             </div>
                             <div>
-                                <div>
+                                <div style="font-size: 12px;">
                                     ${comment.content}
                                 </div>
 
                                 <button class="click-me" >댓글 쓰기</button>
                                 <div class="textarea-reply" style="display:none;">
                                     <form action="/reply-save" method="post">
-                                        <textarea name="content"   style="width:60%; background-color: yellow; height: 11vh;"></textarea>
+                                        <textarea name="content"   style="width:60%;  height: 11vh; resize:none;"></textarea>
                                         <input type="hidden" name="postId" value="${findPost.id}">
                                         <input type="hidden" name="memberId" value="${loginedMemberId.id}">
                                         <input type="hidden" name="parentCommentId" value="${comment.id}">
-                                        <button type="submit">등록</button>
+                                        <button type="submit" class="button-register">등록</button>
                                     </form>
                                 </div>
 
+                                <div style="width:100%; height: 1vh;"></div>
 
                                 <c:forEach var="reply" items="${comment.replies}">
-                                    <div style="height:10px; width: 50%; background-color: #ededed;"></div>
 
-                                    <div class="reply">
-                                            ${reply.userId}
+                                    <div class="reply" style="margin-left: 2vw; background-color: #fafafa; >
+                                         &nbsp  <span style="font-weight: bold; font-size: 17px;">  ${reply.userId}</span> <span style="font-size: 9px; ">${reply.stringCreateDate}</span>
                                     </div>
-                                    <div class="reply">
-                                            ${reply.content}
+                                    <div class="reply" style="margin-left: 2vw; font-size: 12px; background-color: #fafafa; border-bottom:0.5px solid lightgray;">
+                                        &nbsp &nbsp    ${reply.content}
                                     </div>
                                 </c:forEach>
 
-
-
                             </div>
+
+
                     </div>
                 </c:forEach>
             </div>
-            <div></div>
 
+
+            <div>
+            </div>
         </div>
 
-        <!-- 페이지 네이션 -->
-        <div></div>
+
+        <!-- pagination -->
+        <div >
+        </div>
 
 
     </div>
+    <div id="pagination">
+        <c:if test="${currentGroupFirstPage != 1}">
+            <a href="/show-writing?page=${currentGroupFirstPage-pageGroupSize}&postId=${findPost.id}"> &laquo; 이전</a>
+        </c:if>
+        &nbsp &nbsp
+
+        <c:forEach var="i" begin="${currentGroupFirstPage}" end="${currentGroupLastPage}">
+            <c:choose>
+                <c:when test="${i == currentPage}">
+                    <span>${i}</span>
+                </c:when>
+                <c:otherwise>
+                    <a href="/show-writing?page=${i}&postId=${findPost.id}" style="color:black;">${i}</a>
+                </c:otherwise>
+            </c:choose>
+            &nbsp
+        </c:forEach>
+
+        &nbsp &nbsp
+
+        <c:if test="${currentGroupLastPage != totalPageCount}">
+            <a href="/show-writing?page=${currentGroupLastPage + 1}&postId=${findPost.id}">다음 &raquo;</a>
+
+        </c:if>
+    </div>
+
+
 
 
 
@@ -160,8 +196,34 @@ document.querySelectorAll('.click-me').forEach(function(button) {
     });
 });
 
+//추천 누르면, 숫자 올라가게 하면서, ajax 통신해서 db에 +1 증가시키기.
+$(document).ready(function() {
+    $("#thumb-up-div").click(function() {
+        $.ajax({
+            url: "/update-and-find-like-num",
+            type: "POST",
+            data: {
+                postId : ${findPost.id}
+            },
+            success: function(response) {
+                if(response.updatedLikeNumber == -1){
+                    alert('좋아요 는 1번만 누르실 수 있습니다');
+                }else{
+                    $("#like-number").text(response.updatedLikeNumber);
+                }
+
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + status + " - " + error);
+            }
+        });
+    });
+});
+
 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package firstportfolio.wordcharger.controller.board;
 
 import firstportfolio.wordcharger.DTO.PostsDTO;
 import firstportfolio.wordcharger.repository.PostsMapper;
+import firstportfolio.wordcharger.sevice.board.BoardHomeRecommendService;
 import firstportfolio.wordcharger.sevice.board.BoardHomeService;
 import firstportfolio.wordcharger.sevice.board.common.PaginationService;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +18,12 @@ import java.util.List;
 @Slf4j
 public class BoardHomeController {
     private final BoardHomeService boardHomeService;
+    private final BoardHomeRecommendService boardHomeRecommendService;
 
     @GetMapping("/board-home")
     public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
         boardHomeService.findAllPosts(page, model);
         return "/contact/boardHome2";
     }
+
 }

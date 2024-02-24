@@ -28,6 +28,8 @@
         FETCH NEXT #{pageSize} ROWS ONLY
     </select>
 
+
+
     <insert id="insertPost">
         INSERT INTO posts (id, member_id, title, is_private, writing_date, content)
         values (#{selectNextSequenceValue}, #{memberId}, #{title}, #{isPrivate}, SYSDATE, #{content})

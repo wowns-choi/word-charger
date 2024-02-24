@@ -5,6 +5,11 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.PostViewMapper">
 
+
+    <insert id="initPostView">
+        INSERT INTO post_view (id, post_id, view_number) VALUES (POST_VIEW_SEQUENCE.NEXTVAL, #{postId}, 0)
+    </insert>
+
     <update id="updateByPostId">
         UPDATE post_view
         SET view_number = view_number + 1
@@ -14,12 +19,6 @@
     <select id="findPostViewCountByPostId" resultType="Integer">
         SELECT view_number FROM post_view
         WHERE post_id = #{postId}
-
     </select>
-
-
-
-
-
 
 </mapper>

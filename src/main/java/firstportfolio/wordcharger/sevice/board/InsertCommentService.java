@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -18,6 +20,7 @@ public class InsertCommentService {
 
     public void insertComment(String content, Integer postId, String memberId){
         MemberJoinDTO findMember = memberMapper.findMemberById(memberId);
-        commentsMapper.insertComment(postId, findMember.getId(), content);
+        LocalDateTime now = LocalDateTime.now();
+        commentsMapper.insertComment(postId, findMember.getId(), content, now);
     }
 }

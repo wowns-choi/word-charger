@@ -5,13 +5,32 @@
 
 <html>
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="../../css/login/loginForm.css">
 </head>
 <body>
+
+
+    <div id="full-container">
+        <div></div>
+        <div>
+            <div id="left-container"></div>
+            <div id="mid-container">
+                            <form:form modelAttribute="loginDTO" method="post" class="formForm">
+                                <form:input class="idInput" path="id"  placeholder="ID"/>
+                                ${idIncorrectMessage}
+                                <form:input class="passwordInput" path="password" placeholder="Password"/>
+                                ${passwordIncorrectMessage}
+                                <button type="submit"  class="loginButton">
+                                    Login
+                                </button>
+                            </form:form>
+
+
+            </div>
+            <div id="right-container"></div>
+        </div>
+        <div></div>
+    </div>
 
 
 
@@ -24,15 +43,7 @@
 
         <div class="whitecontainer">
             <div class="left-WC">
-            <form:form modelAttribute="loginDTO" method="post" class="formForm">
-                <form:input class="idInput" path="id"  placeholder="ID"/>
-                ${idIncorrectMessage}
-                <form:input class="passwordInput" path="password" placeholder="Password"/>
-                ${passwordIncorrectMessage}
-                <button type="submit"  class="loginButton">
-                    Login
-                </button>
-            </form:form>
+
 
 
             </div>

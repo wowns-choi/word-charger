@@ -47,6 +47,10 @@ dependencies {
 
 	implementation group: 'org.json', name: 'json', version: '20210307' // 버전은 최신 버전으로 업데이트할 수 있습니다.
 
+	//아이디 비밀번호 분실시 보낼 이메일을 위하여.
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+
 }
 
 tasks.named('test') {

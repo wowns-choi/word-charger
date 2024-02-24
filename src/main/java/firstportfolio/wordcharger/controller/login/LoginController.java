@@ -28,7 +28,7 @@ public class LoginController {
     @GetMapping("/login-form")
     public String getLoginFormControllerMethod(Model model) {
         model.addAttribute("loginDTO", new LoginDTO());
-        return "/login/loginForm";
+        return "/login/loginForm2";
     }
 
     @PostMapping("/login-form")

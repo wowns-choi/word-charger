@@ -3,11 +3,9 @@ package firstportfolio.wordcharger.sevice.board;
 import firstportfolio.wordcharger.DTO.CommentDTO;
 import firstportfolio.wordcharger.DTO.MemberJoinDTO;
 import firstportfolio.wordcharger.DTO.PostsDTO;
-import firstportfolio.wordcharger.repository.CommentsMapper;
-import firstportfolio.wordcharger.repository.MemberMapper;
-import firstportfolio.wordcharger.repository.PostViewMapper;
-import firstportfolio.wordcharger.repository.PostsMapper;
+import firstportfolio.wordcharger.repository.*;
 import firstportfolio.wordcharger.sevice.board.common.PaginationService;
+import firstportfolio.wordcharger.sevice.board.common.WritingDateChangeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -32,6 +31,7 @@ public class ShowPostService {
     private final CommentsMapper commentsMapper;
     private final MemberMapper memberMapper;
     private final PaginationService paginationService;
+    private final PostLikeMapper postLikeMapper;
 
     public void showPost(Integer page, Integer postId, Model model, HttpServletRequest request){
 
@@ -111,6 +111,90 @@ public class ShowPostService {
                 }
             }
         }
+
+        //댓글 시간처리
+        for (CommentDTO comment : listFinded) {
+            // 현재 시각을 구하기 (시스템의 기본 시간대 사용)
+            LocalDateTime now = LocalDateTime.now();
+
+            // CommentDTO에서 Date 객체를 가져와 LocalDateTime으로 변환
+            Date date = comment.getCreateDate();
+            LocalDateTime localDateTime = date.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDateTime();
+
+            // 시간 차이 계산
+            long years = ChronoUnit.YEARS.between(localDateTime, now);
+            long months = ChronoUnit.MONTHS.between(localDateTime, now);
+            long days = ChronoUnit.DAYS.between(localDateTime, now);
+            long hours = ChronoUnit.HOURS.between(localDateTime, now);
+            long minutes = ChronoUnit.MINUTES.between(localDateTime, now);
+
+            // "얼마나 전" 문자열 생성
+            String timeAgoStr;
+            if (years > 0) {
+                timeAgoStr = years + "년 전";
+            } else if (months > 0) {
+                timeAgoStr = months + "개월 전";
+            } else if (days > 0) {
+                timeAgoStr = days + "일 전";
+            } else if (hours > 0) {
+                timeAgoStr = hours + "시간 전";
+            } else if (minutes > 0) {
+                timeAgoStr = minutes + "분 전";
+            } else {
+                timeAgoStr = "방금 전";
+            }
+
+            // CommentDTO 객체에 문자열 설정
+            comment.setStringCreateDate(timeAgoStr);
+        }
+
+        //대댓글 시간 처리
+        for (CommentDTO comment : listFinded) {
+            // 현재 시각을 구하기 (시스템의 기본 시간대 사용)
+            LocalDateTime now2 = LocalDateTime.now();
+
+            List<CommentDTO> replies = comment.getReplies();
+
+            for (CommentDTO reply : replies) {
+                Date date = reply.getCreateDate();
+                LocalDateTime localDateTime = date.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime();
+
+                // 시간 차이 계산
+                long years = ChronoUnit.YEARS.between(localDateTime, now2);
+                long months = ChronoUnit.MONTHS.between(localDateTime, now2);
+                long days = ChronoUnit.DAYS.between(localDateTime, now2);
+                long hours = ChronoUnit.HOURS.between(localDateTime, now2);
+                long minutes = ChronoUnit.MINUTES.between(localDateTime, now2);
+
+                // "얼마나 전" 문자열 생성
+                String timeAgoStr;
+                if (years > 0) {
+                    timeAgoStr = years + "년 전";
+                } else if (months > 0) {
+                    timeAgoStr = months + "개월 전";
+                } else if (days > 0) {
+                    timeAgoStr = days + "일 전";
+                } else if (hours > 0) {
+                    timeAgoStr = hours + "시간 전";
+                } else if (minutes > 0) {
+                    timeAgoStr = minutes + "분 전";
+                } else {
+                    timeAgoStr = "방금 전";
+                }
+                reply.setStringCreateDate(timeAgoStr);
+            }
+
+        }
+
+
+        //게시글의 좋아요 수 model 에 박아주기. Comment 와는 관련 없음.
+        Integer findPostLikeNumber = postLikeMapper.findPostLikeCountByPostId(postId);
+
+        model.addAttribute("likeNumber", findPostLikeNumber);
 
         paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, listFinded, model);
     }

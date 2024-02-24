@@ -18,6 +18,9 @@ public class PostsDTO {
     //post_view 테이블
     private Integer viewNumber;
 
+    //post_like 테이블
+    private Integer likeNumber;
+
     //post_password 테이블
     private String postPassword;
 
