@@ -19,8 +19,20 @@
 
         (ID, USER_ID, PASSWORD, USER_NAME)
         VALUES (MEMBER_SEQUENCE.NEXTVAL,#{id},#{password},#{userName})
-
     </insert>
+
+    <!--시퀀스의 다음값 얻어오기-->
+    <select id="selectNextSequenceValue" resultType="Integer">
+        SELECT MEMBER_SEQUENCE.NEXTVAL FROM DUAL
+    </select>
+
+    <insert id="insertMemberNaverVersion">
+        INSERT INTO member
+
+        (ID, USER_ID, PASSWORD, USER_NAME)
+        VALUES (#{sequence}, #{id}, #{password}, #{userName})
+    </insert>
+
 
 
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.EmailMapper">
+
+
+    <insert id="insertEmail">
+        INSERT INTO email (id, member_id, email, domain)
+        VALUES (EMAIL_SEQUENCE.NEXTVAL, #{memberId}, #{email}, #{domain})
+    </insert>
+
+    <select id="emailCountByEmail" resultType="EmailDTO">
+        SELECT * FROM email WHERE email = #{email}
+    </select>
+
+
+</mapper>

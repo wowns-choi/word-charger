@@ -31,6 +31,15 @@ public class LoginController {
         return "/login/loginForm2";
     }
 
+    @GetMapping("/login-form-alert-version")
+    public String getLoginFormAlertVersionControllerMethod(Model model) {
+        model.addAttribute("loginDTO", new LoginDTO());
+        model.addAttribute("alreadyMember", "회원가입한 아이디로 로그인해주세요.");
+        return "/login/loginForm2";
+    }
+
+
+
     @PostMapping("/login-form")
     public String postLoginFormControllerMethod(@ModelAttribute LoginDTO loginDTO, HttpServletRequest request) {
         String id = loginDTO.getId();

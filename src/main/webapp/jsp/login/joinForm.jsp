@@ -53,8 +53,17 @@
                     </div>
                 </div>
 
+                <div class="email-div" style="font-size: 12px; ">
+                        <form:input path="email" style="width: 10vw; height: 60%;" /> &nbsp &nbsp @ &nbsp &nbsp
+                        <form:input type="text" id="customEmailDomain" path="customEmailDomain" style="width: 7vw; display: none;" placeholder="도메인 직접 입력" />
 
-
+                        <form:select path="emailDomain" style="width: 7vw; height: 80%;">
+                            <form:option value="naver.com" label="naver.com" />
+                            <form:option value="daum.net" label="daum.net" />
+                            <form:option value="gmail.com" label="gmail.com" />
+                            <form:option value="custom" label="직접 입력" />
+                        </form:select>
+                </div>
 
                 <!--다음 주소 api 사용 시작-->
                 <div class="address-container">
@@ -84,7 +93,7 @@
                     <input type="hidden" name="myCheckbox2" value="${memberDTO["myCheckbox2"]}">
                     <input type="hidden" name="myCheckbox3" value="${memberDTO["myCheckbox3"]}">
                      -->
-                </div>
+            </div>
 
                 <div class="join-btn-div">
                 <input class="join-btn" type="submit" value="회원가입"/>
@@ -106,6 +115,27 @@
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script src="../../js/login/daumAddressApi.js"> </script>
     <!--다음 api script 태그 종료 -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#emailDomain').change(function() {
+            if ($(this).val() == 'custom') {
+                // '직접 입력' 선택 시, select 박스를 숨기고 input 박스를 보여줌
+                $('#customEmailDomain').show();
+
+            } else{
+                $('#customEmailDomain').hide();
+                $('#customEmailDomain').val(''); // input 박스의 값을 비움
+
+
+            }
+
+        });
+    });
+    </script>
+
 
 </body>
 </html>

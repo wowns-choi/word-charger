@@ -12,4 +12,8 @@ public interface MemberMapper {
 
     void insertMember(String id, String password, String userName);
 
+    Integer selectNextSequenceValue ();
+
+    void insertMemberNaverVersion (Integer sequence, String id, String password, String userName);
+
 }

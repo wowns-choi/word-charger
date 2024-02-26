@@ -1,10 +1,7 @@
 package firstportfolio.wordcharger.sevice.join;
 
 import firstportfolio.wordcharger.DTO.MemberJoinDTO;
-import firstportfolio.wordcharger.repository.AddressMapper;
-import firstportfolio.wordcharger.repository.MemberMapper;
-import firstportfolio.wordcharger.repository.PhoneMapper;
-import firstportfolio.wordcharger.repository.TermsOfAgreementMapper;
+import firstportfolio.wordcharger.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,6 +16,7 @@ public class InsertMemberService {
     private final AddressMapper addressMapper;
     private final PhoneMapper phoneMapper;
     private final TermsOfAgreementMapper termsOfAgreementMapper;
+    private final EmailMapper emailMapper;
 
     public void insertMember(MemberJoinDTO changedMemberJoinDTO){
         //db 에 insert 하는 쿼리 필요.
@@ -31,5 +29,15 @@ public class InsertMemberService {
                 changedMemberJoinDTO.getAddress(), changedMemberJoinDTO.getDetailAddress(), changedMemberJoinDTO.getReferenceItem());
         phoneMapper.insertPhone(findMember.getId(), changedMemberJoinDTO.getPhoneNumberStart(), changedMemberJoinDTO.getPhoneNumberMiddle(), changedMemberJoinDTO.getPhoneNumberEnd());
         termsOfAgreementMapper.insertTermsOfAgreement(findMember.getId(), changedMemberJoinDTO.getMyCheckbox1(), changedMemberJoinDTO.getMyCheckbox2(), changedMemberJoinDTO.getMyCheckbox3());
+
+        String email = changedMemberJoinDTO.getEmail();
+        String domain = null;
+
+        if(changedMemberJoinDTO.getEmailDomain().equals("custom")){
+            domain = changedMemberJoinDTO.getCustomEmailDomain();// 이걸 도메인으로
+        } else{
+            domain = changedMemberJoinDTO.getEmailDomain(); // 이걸 도메인으로
+        }
+        emailMapper.insertEmail(findMember.getId(), email, domain);
     }
 }

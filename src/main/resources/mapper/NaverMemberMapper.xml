@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.NaverMemberMapper">
+
+
+    <select id="rowCount" resultType="Integer">
+        SELECT COUNT(*) FROM NAVER_MEMBER WHERE naver_id = #{id}
+    </select>
+
+
+
+
+</mapper>

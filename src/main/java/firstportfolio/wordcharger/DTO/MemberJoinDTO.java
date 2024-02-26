@@ -5,27 +5,31 @@ import lombok.Data;
 @Data
 
 public class MemberJoinDTO {
-    public Integer id;
-    public String userId;
+    private Integer id;
+    private String userId;
 
 
-    public String password;
-    public String userName;
+    private String password;
+    private String userName;
 
 
-    public String zipCode;
-    public String phoneNumberStart;
-    public String phoneNumberMiddle;
-    public String phoneNumberEnd;
+    private String zipCode;
+    private String phoneNumberStart;
+    private String phoneNumberMiddle;
+    private String phoneNumberEnd;
 
 
-    public String streetAddress;
-    public String address;
-    public String detailAddress;
-    public String referenceItem;
-    public String myCheckbox1;
-    public String myCheckbox2;
-    public String myCheckbox3;
+    private String streetAddress;
+    private String address;
+    private String detailAddress;
+    private String referenceItem;
+    private String myCheckbox1;
+    private String myCheckbox2;
+    private String myCheckbox3;
+
+    private String email;
+    private String emailDomain;
+    private String customEmailDomain;
 
 
 }

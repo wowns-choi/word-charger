@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 #full-container{
     width: 100vw;
     height: 100vh;
@@ -31,5 +37,144 @@
     height: 100%;
     border-radius: 10px;
     border: 1px solid lightgray;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+#zero{
+    flex-basis: 5%;
+    width: 100%;
+    background-color: #001536;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#first{
+    flex-basis: 15%;
+    width: 100%;
+}
+
+#second{
+    flex-basis: 20%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#second > div:nth-child(1){
+    width: 80%;
+    height: 40%;
+    display:flex;
+
+}
+#second > div:nth-child(1) > div:nth-child(1){
+    width: 10%;
+    height: 100%;
+    border-top-left-radius: 8px;
+    border-left: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+}
+#idInput{
+    width:90%;
+    height: 100%;
+    border: none;
+    border-top-right-radius: 8px;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+
+}
+#idInput:focus{
+    outline: none;
+}
+
+#second > div:nth-child(2){
+    width: 80%;
+    height: 40%;
+    display:flex;
+    text-decoration: none;
+}
+#second > div:nth-child(2) > div:nth-child(1){
+    width: 10%;
+    height: 100%;
+    border-bottom-left-radius: 8px;
+    border-left: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-top: 1px solid lightgray;
+}
+#passwordInput{
+    width:90%;
+    height: 100%;
+    border: none;
+    border-bottom-right-radius: 8px;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+
+    text-decoration: none;
+}
+#passwordInput:focus{
+    outline: none;
+}
+
+#third{
+    flex-basis: 5%;
+    width: 100%;
+    color: red;
+}
+#fourth{
+    flex-basis: 10%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#fourth > button:nth-child(1){
+    width: 80%;
+    height: 80%;
+    border: 1px solid black;
+    background-color : #f7fcff;
+    font-size: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+#fourth > button:nth-child(1):hover{
+    background-color: #001536;
+    color: white;
+}
+
+
+#fifth{
+    flex-basis: 5%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+#fifth a{
+    text-decoration: none;
+    color: #ff5500;
+}
+
+
+#sixth{
+    flex-basis: 40%;
+}
+
+
 
