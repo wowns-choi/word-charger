@@ -43,7 +43,7 @@
             <div></div>
             <div>
                 <div>
-                작성자 : ${loginedMemberId.userId}
+                작성자 : ${findPost.userId}
                 </div>
                 <div>
                 </div>
@@ -107,10 +107,27 @@
                                 </span>
                             </div>
                             <div>
-                                <div style="font-size: 12px;">
-                                    ${comment.content}
-                                </div>
 
+<!-------------------------------------------------------------------------------------------->
+                                <!-- 조건문 추가: 로그인한 사용자가 댓글 작성자와 같다면 "삭제" 표시 -->
+                                <c:if test="${loginedMemberId.userId == comment.userId}">
+                                <div>
+                                    <div style="font-size: 12px;">
+                                        ${comment.content}
+                                    </div>
+                                    <div style="display:none;">
+                                        <form action="/update-comment?commentId=${comment.id}" method="post">
+                                            <textarea name="content" class="update-comment-textarea">${comment.content}</textarea>
+                                            <input type="hidden" name="postId" value="${findPost.id}">
+                                            <button class="update-btn">수정하기</button>
+                                        </form>
+                                    </div>
+
+                                    <button type="button" style="color:red; font-size: 12px;" class="update-String">수정</button>
+                                    <a href="/delete-comment?commentId=${comment.id}" style="color:red; font-size: 12px;" >삭제</a>
+                                </div>
+                                </c:if>
+<!-------------------------------------------------------------------------------------------->
                                 <button class="click-me" >댓글 쓰기</button>
                                 <div class="textarea-reply" style="display:none;">
                                     <form action="/reply-save" method="post">
@@ -132,6 +149,13 @@
                                     <div class="reply" style="margin-left: 2vw; font-size: 12px; background-color: #fafafa; border-bottom:0.5px solid lightgray;">
                                         &nbsp &nbsp    ${reply.content}
                                     </div>
+<!-------------------------------------------------------------------------------------------->
+                                    <c:if test="${loginedMemberId.userId == reply.userId}">
+                                        <a href="/delete-reply?commentId=${comment.id}" style="color:red; font-size: 12px; margin-left: 2vw;">삭제</a>
+                                        <a href="/delete-reply?commentId=${comment.id}" style="color:red; font-size: 12px; ">수정</a>
+                                    </c:if>
+<!-------------------------------------------------------------------------------------------->
+
                                 </c:forEach>
 
                             </div>
@@ -179,10 +203,6 @@
         </c:if>
     </div>
 
-
-
-
-
 <script>
 // 모든 'click-me' 버튼에 대해 이벤트 리스너를 설정합니다.
 document.querySelectorAll('.click-me').forEach(function(button) {
@@ -219,11 +239,10 @@ $(document).ready(function() {
         });
     });
 });
-
-
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../../js/contact/showPost.js"></script>
 
 </body>
 </html>

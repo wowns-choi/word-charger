@@ -15,4 +15,6 @@ public interface CommentsMapper {
     void insertComment2 (Integer postId, Integer memberId, String content, Integer parentCommentId, LocalDateTime now);
 
     List<Integer> findPostIdByMemberId(Integer memberId);
+
+    void updateContent(String id, String content);
 }

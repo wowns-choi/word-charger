@@ -28,6 +28,9 @@
         WHERE member_id = #{memberId}
     </select>
 
-
-
+    <update id="updateContent">
+        UPDATE comments
+        SET content = #{content}
+        WHERE id = #{id}
+    </update>
 </mapper>

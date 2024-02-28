@@ -37,6 +37,11 @@ public class ShowPostService {
 
         //post테이블의 아이디컬럼 값으로 게시글을 찾아와야함.
         PostsDTO findPost = postsMapper.findPostById(postId);
+
+        //findPost 에 들어있는 memberId 를 가지고 member테이블에서 userId 받아오기.
+        String userId = memberMapper.findUserIdById(findPost.getMemberId());
+        findPost.setUserId(userId);
+
         model.addAttribute("findPost", findPost);
 
         //post_view +1 update : 조회수 1 올리는 작업
