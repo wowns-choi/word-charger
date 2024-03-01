@@ -26,7 +26,7 @@ public class FindVocaController {
     private static final String NOT_HANGLE_REG_EXP = "^[^가-힣]*$";
     private static final String NOT_ENGLISH_REG_EXP = "^[^a-zA-Z]*$";
 
-//    private final FindVocaService findVocaService;
+
     @PostMapping("/find-voca")
     @ResponseBody
     public Map<String,String> findVocaControllerMethod(@RequestParam("voca") String voca){

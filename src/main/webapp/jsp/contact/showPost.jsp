@@ -112,19 +112,20 @@
                                 <!-- 조건문 추가: 로그인한 사용자가 댓글 작성자와 같다면 "삭제" 표시 -->
                                 <c:if test="${loginedMemberId.userId == comment.userId}">
                                 <div>
-                                    <div style="font-size: 12px;">
+                                    <div style="font-size: 12px;" class="comment-content-div">
                                         ${comment.content}
                                     </div>
                                     <div style="display:none;">
-                                        <form action="/update-comment?commentId=${comment.id}" method="post">
+                                        <form action="/update-comment" method="post" class="update-form">
                                             <textarea name="content" class="update-comment-textarea">${comment.content}</textarea>
                                             <input type="hidden" name="postId" value="${findPost.id}">
+                                            <input type="hidden" name="commentId" value="${comment.id}" >
                                             <button class="update-btn">수정하기</button>
                                         </form>
                                     </div>
 
-                                    <button type="button" style="color:red; font-size: 12px;" class="update-String">수정</button>
-                                    <a href="/delete-comment?commentId=${comment.id}" style="color:red; font-size: 12px;" >삭제</a>
+                                    <span type="button" style="color:red; font-size: 12px; cursor:pointer;" class="update-comment">수정</span>
+                                    <span style="color:red; font-size: 12px; cursor:pointer;" class="delete-comment" data-comment-id="${comment.id}">삭제</span>
                                 </div>
                                 </c:if>
 <!-------------------------------------------------------------------------------------------->
@@ -146,14 +147,29 @@
                                     <div class="reply" style="margin-left: 2vw; background-color: #fafafa; >
                                          &nbsp  <span style="font-weight: bold; font-size: 17px;">  ${reply.userId}</span> <span style="font-size: 9px; ">${reply.stringCreateDate}</span>
                                     </div>
-                                    <div class="reply" style="margin-left: 2vw; font-size: 12px; background-color: #fafafa; border-bottom:0.5px solid lightgray;">
-                                        &nbsp &nbsp    ${reply.content}
-                                    </div>
+
+
+
+
 <!-------------------------------------------------------------------------------------------->
-                                    <c:if test="${loginedMemberId.userId == reply.userId}">
-                                        <a href="/delete-reply?commentId=${comment.id}" style="color:red; font-size: 12px; margin-left: 2vw;">삭제</a>
-                                        <a href="/delete-reply?commentId=${comment.id}" style="color:red; font-size: 12px; ">수정</a>
-                                    </c:if>
+                                <c:if test="${loginedMemberId.userId == reply.userId}">
+                                    <div>
+                                        <div class="reply" style="margin-left: 2vw; font-size: 12px; background-color: #fafafa; border-bottom:0.5px solid lightgray;">
+                                             ${reply.content}
+                                        </div>
+                                        <div style="display:none;">
+                                              <form action="/update-comment" method="post" class="update-form">
+                                                  <textarea name="content" class="update-comment-textarea">${reply.content}</textarea>
+
+                                                  <input type="hidden" name="commentId" value="${reply.id}" >
+                                                  <button class="update-btn">수정하기</button>
+                                              </form>
+                                        </div>
+                                        <span style="color:red; font-size: 12px; margin-left: 2vw; cursor:pointer;" class="update-reply">수정</span>
+                                        <span style="color:red; font-size: 12px; cursor:pointer;" class="delete-comment" data-comment-id="${reply.id}">삭제</span>
+
+                                    </div>
+                                </c:if>
 <!-------------------------------------------------------------------------------------------->
 
                                 </c:forEach>
@@ -239,6 +255,89 @@ $(document).ready(function() {
         });
     });
 });
+
+// [comment + reply] update form ajax
+document.addEventListener("DOMContentLoaded", function(){
+    //지금 form 이 하나가 아니므로, 반복을 돌리면서, form 이 submit 됬을 때를 생각.
+    document.querySelectorAll('.update-form').forEach(function(element){
+        element.addEventListener('submit', function(e){
+            e.preventDefault();
+            const formData = new FormData(element);
+
+            //json 통신 시도.
+            const data = {};
+            formData.forEach( (value, key) => { //(key, value) 가 아님을 주의
+                data[key] = value;
+            });
+
+            fetch('/update-comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json', //서버에 json 형식임을 알리는 것.
+                },
+                body: JSON.stringify(data), //직렬화된 JSON 문자열
+            })
+            .then(response =>{
+                return response.json();
+            })
+            .then(data => {
+                element.parentElement.style.display = 'none';
+                element.parentElement.previousElementSibling.style.display = 'block';
+                element.parentElement.previousElementSibling.innerText = data.content;
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+        });
+    });
+});
+
+
+
+// [comment + reply] delete span ajax
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.delete-comment').forEach(function(element) {
+        element.addEventListener('click', function() {
+            let commentId= element.dataset.commentId;
+            const data = {id : commentId};
+            fetch('/delete-comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                alert('댓글이 삭제되었습니다.');
+                element.innerText = ' ';
+                element.previousElementSibling.innerText = ' ';
+                element.previousElementSibling.previousElementSibling.previousElementSibling.innerText = data.text;
+            })
+        });
+    });
+});
+
+// [comment] 삭제된 댓글입니다 표시
+document.querySelectorAll('.comment-content-div').forEach(comment => {
+    const content = comment.innerText;
+    if (content.trim() === "삭제된 댓글입니다.") {
+        comment.nextElementSibling.nextElementSibling.innerText = ' ';
+        comment.nextElementSibling.nextElementSibling.nextElementSibling.innerText = ' ';
+    }
+});
+
+// [reply] 삭제된 댓글입니다 표시
+document.querySelectorAll('.reply').forEach(comment => {
+    const content = comment.innerText;
+    if (content.trim() === "삭제된 댓글입니다.") {
+        comment.nextElementSibling.nextElementSibling.innerText = ' ';
+        comment.nextElementSibling.nextElementSibling.nextElementSibling.innerText = ' ';
+    }
+});
+
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
