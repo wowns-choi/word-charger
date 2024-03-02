@@ -11,6 +11,14 @@
         VALUES (MEMBER_SEQUENCE.NEXTVAL,#{memberId},#{phoneNumStart},#{phoneNumMiddle},#{phoneNumEnd})
     </insert>
 
+    <update id="updatePhone">
+        UPDATE phone
+        SET phone_num_start = #{phoneNumStart},
+        phone_num_middle = #{phoneNumMiddle},
+        phone_num_end = #{phoneNumEnd}
+        WHERE member_id = #{memberId}
+    </update>
+
 
 
 </mapper>

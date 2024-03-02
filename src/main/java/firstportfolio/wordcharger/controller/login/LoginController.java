@@ -38,8 +38,6 @@ public class LoginController {
         return "/login/loginForm2";
     }
 
-
-
     @PostMapping("/login-form")
     public String postLoginFormControllerMethod(@ModelAttribute LoginDTO loginDTO, HttpServletRequest request) {
         String id = loginDTO.getId();

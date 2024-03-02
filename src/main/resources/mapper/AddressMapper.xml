@@ -12,5 +12,14 @@
     </insert>
 
 
+    <update id="updateAddress">
+        UPDATE address
+        SET zip_code = #{zipCode},
+        street_address = #{streetAddress},
+        address= #{address},
+        detail_address = #{detailAddress},
+        reference_item = #{referenceItem}
+        WHERE member_id = #{memberId}
+    </update>
 
 </mapper>

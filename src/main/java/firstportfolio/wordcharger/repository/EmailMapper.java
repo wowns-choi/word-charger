@@ -9,4 +9,6 @@ public interface EmailMapper {
     void insertEmail (Integer memberId, String email, String domain);
 
     EmailDTO emailCountByEmail (String email);
+
+    void updateEmail(Integer memberId, String email, String domain);
 }

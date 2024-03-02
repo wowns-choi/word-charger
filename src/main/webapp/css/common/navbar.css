@@ -51,7 +51,7 @@ nav {
     height: 8vh;
     background-color: white;
     border-top-left-radius: 100%;
-    font-family: 'BMJUA';
+    font-family: 'S-CoreDream-3Light';
     letter-spacing: 1px;
     font-size: 12px;
     margin: 0;
@@ -71,6 +71,7 @@ a {
 
 
 nav>div:nth-child(1) {
+    font-family: 'BMJUA';
     flex-basis: 12%;
     background-color: white;
     color: #001536;
@@ -259,7 +260,7 @@ nav>div:nth-child(10) {
 }
 
 #welcome{
-
+    height: 100%;
 }
 
 #logout{
@@ -283,66 +284,54 @@ nav div {
 
 
 
-
-/* board-btn-dropdown implementation */
-.board-btn-dropdown {
+/****************************************************************************************/
+/*drop down impl*/
+#update-user-info-and-logout-dropdown{
     display: none;
     position: absolute;
-    top: 7vh;
-    width: 8vw;
+    top: 8vh;
+    width: 10vw;
     height: auto;
 }
-
-.board-btn-dropdown-child {
-    width: 90%;
+#update-user-info-and-logout-dropdown-child{
+    width:100%;
     height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     z-index: 1000;
-
 }
-
-.board-btn-dropdown-child a {
-    width: 100%;
-    height: 3vh;
+#update-user-info-and-logout-dropdown-child a{
+    width: 10vw;
+    height: 6vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-.board-btn-dropdown-child>a:nth-child(1),
-.board-btn-dropdown-child>a:nth-child(2) {
+#update-user-info-and-logout-dropdown-child>a:nth-child(1),
+#update-user-info-and-logout-dropdown-child>a:nth-child(2),
+#update-user-info-and-logout-dropdown-child>a:nth-child(3),
+#update-user-info-and-logout-dropdown-child>a:nth-child(4){
     background-color: white;
     color: black;
-    border-bottom: 1px solid black;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom: 1px solid lightgray;
     transition-duration: 0.5s;
-
 }
-
-.board-btn-dropdown-child>a:nth-child(1):hover,
-.board-btn-dropdown-child>a:nth-child(2):hover {
+#update-user-info-and-logout-dropdown-child>a:nth-child(1):hover,
+#update-user-info-and-logout-dropdown-child>a:nth-child(2):hover,
+#update-user-info-and-logout-dropdown-child>a:nth-child(3):hover,
+#update-user-info-and-logout-dropdown-child>a:nth-child(4):hover{
     background-color: #001536;
     color: white;
 }
 
-.board-btn-dropdown-child>a:nth-child(2) {
-    background-color: white;
-
-}
-
-.board-btn-div:hover .board-btn-dropdown {
-    background-color: transparent;
-    /* border: 0.3px solid black;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; */
+#welcome:hover #update-user-info-and-logout-dropdown{
+    background-color: red;
     display: flex;
     transition-duration: 1s;
-
 }
+/****************************************************************************************/
 
 /*밑은 findVoca modal 창 css */
 .modal{
@@ -392,13 +381,13 @@ nav div {
     color: #fc5f2b;
 }
 #modalText, #correctAnswer{
-   font-family: 'BMJUA';
-   flex-basis: 50%;
-   width: 100%;
-   display:flex;
-   justify-content: center;
-   align-items: center;
-   font-size: 30px;
+    font-family: 'S-CoreDream-3Light';
+    flex-basis: 50%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
 
 }
 #correctAnswer{

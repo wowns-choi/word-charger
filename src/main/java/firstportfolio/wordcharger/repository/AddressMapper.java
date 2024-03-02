@@ -9,4 +9,6 @@ public interface AddressMapper{
     void insertAddress(Integer memberId, String zipCode, String streetAddress,
                        String address, String detailAddress, String referenceItem);
 
+    void updateAddress(Integer memberId, String zipCode, String streetAddress,
+                       String address, String detailAddress, String referenceItem);
 }

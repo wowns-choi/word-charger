@@ -134,6 +134,10 @@
     flex-basis: 5%;
     width: 100%;
     color: red;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 }
 #fourth{
     flex-basis: 10%;

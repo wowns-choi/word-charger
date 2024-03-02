@@ -76,7 +76,7 @@
             </a>
         </div>
         <div>
-            <a href="/payment" style="font-size: 13px;">
+            <a href="/payment-home" style="font-size: 13px;">
                 <i class="fa-solid fa-dollar-sign"></i>
             </a>
         </div>
@@ -91,12 +91,6 @@
             <a href="/board-home" id="board-btn" style="font-size: 13px;">
                 BOARD
             </a>
-            <div class="board-btn-dropdown">
-                <div class="board-btn-dropdown-child">
-                    <a href="/board-home"> 게시판</a>
-                    <a href="/my-writing"> 내가 작성한 글</a>
-                </div>
-            </div>
         </div>
         <div>
             <a href="/faq" style="font-size: 13px;">
@@ -110,12 +104,25 @@
         <div>
         </div>
         <div>
-            <div id="welcome">${loginedMember.userName}님 어서오세요!</div>
-            <a href="/logout" id="logout">로그아웃</a>
+            <div id="welcome">
+                <a href="/#" id="dropdown-menu-link">
+                    ${loginedMember.userName}                님 어서오세요!
+                </a>
+                <div id="update-user-info-and-logout-dropdown">
+                    <div id="update-user-info-and-logout-dropdown-child">
+                        <a href="/update-user-info?id=${loginedMember.id}">회원 정보 수정하기</a>
+                        <a href="/logout" id="logout">장바구니</a>
+                        <a href="/logout" id="logout">주문내역 확인하기</a>
+                        <a href="/logout" id="logout">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </nav>
 <!--navbar 종료-->
+
 
 
 

@@ -24,12 +24,12 @@ public class LoginService {
         try {
             if (!findedMember.getPassword().equals(password)) {
                 request.setAttribute("passwordIncorrectMessage", "비밀번호가 일치하지 않습니다.");
-                return "/login/loginForm";
+                return "/login/loginForm2";
             }
 
         } catch (NullPointerException e) {
             request.setAttribute("idIncorrectMessage", "존재하지 않는 아이디입니다.");
-            return "/login/loginForm";
+            return "/login/loginForm2";
         }
 
         HttpSession session = request.getSession(true);

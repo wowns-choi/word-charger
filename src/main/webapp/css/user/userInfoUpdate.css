@@ -1,0 +1,26 @@
+#height-8vh-from-top{
+    width: 100vw;
+    height: 20vh;
+}
+#update-container{
+    width: 100vw;
+    height: 80vh;
+    display:flex;
+    font-family: 'S-CoreDream-3Light';
+}
+#left-container{
+    flex-basis: 20%;
+}
+#mid-container{
+    flex-basis: 60%;
+    border:1px solid black;
+}
+#right-container{
+    flex-basis: 20%;
+}
+
+#customEmailDomain{
+    display: none;
+    width: 15vw;
+}
+

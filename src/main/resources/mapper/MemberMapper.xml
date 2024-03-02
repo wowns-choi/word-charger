@@ -33,7 +33,35 @@
         VALUES (#{sequence}, #{id}, #{password}, #{userName})
     </insert>
 
+    <select id="findMemberTotalData" resultType="MemberAllDataFindDTO">
+        SELECT
+        member.*,
+        phone.phone_num_start,
+        phone.phone_num_middle,
+        phone.phone_num_end,
+        address.zip_code,
+        address.street_address,
+        address.address,
+        address.detail_address,
+        address.reference_item,
+        email.email,
+        email.domain
+        FROM member
+        INNER JOIN phone ON member.id = phone.member_id
+        INNER JOIN address ON member.id = address.member_id
+        INNER JOIN email ON member.id = email.member_id
+        WHERE member.id = ${id}
+    </select>
 
+    <select id="findPwById" resultType="String">
+        SELECT password FROM member WHERE id = #{id}
+    </select>
+
+    <update id="updatePassword">
+        UPDATE member
+        SET password = #{password}
+        WHERE id = #{id}
+    </update>
 
 
 </mapper>

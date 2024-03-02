@@ -15,5 +15,13 @@
         SELECT * FROM email WHERE email = #{email}
     </select>
 
+    <update id="updateEmail">
+        UPDATE email
+        SET email = #{email},
+        domain = #{domain}
+        WHERE member_id = #{memberId}
+    </update>
+
+
 
 </mapper>
