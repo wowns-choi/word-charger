@@ -16,81 +16,76 @@
     <c:import url="/jsp/common/loginedNavbar2.jsp" />
 <!--네브 바 종료 -->
 <div id="height-8vh-from-top">
+    회원 정보 수정
 </div>
 
     <div id="update-container">
-        <div id="left-container"></div>
+        <div id="left-container">
+        </div>
         <div id="mid-container">
-            <form method="post">
-            <div>
+            <div id="one">
+                <form method="post">
                 아이디 : ${memberAllData.userId}
             </div>
-            <div>
-                <a href="/password-validation" id="password-update-btn">비밀번호 변경하기</button>
-            </div>
 
-            <div>
+            <div id="two">
                 이름 : ${memberAllData.userName}
             </div>
 
-            <div>
+            <div id="three">
                 핸드폰 번호 :
             </div>
-            <div>
-                <input type="text" name="phoneNumStart" style="width:25%;" value="${memberAllData.phoneNumStart}" >
-                <input type="text" name="phoneNumMiddle" style="width:25%;" value="${memberAllData.phoneNumMiddle}" class="input-tag">
-                <input type="text" name="phoneNumEnd" style="width:25%;" value="${memberAllData.phoneNumEnd}" class="input-tag">
+            <div id="four">
+                <input type="text" name="phoneNumStart"  value="${memberAllData.phoneNumStart}" class="input-tag">
+                <input type="text" name="phoneNumMiddle"  value="${memberAllData.phoneNumMiddle}" class="input-tag">
+                <input type="text" name="phoneNumEnd"  value="${memberAllData.phoneNumEnd}" class="input-tag">
             </div>
 
-            <div>
+            <div id="five">
                 이메일 :
             </div>
-            <div>
-
-                <span>
+            <div id="six">
+                <span id="email-address">
                 ${memberAllData.email} ${memberAllData.domain}
                 </span>
-                <button id="update-email-btn" type="button"> 이메일 수정하기 </button>
+                <button id="update-email-btn" type="button" style="border-radius: 4px;">수정하기</button>
             </div>
 
             <div id="update-email-div" style="display: none;">
-
                 <input type="text" name="email" placeholder="이메일을 입력해주세요">
                 <input type="text" name="customEmailDomain" id="customEmailDomain" placeholder="도메인 직접 입력">
 
                 <select id="emailDomain" name="domain" style="width: 7vw; height: 80%;">
-                    <option value="daum.net">daum.net</option>
-                    <option value="gamil.com">gmail.com</option>
-                    <option value="naver.com">naver.com</option>
+                    <option value="@daum.net">@daum.net</option>
+                    <option value="@gamil.com">@gmail.com</option>
+                    <option value="@naver.com">@naver.com</option>
                     <option value="custom">직접입력</option>
                 </select>
-
             </div>
 
 
-            <div class="address-container">
-                    <input type="text" name="zipCode" id="sample4_postcode" class="input-tag" placeholder="우편번호" readonly="true" value="${memberAllData.zipCode}"/>
+            <div class="address-container" id="eight">
                     <input class="address-btn" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                    <input type="text" name="zipCode" id="sample4_postcode"  placeholder="우편번호" readonly="true" value="${memberAllData.zipCode}"/>
                     <div>
-                        <input type="text" name="streetAddress" id="sample4_roadAddress" class="input-tag" placeholder="도로명주소" value="${memberAllData.streetAddress}" style="margin-top:1.5px;" readonly="true" />
+                        <input type="text" name="streetAddress" id="sample4_roadAddress"  placeholder="도로명주소" value="${memberAllData.streetAddress}" style="margin-top:1.5px;" readonly="true" />
                     </div>
                     <div>
-                        <input type="text" name="address" id="sample4_jibunAddress" class="input-tag" placeholder="지번주소" value="${memberAllData.address}" style="margin-top:1.5px;" readonly="true"/>
+                        <input type="text" name="address" id="sample4_jibunAddress"  placeholder="지번주소" value="${memberAllData.address}" style="margin-top:1.5px;" readonly="true"/>
                     </div>
                     <div>
                         <span id="guide" style="color:#999;display:none"></span>
                     </div>
                     <div>
-                        <input type="text" name="detailAddress" id="sample4_detailAddress" class="input-tag" placeholder="상세주소" value="${memberAllData.detailAddress}" style="margin-top:1.5px;" />
+                        <input type="text" name="detailAddress" id="sample4_detailAddress" class="detail-address" placeholder="상세주소" value="${memberAllData.detailAddress}" style="margin-top:1.5px;" />
                     </div>
                     <div>
-                        <input type="text" name="referenceItem" id="sample4_extraAddress" class="input-tag" placeholder="참고항목" value="${memberAllData.referenceItem}" style="margin-top:1.5px;" readonly="true" />
+                        <input type="text" name="referenceItem" id="sample4_extraAddress"  placeholder="참고항목" value="${memberAllData.referenceItem}" style="margin-top:1.5px;" readonly="true" />
                     </div>
-
             </div>
 
-            <div>
-                <button type="submit"> 수정하기 </button>
+            <div id="nine">
+                <button type="submit" id="update-btn"> 수정하기 </button>
                 </form>
             </div>
 
@@ -118,83 +113,11 @@ let updateEmailBtn = document.querySelector('#update-email-btn');
 let updateEmailDiv = document.querySelector('#update-email-div');
 updateEmailBtn.addEventListener('click', function(){
     updateEmailDiv.style.display = 'block';
-    this.previousElementSibling.style.display = 'none';
-    this.style.display = 'none';
+    this.parentElement.style.display = 'none';
+
 })
 
 
-// password-btn
-let passwordUpdateBtn= document.querySelector('#password-update-btn');
-let pwUpdateDiv = document.querySelector('#pw-update-div');
-passwordUpdateBtn.addEventListener('click', function(){
-    pwUpdateDiv.style.display = 'block';
-
-    let updatePw = null;
-    let inputPw = prompt("현재 비밀번호를 입력하세요");
-    if( inputPw == null || inputPw == ""){ //사용자가 취소를 누르거나, 비워둔 경우
-        alert("비밀번호 변경이 취소되었습니다");
-        return;
-    }
-
-    fetch('http://localhost:8080/password-validation', {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify({
-            'id' : ${memberAllData.id},
-            'password' : inputPw,
-        }),
-    })
-    .then(response => {
-        if(!response.ok){
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(data =>{
-        if(data == '1'){ //비밀번호가 옳은 경우. 참고로, 화살표 함수 내에서 여러 줄을 써야 할 경우, {} 안에 써야함.
-            updatePw = prompt("변경하고 싶은 비밀번호를 입력하세요");
-        } else{
-            alert('비밀번호가 일치하지 않습니다.');
-        }
-    })
-    .catch(error =>
-        console.error('There has been a problem with your fetch operation:', error)
-    );
-
-    if(updatePw != null){
-        fetch('http://localhost:8080/password-update', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({
-                'id' : ${memberAllData.id},
-                'password' : updatePw,
-            }),
-        })
-        .then(response => {
-            if(!response.ok){
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(data =>{
-            if(data == '1'){ // 성공적으로 비밀번호를 변경한 경우
-                alert('비밀번호가 성공적으로 변경되었습니다');
-            } else{
-                alert('비밀번호 변경에서 오류가 발생했습니다');
-            }
-        })
-        .catch(error =>
-            console.error('There has been a problem with your fetch operation:', error)
-        );
-    }
-
-
-
-});
 
 
 </script>

@@ -249,6 +249,19 @@
 <%--    </div>--%>
 
 
+<%-- 사용자의 업데이트가 성공적으로 마쳤다면, 띄워줄 alert창 --%>
+<%
+    String userInfoUpdatesuccess = (String) request.getAttribute("userInfoUpdatesuccess");
+    if (userInfoUpdatesuccess != null && userInfoUpdatesuccess.equals("userInfoUpdatesuccess")) {
+%>
+    <script>
+        alert('회원 정보가 성공적으로 수정되었습니다.');
+    </script>
+<%
+    }
+%>
+
+
 
 </body>
 </html>

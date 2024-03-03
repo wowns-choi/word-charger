@@ -46,16 +46,12 @@
     border-right: 1px solid black;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    color:#ffd4c2;
+    color:#d1edff;
     transition: background-color 0.3s, color 0.3s;
 }
 #submit-btn:hover{
-    background-color: #f25a1b;
+    background-color: #009dff;
     color: white;
 
 }
 
-/* 자물쇠 아이콘 */
-.fa-solid fa-lock{
-    font-size: 50px;
-}

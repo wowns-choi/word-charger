@@ -15,20 +15,17 @@
 <!--네브 바 -->
     <c:import url="/jsp/common/loginedNavbar2.jsp" />
 <!--네브 바 종료 -->
-<div id="height-8vh-from-top">
-</div>
 
     <div id="update-container">
-        <div id="left-container"></div>
-        <div id="mid-container">
-            <form action="/password-validation" method="post">
-                <span>현재 비밀번호 :</span>
-                <input type="password" name="password">
-                <button type="submit"> 제출 </button>
+
+            <form action="/password-validation" method="post" id="pw-update-form">
+                <div></div>
+                <input type="password" name="password" id="password-input" placeholder="현재 비밀번호">
+                <div >
+                <button type="submit" id="submit-btn"><i class="fa-solid fa-lock"></i> </button>
+                </div>
             </form>
             ${wrong}
-        </div>
-        <div id="right-container"></div>
     </div>
 
 </body>

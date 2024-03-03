@@ -1,10 +1,16 @@
 #height-8vh-from-top{
     width: 100vw;
     height: 20vh;
+    font-size: 30px;
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: 'S-CoreDream-3Light';
+
 }
 #update-container{
     width: 100vw;
-    height: 80vh;
+    height: 75vh;
     display:flex;
     font-family: 'S-CoreDream-3Light';
 }
@@ -13,8 +19,63 @@
 }
 #mid-container{
     flex-basis: 60%;
-    border:1px solid black;
+    border:1px solid lightgray;
+    display:flex;
+    flex-direction: column;
+    padding-top: 6vh;
+    border-radius: 5px;
 }
+#one, #two,#three,#four,#five,#six,#update-email-div, #eight{
+    padding-left: 9vw;
+}
+#one{
+    flex-basis: 10%;
+}
+#two{
+    flex-basis: 10%;
+}
+#three{
+    flex-basis: 5%;
+    display:flex;
+    align-items: flex-end;
+}
+#four{
+    flex-basis: 10%;
+    font-size: 12px;
+}
+#five{
+    flex-basis: 5%;
+    display:flex;
+    align-items: flex-end;
+}
+#six{
+    flex-basis: 10%;
+    font-size: 12px;
+}
+#email-address{
+    border-bottom: 1px solid black;
+}
+/*seven 대신 이 이름 줌*/
+#update-email-div{
+    flex-basis: 10%;
+}
+#eight{
+    flex-basis: 10%;
+}
+#nine{
+    flex-basis: 30%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#update-btn{
+}
+
+
+
+
+
 #right-container{
     flex-basis: 20%;
 }
@@ -23,4 +84,31 @@
     display: none;
     width: 15vw;
 }
+button, .address-btn{
+    background-color: #ffd4c2;
+    border: 1px solid black;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+button:hover, .address-btn:hover{
+    background-color: white;
+    color: black;
+}
 
+input{
+    background-color: #fafafa;
+    height: 4vh;
+    width: 40vw;
+}
+.input-tag{
+    background-color: white;
+    border: 1px solid black;
+    height: 4vh;
+    width: 10vw;
+}
+.detail-address{
+    background-color: white;
+    border: 1px solid black;
+    height: 4vh;
+    width: 40vw;
+}

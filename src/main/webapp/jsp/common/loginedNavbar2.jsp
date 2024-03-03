@@ -111,6 +111,7 @@
                 <div id="update-user-info-and-logout-dropdown">
                     <div id="update-user-info-and-logout-dropdown-child">
                         <a href="/update-user-info?id=${loginedMember.id}">회원 정보 수정하기</a>
+                        <a href="/password-validation">비밀번호 변경</a>
                         <a href="/logout" id="logout">장바구니</a>
                         <a href="/logout" id="logout">주문내역 확인하기</a>
                         <a href="/logout" id="logout">로그아웃</a>

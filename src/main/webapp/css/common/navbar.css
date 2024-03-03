@@ -312,7 +312,8 @@ nav div {
 #update-user-info-and-logout-dropdown-child>a:nth-child(1),
 #update-user-info-and-logout-dropdown-child>a:nth-child(2),
 #update-user-info-and-logout-dropdown-child>a:nth-child(3),
-#update-user-info-and-logout-dropdown-child>a:nth-child(4){
+#update-user-info-and-logout-dropdown-child>a:nth-child(4),
+#update-user-info-and-logout-dropdown-child>a:nth-child(5){
     background-color: white;
     color: black;
     border-bottom: 1px solid lightgray;
@@ -321,7 +322,8 @@ nav div {
 #update-user-info-and-logout-dropdown-child>a:nth-child(1):hover,
 #update-user-info-and-logout-dropdown-child>a:nth-child(2):hover,
 #update-user-info-and-logout-dropdown-child>a:nth-child(3):hover,
-#update-user-info-and-logout-dropdown-child>a:nth-child(4):hover{
+#update-user-info-and-logout-dropdown-child>a:nth-child(4):hover,
+#update-user-info-and-logout-dropdown-child>a:nth-child(5):hover{
     background-color: #001536;
     color: white;
 }

@@ -8,11 +8,21 @@
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
       <script>
+
+
+
+
+
+
+
         var IMP = window.IMP;
         IMP.init("imp46526078");
 
 function requestPay() {
-          IMP.request_pay({
+    IMP.request_pay(
+
+          ///////////////////////// 첫번째 ////////////////////////////////
+          {
             pg: "html5_inicis",
             pay_method: "card",
             merchant_uid: "57008833-33009",
@@ -23,41 +33,40 @@ function requestPay() {
             buyer_tel: "010-1234-5678",
             buyer_addr: "서울특별시 강남구 삼성동",
             buyer_postcode: "123-456",
-          }, function (rsp) {
-            console.log('hello');
-            console.log(rsp);
-            console.log('wowns');
-            if (rsp.success) {
-                            console.log('hello2');
-                            console.log(rsp);
-                            console.log('wowns2');
+          },
 
-              // axios로 HTTP 요청
-              axios({
-                url: "http://localhost:8080/payment-response", // 실제 서버의 엔드포인트 주소로 수정
-                method: "post",
-                headers: { "Content-Type": "application/json" },
-                data: {
-                  imp_uid: rsp.imp_uid,
-                  merchant_uid: rsp.merchant_uid
+          ////////////////////////두번째 //////////////////////////////////
+          function (rsp) {
+                if (rsp.success) {
+                          // axios로 HTTP 요청
+                          axios({
+                            url: "http://localhost:8080/payment-response", // 실제 서버의 엔드포인트 주소로 수정
+                            method: "post",
+                            headers: { "Content-Type": "application/json" },
+                            data: {
+                              imp_uid: rsp.imp_uid,
+                              merchant_uid: rsp.merchant_uid
+                            }
+                          })
+
+                          .then((response) => {
+                            // 서버 결제 API 성공 시 로직
+                          })
+
+                          .catch((error) => {
+                            // HTTP 요청 실패 시 로직
+                            console.error(error);
+                          });
+                } else {
+                          alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
                 }
-              }).then((response) => {
-                // 서버 결제 API 성공 시 로직
-                            console.log('hello3');
-                            console.log(rsp);
-                            console.log('wowns3');
-                console.log(response.data); // 응답 데이터 처리
-              }).catch((error) => {
-                // HTTP 요청 실패 시 로직
-                            console.log('hello4');
-                            console.log(rsp);
-                            console.log('wowns4');
-                console.error(error);
-              });
-            } else {
-              alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
-            }
-          });
+          }
+
+
+    );
+
+
+
 }
 
         </script>

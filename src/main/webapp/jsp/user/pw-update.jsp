@@ -8,26 +8,22 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="../../css/user/pw-update-validation.css">
+    <link rel="stylesheet" href="../../css/user/pw-update.css">
 </head>
 <body>
 
 <!--네브 바 -->
     <c:import url="/jsp/common/loginedNavbar2.jsp" />
 <!--네브 바 종료 -->
-<div id="height-8vh-from-top">
-</div>
+
 
     <div id="update-container">
-        <div id="left-container"></div>
-        <div id="mid-container">
-            <form action="/" method="post" id="pw-update-form">
-                <span>새로운 비밀번호 :</span>
-                <input type="password" name="password">
-                <button type="submit"> 제출 </button>
-            </form>
-        </div>
-        <div id="right-container"></div>
+        <form action="/" method="post" id="pw-update-form">
+            <div></div>
+            <input type="password" name="password" id="password-input" placeholder="새로운 비밀번호">
+            <button type="submit" id="submit-btn"> <i class="fa-solid fa-lock-open"></i> </button>
+        </form>
+        <div></div>
     </div>
 
 <script>
@@ -66,8 +62,6 @@
             window.location.href='/';
         });
     });
-
-
 </script>
 
 </body>
