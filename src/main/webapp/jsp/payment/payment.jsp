@@ -25,7 +25,7 @@ function requestPay() {
           {
             pg: "html5_inicis",
             pay_method: "card",
-            merchant_uid: "57008833-33009",
+            merchant_uid: "57008833-33011",
             name: "당근 10kg",
             amount: 1,
             buyer_email: "Iamport@chai.finance",
