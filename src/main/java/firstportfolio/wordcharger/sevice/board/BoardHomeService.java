@@ -20,7 +20,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional
+//@Transactional 안쓴다. 모두 select 쿼리니까.
+
 public class BoardHomeService {
 
     private final PostsMapper postsMapper;

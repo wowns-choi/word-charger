@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional
+// @Transactional 안쓴다. 왜? select 쿼리밖에 없음.
 public class ChargerHomeService {
 
     private final UserWordMapper userWordMapper;

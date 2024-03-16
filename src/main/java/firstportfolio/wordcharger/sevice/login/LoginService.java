@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 @Slf4j
-@Transactional
+// @Transactional 안쓴다. select 쿼리 밖에 없음.
 @Service
 @RequiredArgsConstructor
 public class LoginService {

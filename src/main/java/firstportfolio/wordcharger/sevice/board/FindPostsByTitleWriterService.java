@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional 안쓴다. 모두 select 쿼리니까.
 @RequiredArgsConstructor
 @Slf4j
 public class FindPostsByTitleWriterService {

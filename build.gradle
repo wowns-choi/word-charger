@@ -47,6 +47,7 @@ dependencies {
 	//MyBatis 스프링 부트 3.0 추가
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
+
 	implementation group: 'org.json', name: 'json', version: '20210307' // 버전은 최신 버전으로 업데이트할 수 있습니다.
 
 

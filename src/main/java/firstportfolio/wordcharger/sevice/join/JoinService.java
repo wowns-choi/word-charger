@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
-@Transactional
+// @Transactional 안 쓴다. 왜? db관련 코드 없음.
 @Service
 @RequiredArgsConstructor
 public class JoinService {

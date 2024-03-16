@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequiredArgsConstructor
 @Slf4j
 @Service
-@Transactional
+//@Transactional 안쓴다. select 쿼리밖에 없음.
 public class NextBtnClickMappingService {
     private final WordMapper wordMapper;
 

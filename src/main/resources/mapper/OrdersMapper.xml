@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.OrdersMapper">
+
+    <insert id="insertOrder">
+        INSERT INTO orders values(
+            ORDERS_SEQUENCE.NEXTVAL,
+            #{memberId},
+            #{productId},
+            #{merchantUid},
+            #{amount},
+            #{status},
+            #{failReason},
+            SYSDATE,
+            #{buyerPhoneNumStart},
+            #{buyerPhoneNumMiddle},
+            #{buyerPhoneNumEnd},
+            #{buyerZipCode},
+            #{buyerStreetAddress},
+            #{buyerAddress},
+            #{buyerDetailAddress},
+            #{buyerReferenceItem}
+        )
+    </insert>
+
+    <select id="findAmountByMerchantUid" resultType="Integer">
+        SELECT amount FROM orders
+        WHERE merchant_uid = #{merchantUid}
+    </select>
+
+    <update id="updateStatusByMerchantUid">
+        UPDATE orders
+        SET status = #{status}
+        WHERE merchant_uid = #{merchantUid}
+    </update>
+
+    <select id="findOrderIdByMerchantUid" resultType="Integer">
+        SELECT id FROM orders
+        WHERE merchant_uid = #{merchantUid}
+    </select>
+
+    <update id="updateFailReasonByMerchantUid">
+        UPDATE orders
+        SET fail_reason = #{failReason}
+        WHERE merchant_uid = #{merchantUid}
+    </update>
+
+    <select id="findProductIdByMerchantUid" resultType="Integer">
+        SELECT product_id FROM orders
+        WHERE merchant_uid = #{merchantUid}
+    </select>
+
+
+
+
+</mapper>

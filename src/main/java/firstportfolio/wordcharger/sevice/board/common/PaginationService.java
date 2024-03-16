@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Transactional
+// @Transactional 안쓴다. db관련 코드 없음.
 public class PaginationService {
 
     public void pagination (Integer currentPage, Integer pageSize, Integer totalPosts, Integer pageGroupSize, List<?> currentPagePosts, Model model){

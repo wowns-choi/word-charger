@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional
+//@Transactional 안쓴다. insert 쿼리 하나니까.
 public class InsertCommentService {
     private final MemberMapper memberMapper;
     private final CommentsMapper commentsMapper;

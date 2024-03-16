@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-@Transactional
+// @Transactional 안쓴다. insert 쿼리가 '하나' 잖아.
 @Slf4j
 @Service
 @RequiredArgsConstructor

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.PaymentsMapper">
+<!--
+    <insert id="insertPayment">
+        INSERT INTO payments
+        (id,
+        member_id
+
+        )
+        values(
+        PAYMENTS_SEQUENCE.NEXTVAL,
+        #{memberId}
+
+        )
+    </insert>
+-->
+
+
+
+    <insert id="insertPayment">
+        INSERT INTO payments
+        (id,
+        member_id,
+        order_id,
+        imp_uid,
+        merchant_uid,
+        amount,
+        currency,
+        status,
+        fail_reason,
+        failed_at,
+        pay_method,
+        name,
+        paid_at,
+        receipt_url,
+        started_at,
+        user_agent,
+        buyer_name,
+        buyer_tel,
+        buyer_addr,
+        buyer_postcode,
+        buyer_email,
+        apply_num,
+        card_code,
+        card_name,
+        card_number,
+        card_quota,
+        card_type,
+        bank_code,
+        bank_name,
+        vbank_code,
+        vbank_date,
+        vbank_holder,
+        vbank_issued_at,
+        vbank_num,
+        vbank_name,
+        custom_data,
+        customer_uid,
+        customer_uid_usage,
+        channel,
+        cash_receipt_issued,
+        escrow,
+        pg_id,
+        pg_provider,
+        emb_pg_provider,
+        pg_tid,
+        cancel_amount,
+        cancel_reason,
+        cancelled_at)
+        values(
+
+        PAYMENTS_SEQUENCE.NEXTVAL,
+        #{memberId},
+        #{orderId},
+        #{impUid},
+        #{merchantUid},
+        #{amount},
+        #{currency},
+        #{status},
+
+        #{failReason},
+        #{failAt},
+        #{payMethod},
+        #{name},
+        #{paidAt},
+        #{receiptUrl},
+        #{startedAt},
+        #{userAgent},
+        #{buyerName},
+        #{buyerTel},
+
+        #{buyerAddr},
+        #{buyerPostcode},
+        #{buyerEmail},
+        #{applyNum},
+        #{cardCode},
+        #{cardName},
+        #{cardNumber},
+        #{cardQuota},
+        #{cardType},
+        #{bankCode},
+
+        #{bankName},
+        #{vbankCode},
+        #{vbankDate},
+        #{vbankHolder},
+        #{vbankIssuedAt},
+        #{vbankNum},
+        #{vbankName},
+        #{customData},
+        #{customerUid},
+        #{customerUidUsage},
+
+        #{channel},
+        #{CashReceiptIssued},
+        #{escrow},
+        #{pgId},
+        #{pgProvider},
+        #{embPgProvider},
+        #{pgTid},
+        #{cancelAmount},
+        #{cancelReason},
+        #{cancelledAt}
+
+
+        )
+    </insert>
+
+
+
+
+</mapper>

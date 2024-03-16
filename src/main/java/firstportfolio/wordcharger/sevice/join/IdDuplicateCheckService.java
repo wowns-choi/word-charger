@@ -13,7 +13,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-@Transactional
+//@Transactional 안쓴다. select 쿼리밖에 없음.
 public class IdDuplicateCheckService {
 
     private final MemberMapper memberMapper;

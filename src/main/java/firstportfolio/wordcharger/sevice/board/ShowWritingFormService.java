@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 
 @Slf4j
 @Service
-@Transactional
+//@Transactional 안쓴다. db관련 코드 없음.
 @RequiredArgsConstructor
 public class ShowWritingFormService {
 

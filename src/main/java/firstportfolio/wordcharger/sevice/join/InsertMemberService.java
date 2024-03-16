@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+@Transactional // 하나라도 안들어가면 rollback 되도록 함.
 @Slf4j
 @Service
 @RequiredArgsConstructor

@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 
-@Transactional
+//@Transactional 안쓴다. 모두 select 쿼리니까.
 @Slf4j
 @RequiredArgsConstructor
 @Service
