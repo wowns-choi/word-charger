@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -16,13 +17,16 @@ import org.springframework.ui.Model;
 @RequiredArgsConstructor
 public class LoginService {
     private final MemberMapper memberMapper;
+    private final PasswordEncoder passwordEncoder;
+
 
     public String loginCheck(String id, String password, HttpServletRequest request){
 
         //db Member 테이블에서 아이디를 찾아와서 여기있는 password랑 같은지 봐야겠지.
         MemberJoinDTO findedMember = memberMapper.findMemberById(id);
+        String DBpassword = findedMember.getPassword();
         try {
-            if (!findedMember.getPassword().equals(password)) {
+            if (!passwordEncoder.matches(password, DBpassword)) { //사용자가 입력한 raw한 비밀번호와 DB에 저장되어 있는 해시값을 비교해줌.
                 request.setAttribute("passwordIncorrectMessage", "비밀번호가 일치하지 않습니다.");
                 return "/login/loginForm2";
             }

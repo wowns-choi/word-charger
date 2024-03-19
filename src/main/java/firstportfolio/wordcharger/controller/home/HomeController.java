@@ -33,12 +33,6 @@ public class HomeController {
                    @RequestParam(value="email", required = false) String email,
                    @RequestParam(value="id", required = false) String id
                                        ) {
-        log.info("네이버 이름=================={}", name);
-        log.info("네이버 별명=================={}", nickname);
-        log.info("네이버 이메일=================={}", email);
-        log.info("네이버 아이디=================={}", id);
-
-
         if (id != null) {
             //사용자가 naver로 연동 로그인을 시도한 경우
 

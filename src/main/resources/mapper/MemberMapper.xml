@@ -64,4 +64,24 @@
     </update>
 
 
+    <select id="findUserNameByEmailAndDomain" resultType="String">
+        SELECT user_name FROM member M
+        JOIN EMAIL E ON (M.id = E.member_id)
+        WHERE email = #{email} AND domain = #{domain}
+    </select>
+
+    <select id="findUserIdByUserNameAndEmailAndDomain" resultType="String">
+        SELECT user_id FROM member M
+        JOIN EMAIL E ON (M.id = E.member_id)
+        WHERE user_name = #{userName}
+        AND email = #{email}
+        AND domain = #{domain}
+    </select>
+
+    <select id="findUserNameAndEmailAndDomainByUserId" resultType="MemberAllDataFindDTO">
+        SELECT user_name, email, domain FROM member M
+        JOIN EMAIL E ON (M.id = E.member_id)
+        WHERE user_id = #{userId}
+    </select>
+
 </mapper>

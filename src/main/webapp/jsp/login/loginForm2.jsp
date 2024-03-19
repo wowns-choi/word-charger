@@ -54,8 +54,8 @@
                 </div>
 
                 <div id="fifth">
-                        <a href="">아이디 찾기</a> &nbsp &nbsp
-                        <a href="">비밀번호 찾기</a> &nbsp &nbsp
+                        <a href="/find-user-id">아이디 찾기</a> &nbsp &nbsp
+                        <a href="/find-password">비밀번호 찾기</a> &nbsp &nbsp
                         <a href="">회원가입</a> &nbsp &nbsp
                 </div>
                 <div id="sixth">

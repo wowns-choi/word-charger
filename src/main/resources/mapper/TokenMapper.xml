@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="firstportfolio.wordcharger.repository.TokenMapper">
+
+    <insert id="tokenInsertRow">
+        INSERT INTO token
+        (id, member_id, token, expired_at)
+        VALUES ( TOKEN_SEQUENCE.NEXTVAL, #{memberId}, #{token}, #{expiredAt})
+    </insert>
+
+    <select id="findRowByToken" resultType="PWFindTokenDTO">
+        SELECT * FROM token
+        WHERE token = #{token}
+    </select>
+
+</mapper>

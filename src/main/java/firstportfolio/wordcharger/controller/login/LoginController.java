@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,10 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 @Slf4j
 public class LoginController {
-
-    private final MemberMapper memberMapper;
-
     private final LoginService loginService;
+    //해싱을 위해서.
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/login-form")
     public String getLoginFormControllerMethod(Model model) {

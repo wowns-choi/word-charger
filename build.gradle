@@ -50,7 +50,11 @@ dependencies {
 
 	implementation group: 'org.json', name: 'json', version: '20210307' // 버전은 최신 버전으로 업데이트할 수 있습니다.
 
+	//mail 보내기 관련.
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
+	// BCrypt를 위한 의존성. 해싱관련.
+	implementation 'org.springframework.security:spring-security-crypto:5.4.5'
 }
 
 tasks.named('test') {

@@ -24,4 +24,10 @@ public interface MemberMapper {
     String findPwById(Integer id);
 
     void updatePassword(Integer id, String password);
+
+    String findUserNameByEmailAndDomain(String email, String domain);
+
+    String findUserIdByUserNameAndEmailAndDomain(String userName, String email, String domain);
+
+    MemberAllDataFindDTO findUserNameAndEmailAndDomainByUserId(String userId);
 }

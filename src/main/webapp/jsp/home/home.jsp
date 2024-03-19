@@ -56,6 +56,27 @@
 </div>
 <!--  find Voca 모달창 종료 -->
 
+
+
+    <!-- 재고가 없을 경우에만 띄워질 alert 창 -->
+        <% if (request.getAttribute("tokenOutOfDate") != null) { %>
+        <script>
+            // alert 창으로 메시지 띄우기
+            alert("<%= request.getAttribute("tokenOutOfDate") %>");
+        </script>
+        <% } %>
+    <!-- ---------------------------- -->
+
+    <!-- 비밀번호가 성공적으로 변경되엇을 경우에만 띄워질 alert 창 -->
+            <% if (request.getAttribute("PWSccessUpdate") != null) { %>
+            <script>
+                // alert 창으로 메시지 띄우기
+                alert("<%= request.getAttribute("PWSccessUpdate") %>");
+            </script>
+            <% } %>
+    <!-- ---------------------------- -->
+
+
 <!--네브 바 -->
     <c:import url="/jsp/common/navbar2.jsp" />
 <!--네브 바 종료 -->

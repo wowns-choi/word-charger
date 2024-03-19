@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,8 @@ import java.util.Map;
 public class JoinController {
     private final JoinService joinService;
     private final InsertMemberService insertMemberService;
-
+    //해싱을 위해서.
+    private final PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/Join-form")
@@ -68,6 +70,11 @@ public class JoinController {
 
         //checkbox value : on => 1 , null => 0  변환
         MemberJoinDTO changedMemberJoinDTO = joinService.onAndNullChange(memberJoinDTO);
+
+        // 비밀번호 해싱
+        String rawPassword = changedMemberJoinDTO.getPassword();
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+        changedMemberJoinDTO.setPassword(encodedPassword);
 
         //insert 진행 서비스
         insertMemberService.insertMember(changedMemberJoinDTO);
