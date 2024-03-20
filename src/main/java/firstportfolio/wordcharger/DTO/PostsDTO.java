@@ -14,6 +14,8 @@ public class PostsDTO {
     private Date writingDate;
     private String stringWritingDate;
     private String content;
+    private String deletePostFl;
+
 
     //post_view 테이블
     private Integer viewNumber;

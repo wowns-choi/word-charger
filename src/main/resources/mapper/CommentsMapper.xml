@@ -8,29 +8,42 @@
     <select id="findCommentsByPostId" resultType="CommentDTO">
         SELECT * FROM comments
         WHERE post_id = #{postId}
+        AND DELETE_COMMENT_FL = 'N'
         ORDER BY create_date ASC
     </select>
 
     <insert id="insertComment">
         INSERT INTO comments
-        (id, post_id, member_id, content, create_date, parent_comment_id)
-        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, #{now}, NULL)
+        (id, post_id, member_id, content, create_date, parent_comment_id, delete_comment_fl)
+        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, #{now}, NULL, 'N')
     </insert>
 
     <insert id="insertComment2">
         INSERT INTO comments
-            (id, post_id, member_id, content, create_date, parent_comment_id)
-        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, #{now}, #{parentCommentId})
+            (id, post_id, member_id, content, create_date, parent_comment_id, delete_comment_fl)
+        VALUES (COMMENT_SEQUENCE.NEXTVAL, #{postId}, #{memberId}, #{content}, #{now}, #{parentCommentId}, 'N')
     </insert>
 
     <select id="findPostIdByMemberId" resultType="Integer">
         SELECT post_id FROM comments
         WHERE member_id = #{memberId}
+        AND DELETE_COMMENT_FL = 'N'
     </select>
 
     <update id="updateContent">
         UPDATE comments
         SET content = #{content}
         WHERE id = #{id}
+        AND DELETE_COMMENT_FL = 'N'
     </update>
+
+    <update id="updateDeleteFlag">
+        UPDATE comments
+        SET delete_comment_fl = 'Y'
+        WHERE id = #{id}
+    </update>
+
+
+
+
 </mapper>

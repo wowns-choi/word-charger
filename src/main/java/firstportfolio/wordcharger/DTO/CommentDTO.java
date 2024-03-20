@@ -15,6 +15,7 @@ public class CommentDTO {
     private String content;
     private Date createDate;
     private Integer parentCommentId;
+    private String deleteCommentFl;
 
     private List<CommentDTO> replies = new ArrayList<>();
 

@@ -1,7 +1,11 @@
 package firstportfolio.wordcharger.controller.board;
 
+import firstportfolio.wordcharger.DTO.PostPasswordDTO;
+import firstportfolio.wordcharger.DTO.PostsDTO;
 import firstportfolio.wordcharger.repository.PostIdMemberIdForNotDuplicateLikeMapper;
 import firstportfolio.wordcharger.repository.PostLikeMapper;
+import firstportfolio.wordcharger.repository.PostPasswordMapper;
+import firstportfolio.wordcharger.repository.PostsMapper;
 import firstportfolio.wordcharger.sevice.board.ShowPostService;
 import firstportfolio.wordcharger.util.FindLoginedMemberIdUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 @Controller
@@ -25,6 +30,52 @@ public class ShowPostController {
     private final ShowPostService showPostService;
     private final PostLikeMapper postLikeMapper;
     private final PostIdMemberIdForNotDuplicateLikeMapper postIdMemberIdForNotDuplicateLikeMapper;
+    private final PostPasswordMapper postPasswordMapper;
+    private final PostsMapper postsMapper;
+
+    @GetMapping("/is-this-you")
+    @ResponseBody
+    public String isThisYou(@RequestParam String postId, HttpServletRequest request){
+        //게시글을 클릭한 사람이 본인인지 확인.
+        PostsDTO post = postsMapper.findPostById(Integer.parseInt(postId));
+        int memberId = post.getMemberId();
+        log.info("memberId=={}", memberId);
+
+        int loginedMember = FindLoginedMemberIdUtil.findLoginedMember(request);
+        log.info("logiendMember=={}", loginedMember);
+
+
+        if (memberId == loginedMember) {
+            return "yes";
+        } else{
+            return "no";
+        }
+    }
+
+    @GetMapping("/is-this-secret")
+    @ResponseBody
+    public Map<String,String> isThisSecret(@RequestParam String postId){
+        //비밀글인지 여부를 조사.
+        PostPasswordDTO row = postPasswordMapper.findRow(Integer.parseInt(postId));
+        String postPassword = row.getPostPassword();
+        log.info("postPassword=={}", postPassword);
+
+        Map<String, String> map = new ConcurrentHashMap<>();
+
+
+        if (postPassword == null) {
+            map.put("isThisSecret", "no");
+        } else{
+            map.put("isThisSecret", "yes");
+            map.put("writingPassword", postPassword);
+        }
+        return map; //비밀글 이다.
+    }
+
+
+
+
+
     @GetMapping("show-writing")
     public String showWritingControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page,
                                               @RequestParam Integer postId,

@@ -35,22 +35,26 @@ public class ShowPostService {
 
     public void showPost(Integer page, Integer postId, Model model, HttpServletRequest request){
 
+        HttpSession session = request.getSession(false);
+        MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
+        model.addAttribute("loginedMemberId", loginedMember);
+
         //post테이블의 아이디컬럼 값으로 게시글을 찾아와야함.
         PostsDTO findPost = postsMapper.findPostById(postId);
 
+
         //findPost 에 들어있는 memberId 를 가지고 member테이블에서 userId 받아오기.
-        String userId = memberMapper.findUserIdById(findPost.getMemberId());
+        int memberId = findPost.getMemberId();
+        String userId = memberMapper.findUserIdById(memberId);
         findPost.setUserId(userId);
 
         model.addAttribute("findPost", findPost);
 
-        //post_view +1 update : 조회수 1 올리는 작업
-        postViewMapper.updateByPostId(findPost.getId());
-
-
-        HttpSession session = request.getSession(false);
-        MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
-        model.addAttribute("loginedMemberId", loginedMember);
+        // post_view +1 update : 조회수 1 올리는 작업
+        // 게시글을 클릭한 사용자 != 게시글을 작성한 사용자 인 경우에만 조회수 1올리기.
+        if (memberId != loginedMember.getId()) {
+            postViewMapper.updateByPostId(findPost.getId());
+        }
 
         //----------자식 댓글(리플) 을 부모 객체에 끼워넣는 작업 시작----------
         List<CommentDTO> findComments = commentsMapper.findCommentsByPostId(postId);//찾아옴

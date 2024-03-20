@@ -78,6 +78,8 @@
         if(this.checked){
             hiddenPasswordInput.style.display = 'block';
         } else{
+            let passwordInput = document.querySelector('#password-input');
+            passwordInput.value = '';
             hiddenPasswordInput.style.display = 'none';
         }
     });

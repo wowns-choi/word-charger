@@ -26,7 +26,7 @@
     let id = naver_id_login.getProfileData('id');
     let phone = naver_id_login.getProfileData('phone');
 
-    window.location.href = 'http://localhost:8080/?name=' + name + "&nickname=" + nickname + "&email=" + email +"&id=" + id;
+    window.location.href = '/?name=' + name + "&nickname=" + nickname + "&email=" + email +"&id=" + id;
 
 
   }

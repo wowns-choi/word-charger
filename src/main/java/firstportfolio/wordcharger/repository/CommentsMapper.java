@@ -17,4 +17,6 @@ public interface CommentsMapper {
     List<Integer> findPostIdByMemberId(Integer memberId);
 
     void updateContent(String id, String content);
+
+    void updateDeleteFlag(String id);
 }

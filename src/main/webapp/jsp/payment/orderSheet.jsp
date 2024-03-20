@@ -36,7 +36,7 @@
               .then(data => {
                   if(data.result = 'success'){
                         //사전검증 시작
-                            fetch('http://localhost:8080/pre-validation?productId=${productId}&merchantUid='+ data.merchantUid)
+                            fetch('/pre-validation?productId=${productId}&merchantUid='+ data.merchantUid)
                             .then(response => {
                                 if (!response.ok) {
                                   throw new Error('Network response was not ok');
@@ -90,7 +90,7 @@
                                                     if (rsp.success) {
                                                               // axios로 HTTP 요청
                                                               axios({
-                                                                url: "http://localhost:8080/payment-response", // 실제 서버의 엔드포인트 주소로 수정
+                                                                url: "/payment-response", // 실제 서버의 엔드포인트 주소로 수정
                                                                 method: "post",
                                                                 headers: { "Content-Type": "application/json" },
                                                                 data: {

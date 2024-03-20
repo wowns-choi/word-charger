@@ -62,6 +62,17 @@
         </div>
     </div>
 
+    <div id="post-update-and-delete">
+        <div></div>
+        <div>
+        <c:if test="${loginedMemberId.id==findPost.memberId}">
+            <a href="/update-post?postId=${findPost.id}" >글 수정</a>
+            <a href="/delete-post?postId=${findPost.id}" id="delete-post-btn">글 삭제</a> <!-- delete 는 ajax 로 처리함-->
+        </c:if>
+        </div>
+        <div></div>
+    </div>
+
     <!-- ---------------------------comment------------------------------ -->
     <div id="comment-container">
 
@@ -337,6 +348,61 @@ document.querySelectorAll('.reply').forEach(comment => {
         comment.nextElementSibling.nextElementSibling.nextElementSibling.innerText = ' ';
     }
 });
+
+// 게시글 delete 버튼 눌렀을 때
+document.addEventListener("DOMContentLoaded", function() {
+
+    let deleteBtn = document.getElementById('delete-post-btn');
+    if(deleteBtn != null){
+        document.getElementById('delete-post-btn').addEventListener('click', function(e) {
+            e.preventDefault(); // <a> 태그의 기본 동작을 방지합니다.
+
+            // fetch를 사용하여 서버에 비동기 요청을 보냅니다.
+            fetch('/delete-post?postId=${findPost.id}')
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                if(data == 'success'){
+                    // 삭제요청을 한 사용자와 게시글의 작성자가 동일인물인 경우
+                    if(confirm('정말 삭제하시겠습니까?')){
+                        //사용자가 확인을 클릭한 경우
+                        fetch('/delete-post-real?postId=${findPost.id}')
+                        .then(response => {
+                            if(!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            if(data == 'success'){
+                                alert('게시글이 삭제되었습니다');
+                                window.location.href="/board-home";
+                            } else{
+                                alert('게시글 삭제 수행 중 오류가 발생하여 정상 수행되지 못했습니다.');
+                            }
+
+                        })
+                        .catch(error => console.error('There has been a problem with your fetch operation:', error));
+                    }else{
+                        //사용자가 취소를 클릭한 경우
+                        alert('삭제를 취소하셨습니다');
+                        return;
+                    }
+                } else{
+                    alert('부적절한 접근 : 작성자만 삭제할 수 있습니다.');
+                    window.location.href="/board-home";
+                }
+            })
+            .catch(error => console.error('There has been a problem with your fetch operation:', error));
+        });
+    }
+
+});
+
 
 </script>
 

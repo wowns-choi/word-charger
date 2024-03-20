@@ -21,9 +21,25 @@ public class BoardHomeController {
     private final BoardHomeRecommendService boardHomeRecommendService;
 
     @GetMapping("/board-home")
-    public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
+    public String boardHomeControllerMethod(@RequestParam(required = false, defaultValue = "1") Integer page, Model model, @RequestParam(required = false) String hecker) {
+        if(hecker != null){
+            model.addAttribute("hecker", hecker);
+        }
         boardHomeService.findAllPosts(page, model);
         return "/contact/boardHome2";
     }
+
+    @GetMapping("/board-home-order-by-like-num")
+    public String boardHomeOrderByLikeNum (@RequestParam(required = false, defaultValue = "1") Integer page, Model model){
+        boardHomeService.findAllPosts2(page, model);
+        return "/contact/boardHome2";
+    }
+
+    @GetMapping("/board-home-order-by-view-num")
+    public String boardHomeOrderByViewNum (@RequestParam(required = false, defaultValue = "1") Integer page, Model model){
+        boardHomeService.findAllPosts3(page, model);
+        return "/contact/boardHome2";
+    }
+
 
 }

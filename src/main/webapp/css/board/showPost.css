@@ -151,6 +151,26 @@
 }
 
 
+/*post-update-and-delete*/
+#post-update-and-delete{
+    display:flex;
+
+}
+#post-update-and-delete>div:nth-child(1),
+#post-update-and-delete>div:nth-child(3){
+    flex-basis: 20%;
+}
+#post-update-and-delete>div:nth-child(2){
+    flex-basis: 60%;
+    display:flex;
+    justify-content: flex-end;
+}
+#post-update-and-delete>div:nth-child(2)> a{
+    text-decoration: none;
+    color: red;
+    margin-left: 10px;
+}
+
 
 
 /*comment - css*/

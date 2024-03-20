@@ -11,6 +11,7 @@ public class MemberAllDataFindDTO {
 
     private String password;
     private String userName;
+    private String delete_member_fl;
 
 
     private String zipCode; //01076

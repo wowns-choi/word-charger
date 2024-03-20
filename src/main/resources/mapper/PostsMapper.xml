@@ -7,37 +7,64 @@
 
     <select id="findAllPostsCount" resultType="Integer">
         SELECT COUNT(*) FROM POSTS
+        WHERE DELETE_POST_FL = 'N'
     </select>
 
-<!--    <select id="findCurrentPagePosts" resultType="PostsDTO">-->
-<!--        SELECT posts.*, post_view.view_number-->
-<!--        FROM posts-->
-<!--        LEFT OUTER JOIN post_view ON posts.id = post_view.post_id-->
-<!--        ORDER BY posts.id DESC-->
-<!--        OFFSET #{startRow} ROWS-->
-<!--        FETCH NEXT #{pageSize} ROWS ONLY-->
-<!--    </select>-->
-
+    <!--최신순 조회 -->
     <select id="findCurrentPagePosts" resultType="PostsDTO">
         SELECT posts.*, post_view.view_number, member.user_id
         FROM posts
         LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
         LEFT OUTER JOIN member ON posts.member_id = member.id
+        WHERE posts.DELETE_POST_FL = 'N'
         ORDER BY posts.id DESC
         OFFSET #{startRow} ROWS
         FETCH NEXT #{pageSize} ROWS ONLY
     </select>
 
+    <!-- 좋아요 순 조회 -->
+    <select id="findCurrentPagePostsOrderByLikeNum" resultType="PostsDTO">
+        SELECT posts.*, post_view.view_number, member.user_id
+        FROM posts
+        LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
+        LEFT OUTER JOIN member ON posts.member_id = member.id
+        LEFT OUTER JOIN post_like ON posts.id = post_like.post_id
+        WHERE posts.DELETE_POST_FL = 'N'
+        ORDER BY post_like.like_number DESC
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <!-- 조회수 순 조회 -->
+    <select id="findCurrentPagePostsOrderByViewNum" resultType="PostsDTO">
+        SELECT posts.*, post_view.view_number, member.user_id
+        FROM posts
+        LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
+        LEFT OUTER JOIN member ON posts.member_id = member.id
+        WHERE posts.DELETE_POST_FL = 'N'
+        ORDER BY post_view.view_number DESC
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
 
 
     <insert id="insertPost">
-        INSERT INTO posts (id, member_id, title, is_private, writing_date, content)
-        values (#{selectNextSequenceValue}, #{memberId}, #{title}, #{isPrivate}, SYSDATE, #{content})
+        INSERT INTO posts (id, member_id, title, is_private, writing_date, content, delete_post_fl)
+        values (#{selectNextSequenceValue}, #{memberId}, #{title}, #{isPrivate}, SYSDATE, #{content}, default)
     </insert>
 
     <select id="findPostById" resultType="PostsDTO">
         SELECT * FROM posts
         WHERE id = #{postId}
+        AND DELETE_POST_FL = 'N'
+    </select>
+
+    <select id="findPostAndPostPasswordById" resultType="PostsDTO">
+        SELECT posts.*, post_password.post_password
+        FROM posts
+        LEFT OUTER JOIN post_password ON posts.id = post_password.post_id
+        WHERE posts.id = #{postId}
+        AND DELETE_POST_FL = 'N'
     </select>
 
     <select id="findPostByTitle" resultType="PostsDTO">
@@ -45,6 +72,7 @@
         FROM posts
         LEFT OUTER JOIN member ON posts.member_id = member.id
         WHERE title = #{hintToFind}
+        AND DELETE_POST_FL = 'N'
         ORDER BY posts.id DESC
     </select>
 
@@ -58,6 +86,7 @@
         FROM posts
         LEFT OUTER JOIN member ON posts.member_id = member.id
         WHERE member_id = #{hintToFind}
+        AND DELETE_POST_FL = 'N'
         ORDER BY posts.id DESC
     </select>
 
@@ -69,8 +98,8 @@
         FROM posts
         LEFT OUTER JOIN member ON posts.member_id = member.id
         WHERE content LIKE #{hintToFind}
+        AND DELETE_POST_FL = 'N'
         ORDER BY posts.id DESC
-
     </select>
 
 
@@ -79,6 +108,20 @@
         SELECT POSTS_SEQUENCE.NEXTVAL FROM DUAL
     </select>
 
+    <!-- update 하기 -->
+    <update id="updatePost">
+        UPDATE posts SET
+        title = #{title},
+        is_private = #{isPrivate},
+        content = #{content}
+        WHERE id = #{id}
 
+    </update>
+
+    <update id="updateDeletePostFL">
+        UPDATE posts SET
+        delete_post_fl = 'Y'
+        WHERE id = #{id}
+    </update>
 
 </mapper>

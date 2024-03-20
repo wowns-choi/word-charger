@@ -1,6 +1,9 @@
 package firstportfolio.wordcharger.controller.board;
 
 import firstportfolio.wordcharger.DTO.PostGenerateDTO;
+import firstportfolio.wordcharger.DTO.PostPasswordDTO;
+import firstportfolio.wordcharger.repository.PostPasswordMapper;
+import firstportfolio.wordcharger.repository.PostsMapper;
 import firstportfolio.wordcharger.sevice.board.InsertPostService;
 import firstportfolio.wordcharger.sevice.board.ShowWritingFormService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,9 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class WritingPageController {
     private final ShowWritingFormService showWritingFormService;
     private final InsertPostService insertPostService;
+
 
     @GetMapping("/writing-page")
     public String boardWritingPageControllerMethod(Model model, HttpServletRequest request) {

@@ -7,18 +7,21 @@
 
 
     <select id="findMemberById" resultType="MemberJoinDTO">
-        SELECT * FROM member WHERE USER_ID = #{userId}
+        SELECT * FROM member
+        WHERE USER_ID = #{userId}
+        AND DELETE_MEMBER_FL = 'N'
     </select>
 
     <select id="findUserIdById" resultType="String">
-        SELECT user_id FROM member WHERE id = #{id}
+        SELECT user_id FROM member
+        WHERE id = #{id}
+        AND DELETE_MEMBER_FL = 'N'
     </select>
 
     <insert id="insertMember">
         INSERT INTO member
-
-        (ID, USER_ID, PASSWORD, USER_NAME)
-        VALUES (MEMBER_SEQUENCE.NEXTVAL,#{id},#{password},#{userName})
+        (ID, USER_ID, PASSWORD, USER_NAME, DELETE_MEMBER_FL)
+        VALUES (MEMBER_SEQUENCE.NEXTVAL,#{id},#{password},#{userName}, default)
     </insert>
 
     <!--시퀀스의 다음값 얻어오기-->
@@ -28,9 +31,8 @@
 
     <insert id="insertMemberNaverVersion">
         INSERT INTO member
-
-        (ID, USER_ID, PASSWORD, USER_NAME)
-        VALUES (#{sequence}, #{id}, #{password}, #{userName})
+        (ID, USER_ID, PASSWORD, USER_NAME, DELETE_MEMBER_FL)
+        VALUES (#{sequence}, #{id}, #{password}, #{userName}, default)
     </insert>
 
     <select id="findMemberTotalData" resultType="MemberAllDataFindDTO">
@@ -51,23 +53,29 @@
         INNER JOIN address ON member.id = address.member_id
         INNER JOIN email ON member.id = email.member_id
         WHERE member.id = ${id}
+        AND DELETE_MEMBER_FL = 'N'
     </select>
 
     <select id="findPwById" resultType="String">
-        SELECT password FROM member WHERE id = #{id}
+        SELECT password FROM member
+        WHERE id = #{id}
+        AND DELETE_MEMBER_FL = 'N'
     </select>
 
     <update id="updatePassword">
         UPDATE member
         SET password = #{password}
         WHERE id = #{id}
+        AND DELETE_MEMBER_FL = 'N'
     </update>
 
 
     <select id="findUserNameByEmailAndDomain" resultType="String">
         SELECT user_name FROM member M
         JOIN EMAIL E ON (M.id = E.member_id)
-        WHERE email = #{email} AND domain = #{domain}
+        WHERE email = #{email}
+        AND domain = #{domain}
+        AND DELETE_MEMBER_FL = 'N'
     </select>
 
     <select id="findUserIdByUserNameAndEmailAndDomain" resultType="String">
@@ -76,12 +84,14 @@
         WHERE user_name = #{userName}
         AND email = #{email}
         AND domain = #{domain}
+        AND DELETE_MEMBER_FL = 'N'
     </select>
 
     <select id="findUserNameAndEmailAndDomainByUserId" resultType="MemberAllDataFindDTO">
         SELECT user_name, email, domain FROM member M
         JOIN EMAIL E ON (M.id = E.member_id)
         WHERE user_id = #{userId}
+        AND DELETE_MEMBER_FL = 'N'
     </select>
 
 </mapper>

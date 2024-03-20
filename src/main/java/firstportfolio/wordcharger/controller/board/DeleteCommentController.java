@@ -23,7 +23,7 @@ public class DeleteCommentController {
     public Map<String, String> deleteCommentControllerMethod(@RequestBody CommentDTO commentDTO) {
         //commentDTO.getId() 에는 뭐가 들어있어?
         //사용자가 지우고 싶다고 했던 comment테이블의 행의 id 컬럼값이 들어있음.
-        commentsMapper.updateContent(String.valueOf(commentDTO.getId()), "삭제된 댓글입니다.");
+        commentsMapper.updateDeleteFlag(String.valueOf(commentDTO.getId()));
         Map<String, String> map = new HashMap<>();
         map.put("text", "삭제된 댓글입니다.");
         return map;
