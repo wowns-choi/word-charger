@@ -94,4 +94,10 @@
         AND DELETE_MEMBER_FL = 'N'
     </select>
 
+    <update id="updateDeleteMemberFl">
+        UPDATE member SET
+        delete_member_fl = 'Y'
+        WHERE id = #{id}
+    </update>
+
 </mapper>

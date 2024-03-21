@@ -112,8 +112,8 @@
                     <div id="update-user-info-and-logout-dropdown-child">
                         <a href="/update-user-info?id=${loginedMember.id}">회원 정보 수정하기</a>
                         <a href="/password-validation">비밀번호 변경</a>
-                        <a href="/logout" id="logout">장바구니</a>
                         <a href="/logout" id="logout">주문내역 확인하기</a>
+                        <a href="/withdrawal" id="withdrawal">회원 탈퇴하기</a>
                         <a href="/logout" id="logout">로그아웃</a>
                     </div>
                 </div>
@@ -124,6 +124,17 @@
     </nav>
 <!--navbar 종료-->
 
+<script>
+    let withdrawal = document.querySelector('#withdrawal');
+    withdrawal.addEventListener('click', function(e){
+        e.preventDefault();
+        if(confirm('정말 삭제하시겠습니까?')){
+            window.location.href="/withdrawal";
+        }
+    });
+
+
+</script>
 
 
 

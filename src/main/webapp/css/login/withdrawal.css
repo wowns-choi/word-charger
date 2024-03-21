@@ -1,0 +1,72 @@
+
+#update-container{
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    font-family: 'S-CoreDream-3Light';
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* form 태그 */
+#first-container{
+    display:flex;
+}
+
+
+
+#first-container>div:nth-child(1){
+    width: 2vw;
+    height: 7vh;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#password-input{
+    border: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 20vw;
+    height: 7vh;
+
+}
+#password-input:focus{
+    outline: none;
+}
+
+#first-container>div:nth-child(3){
+    width: 5vw;
+    height: 7vh;
+    font-size: 23px;
+    background-color: white;
+    border: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#find-btn{
+    width: 6vw;
+    height: 4vh;
+    margin-top: 3px;
+    background-color: #ffd7c7;
+    color: gray;
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+    border: 0.1px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+}
+#find-btn:hover{
+    background-color: #ffc5ad;
+    color: black;
+
+}
+
+
+

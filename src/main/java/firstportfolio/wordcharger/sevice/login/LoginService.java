@@ -38,6 +38,18 @@ public class LoginService {
 
         HttpSession session = request.getSession(true);
         session.setAttribute("loginedMember", findedMember);
+
+        //만약, 관리자라면, 다른 흐름을 만들어줘야 함.
+        if(id.equals("manager1")){
+            return "/manager/managerHome";
+        }
+
+        //만약, 판매자라면(merchant 로 시작한다면), 다른 흐름을 만들어줘야 함.
+        if(id.startsWith("merchant")){
+            return "/merchant/merchantHome";
+        }
+
+        //일반 사용자인 경우.
         return "redirect:/";
     }
 }

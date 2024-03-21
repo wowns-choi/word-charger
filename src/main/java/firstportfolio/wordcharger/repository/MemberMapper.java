@@ -30,4 +30,6 @@ public interface MemberMapper {
     String findUserIdByUserNameAndEmailAndDomain(String userName, String email, String domain);
 
     MemberAllDataFindDTO findUserNameAndEmailAndDomainByUserId(String userId);
+
+    void updateDeleteMemberFl(Integer id);
 }
