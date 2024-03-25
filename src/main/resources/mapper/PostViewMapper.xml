@@ -5,9 +5,13 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.PostViewMapper">
 
+    <!--시퀀스의 다음값 얻어오기-->
+    <select id="selectNextSequenceValue" resultType="Integer">
+        SELECT POST_VIEW_SEQUENCE.NEXTVAL FROM DUAL
+    </select>
 
     <insert id="initPostView">
-        INSERT INTO post_view (id, post_id, view_number) VALUES (POST_VIEW_SEQUENCE.NEXTVAL, #{postId}, 0)
+        INSERT INTO post_view (id, post_id, view_number) VALUES (#{sequence}, #{postId}, 0)
     </insert>
 
     <update id="updateByPostId">

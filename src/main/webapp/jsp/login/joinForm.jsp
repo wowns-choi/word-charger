@@ -108,9 +108,6 @@
     <!-- passwordValidation -->
         <script src="../../js/login/passwordValidation.js"></script>
 
-    <!-- idDuplicateCheck -->
-        <script src="../../js/login/nameValidation.js"></script>
-
     <!-- 다음 api script 태그 시작 -->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script src="../../js/login/daumAddressApi.js"> </script>
@@ -128,8 +125,6 @@
             } else{
                 $('#customEmailDomain').hide();
                 $('#customEmailDomain').val(''); // input 박스의 값을 비움
-
-
             }
 
         });

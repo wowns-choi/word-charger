@@ -5,6 +5,11 @@
 
 <mapper namespace="firstportfolio.wordcharger.repository.PostLikeMapper">
 
+    <!--시퀀스의 다음값 얻어오기-->
+    <select id="selectNextSequenceValue" resultType="Integer">
+        SELECT POST_VIEW_SEQUENCE.NEXTVAL FROM DUAL
+    </select>
+
     <insert id="initPostLike">
         INSERT INTO post_like
         (id, post_id, like_number) VALUES (POST_LIKE_SEQUENCE.NEXTVAL, #{postId}, 0)
@@ -17,8 +22,8 @@
     </update>
 
     <select id="findPostLikeCountByPostId" resultType="Integer">
-        SELECT like_number FROM post_like WHERE post_id = #{postId}
-
+        SELECT like_number FROM post_like
+        WHERE post_id = #{postId}
     </select>
 
 

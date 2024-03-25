@@ -35,7 +35,7 @@
                 <div style="width:100%; ${show ? 'display:block;' : 'display:none;'} " id="hiddenPasswordInput">
                             비밀번호 :
                            <form:input type="password" path="postPassword" id="password-input"/>
-                           <span style="color:#ff6b3f; background-color:#fff;" >${notInsertPassword}</span>
+                           <span style="color:#ff6b3f; background-color:#fff; font-size: 12px;" >${notInsertPassword}</span>
                 </div>
             </div>
             <div>
@@ -50,8 +50,6 @@
             <div>
                 <div>
                     작성자 : ${userId}
-                    <form:hidden path="memberId" value="${id}"/>
-                    <input type="hidden" name="userId" value="${userId}">
                 </div>
                 <div>
                     <form:input path="title" style="width:70%; height: 50%; border: 1px solid black;border-radius:5px;" placeholder="제목을 입력해주세요"/>
@@ -66,7 +64,9 @@
             <div>
                 <form:textarea path="content" style="width:100%; height:60%; border:1px solid lightgray; border-radius:5px; resize: none;"/>
             </div>
-            <div></div>
+            <div>
+                <form:errors path="content" style="color:#ff6b3f; background-color:#fff;"/>
+            </div>
         </div>
 
         </form:form>

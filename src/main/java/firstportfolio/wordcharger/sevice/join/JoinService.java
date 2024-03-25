@@ -25,7 +25,6 @@ public class JoinService {
             memberJoinDTO.setMyCheckbox2("0");
         }
 
-
         if(memberJoinDTO.getMyCheckbox3().equals("on")){
             memberJoinDTO.setMyCheckbox3("1");
         } else{

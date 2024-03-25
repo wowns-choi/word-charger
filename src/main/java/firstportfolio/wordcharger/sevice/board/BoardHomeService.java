@@ -4,7 +4,7 @@ import firstportfolio.wordcharger.DTO.PostsDTO;
 import firstportfolio.wordcharger.repository.PostViewMapper;
 import firstportfolio.wordcharger.repository.PostsMapper;
 import firstportfolio.wordcharger.sevice.board.common.PaginationService;
-import firstportfolio.wordcharger.sevice.board.common.WritingDateChangeService;
+import firstportfolio.wordcharger.sevice.board.common.ViewNumberChangeFromNullToZeroService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,8 +26,7 @@ public class BoardHomeService {
 
     private final PostsMapper postsMapper;
     private final PaginationService paginationService;
-    private final WritingDateChangeService writingDateChangeService;
-    private final PostViewMapper postViewMapper;
+    private final ViewNumberChangeFromNullToZeroService viewNumberChangeFromNullToZeroService;
 
     public void findAllPosts(Integer page, Model model){
         Integer currentPage = page; // 현재 페이지
@@ -39,11 +38,11 @@ public class BoardHomeService {
         int startRow = (currentPage - 1) * pageSize;
         List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePosts(startRow, pageSize);
 
-        // 이 changeDate 메서드는 작성날짜를 xxxx(년)-xx(월)-xx(일) 로 표시해주기 위한 것이다.
-        List<PostsDTO> postsList = writingDateChangeService.changeDate(currentPagePosts);
+        // 게시판 홈에서 현재 조회수가 없더라도 비어있지 않고 0 이 입력되도록 하는 서비스
+        List<PostsDTO> currentPagePostsChanged = viewNumberChangeFromNullToZeroService.viewNumberChange(currentPagePosts);
 
         //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
-        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, postsList, model);
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePostsChanged, model);
 
     }
     public void findAllPosts2(Integer page, Model model){
@@ -56,11 +55,8 @@ public class BoardHomeService {
         int startRow = (currentPage - 1) * pageSize;
         List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePostsOrderByLikeNum(startRow, pageSize);
 
-        // 이 changeDate 메서드는 작성날짜를 xxxx(년)-xx(월)-xx(일) 로 표시해주기 위한 것이다.
-        List<PostsDTO> postsList = writingDateChangeService.changeDate(currentPagePosts);
-
         //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
-        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, postsList, model);
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePosts, model);
 
     }
 
@@ -74,11 +70,8 @@ public class BoardHomeService {
         int startRow = (currentPage - 1) * pageSize;
         List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePostsOrderByViewNum(startRow, pageSize);
 
-        // 이 changeDate 메서드는 작성날짜를 xxxx(년)-xx(월)-xx(일) 로 표시해주기 위한 것이다.
-        List<PostsDTO> postsList = writingDateChangeService.changeDate(currentPagePosts);
-
         //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
-        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, postsList, model);
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePosts, model);
 
     }
 

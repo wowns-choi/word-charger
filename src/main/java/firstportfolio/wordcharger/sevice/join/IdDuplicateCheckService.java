@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @RequiredArgsConstructor
 @Service
@@ -21,10 +22,12 @@ public class IdDuplicateCheckService {
 
         String userId = request.get("userId");
         MemberJoinDTO memberById = memberMapper.findMemberById(userId);
+        Map<String, Boolean> map = new ConcurrentHashMap<>();
         if (memberById == null) {
-            return Collections.singletonMap("isAvailable", true);
+            map.put("isAvailable", true);
         }else{
-            return Collections.singletonMap("isAvailable", false);
+            map.put("isAvailable", false);
         }
+        return map;
     }
 }

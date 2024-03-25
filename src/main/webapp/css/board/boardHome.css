@@ -71,10 +71,8 @@
     align-items: center;
     justify-items: center;
     font-size: 12px;
-
 }
 .board-2{
-    display: grid;
     border-bottom: 1px solid lightgray;
 }
 
@@ -87,6 +85,7 @@
     font-size: 12px;
     min-height: 40px; /*각 행의 높이 조절*/
 }
+
 a{
     text-decoration: none;
     color: black;

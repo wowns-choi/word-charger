@@ -26,19 +26,19 @@ public class BoardHomeController {
             model.addAttribute("hecker", hecker);
         }
         boardHomeService.findAllPosts(page, model);
-        return "/contact/boardHome2";
+        return "/contact/boardHome";
     }
 
     @GetMapping("/board-home-order-by-like-num")
     public String boardHomeOrderByLikeNum (@RequestParam(required = false, defaultValue = "1") Integer page, Model model){
         boardHomeService.findAllPosts2(page, model);
-        return "/contact/boardHome2";
+        return "/contact/boardHome";
     }
 
     @GetMapping("/board-home-order-by-view-num")
     public String boardHomeOrderByViewNum (@RequestParam(required = false, defaultValue = "1") Integer page, Model model){
         boardHomeService.findAllPosts3(page, model);
-        return "/contact/boardHome2";
+        return "/contact/boardHome";
     }
 
 

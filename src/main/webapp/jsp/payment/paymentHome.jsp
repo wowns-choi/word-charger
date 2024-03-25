@@ -30,7 +30,7 @@
                     <div id="picture-part-1"></div>
                     <div class="first-text">처음 3개월 무료</div>
                     <div class="second-text">간편하게 로그인하고 이용해보세요</div>
-                    <a href="/show-order-sheet?productId=1" class="Learn-more" id="one-btn">결제하기</a>
+                    <a href="/show-order-sheet?productId=21" class="Learn-more" id="one-btn">결제하기</a>
                 </div>
                 <div id="second-card">
                     <div id="picture-part-2"></div>

@@ -26,13 +26,14 @@ public class JoinController {
     //해싱을 위해서.
     private final PasswordEncoder passwordEncoder;
 
+    private final MemberMapper memberMapper;
+
 
     @GetMapping("/Join-form")
-    public String getJoinFormControllerMethod(HttpServletRequest request,
-                                              Model model,
-                                              @RequestParam String myCheckbox1,
+    public String getJoinFormControllerMethod(@RequestParam String myCheckbox1,
                                               @RequestParam String myCheckbox2,
-                                              @RequestParam String myCheckbox3
+                                              @RequestParam String myCheckbox3,
+                                              Model model
     ){
 
         MemberJoinDTO memberJoinDTO = new MemberJoinDTO();
@@ -48,7 +49,7 @@ public class JoinController {
     public String postJoinFormControllerMethod (@Valid @ModelAttribute MemberJoinDTO memberJoinDTO, BindingResult bindingResult){
         //유효성 검사
         if (memberJoinDTO.getUserId().equals("") ) {
-            bindingResult.rejectValue("userId", null, "아이디를 입력 해주세요");
+            bindingResult.rejectValue("userId", null,"아이디를 입력 해주세요");
         }
         if (memberJoinDTO.getPassword().equals("")) {
             bindingResult.rejectValue("password", null, "비밀번호를 입력해주세요");
@@ -65,7 +66,15 @@ public class JoinController {
         }
 
         if (bindingResult.hasErrors()) {
+            log.info("bindingResult = {}", bindingResult);
             return "/login/joinForm";
+        }
+
+        String email = memberJoinDTO.getEmail();
+        MemberJoinDTO findMember = memberMapper.findMemberById("nv_" + email);
+
+        if (findMember != null) {
+            return "redirect:/login-form?goToNaverLogin=goToNaverLogin";
         }
 
         //checkbox value : on => 1 , null => 0  변환

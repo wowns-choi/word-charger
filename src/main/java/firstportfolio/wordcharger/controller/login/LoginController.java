@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,20 +27,30 @@ public class LoginController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/login-form")
-    public String getLoginFormControllerMethod(Model model) {
+    public String getLoginFormControllerMethod(Model model, @RequestParam(required = false) String goToNaverLogin) {
+        if (goToNaverLogin != null) {
+            model.addAttribute("goToNaverLogin", goToNaverLogin);
+        }
         model.addAttribute("loginDTO", new LoginDTO());
-        return "/login/loginForm2";
+        return "/login/loginForm";
     }
 
     @GetMapping("/login-form-alert-version")
     public String getLoginFormAlertVersionControllerMethod(Model model) {
         model.addAttribute("loginDTO", new LoginDTO());
         model.addAttribute("alreadyMember", "회원가입한 아이디로 로그인해주세요.");
-        return "/login/loginForm2";
+        return "/login/loginForm";
     }
 
     @PostMapping("/login-form")
-    public String postLoginFormControllerMethod(@ModelAttribute LoginDTO loginDTO, HttpServletRequest request) {
+    public String postLoginFormControllerMethod(@Valid @ModelAttribute LoginDTO loginDTO, BindingResult bindingResult, HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            log.info("bindingResult={}", bindingResult);
+
+            return "/login/loginForm";
+        }
+
         String id = loginDTO.getId();
         String password = loginDTO.getPassword();
         String viewPath = loginService.loginCheck(id, password, request);

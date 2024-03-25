@@ -16,6 +16,10 @@ public class TermsOfUseController {
     public String postTermsOfUseControllerMethod(@RequestParam(required = false) String myCheckbox1,
                                                  @RequestParam(required = false) String myCheckbox2,
                                                  @RequestParam(required = false) String myCheckbox3){
+        log.info("mycheckbox1={}", myCheckbox1);
+        log.info("mycheckbox2={}", myCheckbox2);
+        log.info("mycheckbox3={}", myCheckbox3);
+
         return "redirect:/Join-form?" + "myCheckbox1=" + myCheckbox1+ "&" + "myCheckbox2=" + myCheckbox2+ "&"  + "myCheckbox3=" + myCheckbox3;
     }
 }

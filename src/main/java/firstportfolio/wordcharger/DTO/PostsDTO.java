@@ -11,8 +11,7 @@ public class PostsDTO {
     private Integer memberId;
     private String title;
     private Integer isPrivate;
-    private Date writingDate;
-    private String stringWritingDate;
+    private String writingDate;
     private String content;
     private String deletePostFl;
 

@@ -5,7 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PostViewMapper {
 
-    void initPostView (Integer postId);
+    Integer selectNextSequenceValue ();
+    void initPostView (Integer sequence, Integer postId);
 
     void updateByPostId (Integer postId);
 

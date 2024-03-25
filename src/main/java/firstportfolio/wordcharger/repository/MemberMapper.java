@@ -11,11 +11,10 @@ public interface MemberMapper {
 
     String findUserIdById(Integer id);
 
-    void insertMember(String id, String password, String userName);
+    void insertMember(Integer nextSequenceValue, String userId, String password, String userName);
 
     Integer selectNextSequenceValue ();
 
-    void insertMemberNaverVersion (Integer sequence, String id, String password, String userName);
 
 
     MemberAllDataFindDTO findMemberTotalData(String id);

@@ -1,5 +1,6 @@
 package firstportfolio.wordcharger.DTO;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -7,7 +8,6 @@ import lombok.Data;
 public class MemberJoinDTO {
     private Integer id;
     private String userId;
-
 
     private String password;
     private String userName;

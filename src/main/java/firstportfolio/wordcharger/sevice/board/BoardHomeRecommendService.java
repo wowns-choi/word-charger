@@ -4,7 +4,6 @@ import firstportfolio.wordcharger.DTO.PostsDTO;
 import firstportfolio.wordcharger.repository.PostViewMapper;
 import firstportfolio.wordcharger.repository.PostsMapper;
 import firstportfolio.wordcharger.sevice.board.common.PaginationService;
-import firstportfolio.wordcharger.sevice.board.common.WritingDateChangeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,6 @@ import java.util.List;
 public class BoardHomeRecommendService {
     private final PostsMapper postsMapper;
     private final PaginationService paginationService;
-    private final WritingDateChangeService writingDateChangeService;
     private final PostViewMapper postViewMapper;
 
     public void findAllPosts(Integer page, Model model){
@@ -44,10 +42,10 @@ public class BoardHomeRecommendService {
 
 
         // 이 changeDate 메서드는 작성날짜를 xxxx(년)-xx(월)-xx(일) 로 표시해주기 위한 것이다.
-        List<PostsDTO> postsList = writingDateChangeService.changeDate(currentPagePosts);
+        //List<PostsDTO> postsList = writingDateChangeService.changeDate(currentPagePosts);
 
         //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
-        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, postsList, model);
+        //paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, postsList, model);
 
     }
 }

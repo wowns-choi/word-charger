@@ -21,12 +21,35 @@
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
   function naverSignInCallback() {
     let name = naver_id_login.getProfileData('name');
-    let nickname = naver_id_login.getProfileData('nickname');
     let email = naver_id_login.getProfileData('email');
     let id = naver_id_login.getProfileData('id');
-    let phone = naver_id_login.getProfileData('phone');
 
-    window.location.href = '/?name=' + name + "&nickname=" + nickname + "&email=" + email +"&id=" + id;
+    fetch('/make-account', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'name': name,
+        'email': email,
+        'id' : id,
+      }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(data => {
+        if(data == 'createAccount' || data == 'alreadyExistsByNaver'){
+          window.location.href = '/';
+        } else if (data == 'alreadyExistByWordCharger') {
+          alert('회원가입 이력이 확인되었습니다. 해당 아이디로 로그인해주세요.');
+          window.location.href = '/login-form';
+        }
+    })
+    .catch(error => console.error('There has been a problem with your fetch operation:', error));
 
 
   }

@@ -12,10 +12,10 @@
 
     <!--최신순 조회 -->
     <select id="findCurrentPagePosts" resultType="PostsDTO">
-        SELECT posts.*, post_view.view_number, member.user_id
+        SELECT posts.id, posts.member_id, posts.title, posts.is_private, TO_CHAR(posts.writing_date, 'YYYY-MM-DD') writing_date, posts.content, posts.delete_post_fl, post_view.view_number, member.user_id
         FROM posts
         LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
-        LEFT OUTER JOIN member ON posts.member_id = member.id
+        JOIN member ON posts.member_id = member.id
         WHERE posts.DELETE_POST_FL = 'N'
         ORDER BY posts.id DESC
         OFFSET #{startRow} ROWS

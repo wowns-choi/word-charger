@@ -28,7 +28,6 @@ public class UpdateUserInfoController {
 
     @GetMapping("/update-user-info")
     public String updateUserInfoControllerMethod(@RequestParam String id, Model model) {
-
         findUserAllDataService.findAllUserInfo(model, id);
         return "/user/userInfoUpdate";
     }

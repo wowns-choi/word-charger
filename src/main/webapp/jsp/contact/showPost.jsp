@@ -244,27 +244,34 @@ document.querySelectorAll('.click-me').forEach(function(button) {
 });
 
 //추천 누르면, 숫자 올라가게 하면서, ajax 통신해서 db에 +1 증가시키기.
-$(document).ready(function() {
-    $("#thumb-up-div").click(function() {
-        $.ajax({
-            url: "/update-and-find-like-num",
-            type: "POST",
-            data: {
-                postId : ${findPost.id}
-            },
-            success: function(response) {
-                if(response.updatedLikeNumber == -1){
-                    alert('좋아요 는 1번만 누르실 수 있습니다');
-                }else{
-                    $("#like-number").text(response.updatedLikeNumber);
-                }
-
-            },
-            error: function(xhr, status, error) {
-                console.error("Error: " + status + " - " + error);
+document.addEventListener("DOMContentLoaded", function(){
+    $("#thumb-up-div>span:nth-child(1)").click(function() {
+        fetch('/update-and-find-like-num', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            postId: ${findPost.id},
+          }),
+        })
+        .then(response => {
+            if(!response.ok){
+                throw new Error('Network response not ok');
             }
-        });
-    });
+            console.log('여기 문제있음2');
+            return response.json();
+        })
+        .then(data => {
+            if(data.updatedLikeNumber == -1){
+                alert('좋아요 는 1번만 누르실 수 있습니다');
+            }else{
+                // 여기서 가져온 updatedLikeNumber 를 출력한다.
+                document.querySelector('#like-number').innerText = data.updatedLikeNumber;
+            }
+        })
+        .catch(error => console.error('There has been a problem with your fetch operation:', error));
+    })
 });
 
 // [comment + reply] update form ajax
