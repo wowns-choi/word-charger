@@ -137,14 +137,14 @@
                         </div>
                         <div id="find-posts">
                             <!--제목, 작성자, 내용 으로 게시글 찾기 -->
-                            <form action="/find-posts-by-title-writer-content" method="post">
+                            <form action="/find-posts-by-title-writer-content" method="post" id="find-writing-form">
                                 <select name="byWhatType">
                                     <option value="title">제목</option>
                                     <option value="writer">작성자</option>
                                     <option value="content">내용</option>
                                 </select>
 
-                                <input type="text" name="hintToFind" />
+                                <input type="text" name="hintToFind" id="hint-to-find"/>
                                 <button type="submit"> 찾기 </button>
                             </form>
                         </div>
@@ -181,7 +181,28 @@
             <div>
             </div>
         </div>
-
     </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 폼 선택
+        const form = document.querySelector('#find-writing-form');
+        let hintToFind = document.querySelector('#hint-to-find');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // 폼의 기본 제출 동작을 방지
+
+            // 만약 아무것도 입력안하고 찾기 버튼을 눌렀을 경우, alert()창으로 내용을 입력해주세요! 라고 안내하고, return.
+            if(hintToFind.value.trim() == '' ){
+                alert('내용을 입력해주세요!');
+                return;
+            } else{
+                // 만약 내용을 입력했다면, form  전송.
+                form.submit();
+            }
+        });
+
+    });
+    </script>
 </body>
 </html>

@@ -26,7 +26,6 @@ public class PaginationService {
         model.addAttribute("currentGroupFirstPage", currentGroupFirstPage);
         model.addAttribute("currentGroupLastPage", currentGroupLastPage);
         model.addAttribute("pageGroupSize", pageGroupSize);
-
     }
 
 }

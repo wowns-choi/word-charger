@@ -26,9 +26,16 @@ public interface PostsMapper {
     public PostsDTO findPostAndPostPasswordById(Integer postId);
 
 
-    public List<PostsDTO> findPostByTitle(String hintToFind);
-    public List<PostsDTO> findPostByMemberId(Integer memberId);
-    public List<PostsDTO> findPostByContent (String content);
+    public Integer findPostCountByTitle(String hintToFind);
+    public Integer findPostCountByMemberId(Integer memberId);
+    public Integer findPostCountByContent (String content);
+
+    public List<PostsDTO> findPostsByTitle (String hintToFind, Integer startRow, Integer pageSize);
+
+    public List<PostsDTO> findPostsByMemberId (Integer memberId, Integer startRow, Integer pageSize);
+
+    public List<PostsDTO> findPostsByContent (String hintToFind, Integer startRow, Integer pageSize);
+
     public Integer selectNextSequenceValue ();
 
     void updatePost(Integer id, String title, Integer isPrivate, String content);

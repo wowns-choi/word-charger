@@ -15,10 +15,7 @@ public interface MemberMapper {
 
     Integer selectNextSequenceValue ();
 
-
-
     MemberAllDataFindDTO findMemberTotalData(String id);
-
 
     String findPwById(Integer id);
 

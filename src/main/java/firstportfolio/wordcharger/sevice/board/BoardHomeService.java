@@ -55,8 +55,11 @@ public class BoardHomeService {
         int startRow = (currentPage - 1) * pageSize;
         List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePostsOrderByLikeNum(startRow, pageSize);
 
+        // 게시판 홈에서 현재 조회수가 없더라도 비어있지 않고 0 이 입력되도록 하는 서비스
+        List<PostsDTO> currentPagePostsChanged = viewNumberChangeFromNullToZeroService.viewNumberChange(currentPagePosts);
+
         //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
-        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePosts, model);
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePostsChanged, model);
 
     }
 
@@ -70,8 +73,11 @@ public class BoardHomeService {
         int startRow = (currentPage - 1) * pageSize;
         List<PostsDTO> currentPagePosts = postsMapper.findCurrentPagePostsOrderByViewNum(startRow, pageSize);
 
+        // 게시판 홈에서 현재 조회수가 없더라도 비어있지 않고 0 이 입력되도록 하는 서비스
+        List<PostsDTO> currentPagePostsChanged = viewNumberChangeFromNullToZeroService.viewNumberChange(currentPagePosts);
+
         //currentPage,pageSize,totalWritings, pageGroupSize, currentPagePosts
-        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePosts, model);
+        paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, currentPagePostsChanged, model);
 
     }
 

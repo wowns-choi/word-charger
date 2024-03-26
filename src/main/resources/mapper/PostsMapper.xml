@@ -24,25 +24,25 @@
 
     <!-- 좋아요 순 조회 -->
     <select id="findCurrentPagePostsOrderByLikeNum" resultType="PostsDTO">
-        SELECT posts.*, post_view.view_number, member.user_id
+        SELECT posts.id, posts.member_id, posts.title, posts.is_private, TO_CHAR(posts.writing_date, 'YYYY-MM-DD') writing_date, posts.content, posts.delete_post_fl, post_view.view_number, member.user_id
         FROM posts
         LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
         LEFT OUTER JOIN member ON posts.member_id = member.id
         LEFT OUTER JOIN post_like ON posts.id = post_like.post_id
         WHERE posts.DELETE_POST_FL = 'N'
-        ORDER BY post_like.like_number DESC
+        ORDER BY post_like.like_number DESC NULLS LAST
         OFFSET #{startRow} ROWS
         FETCH NEXT #{pageSize} ROWS ONLY
     </select>
 
     <!-- 조회수 순 조회 -->
     <select id="findCurrentPagePostsOrderByViewNum" resultType="PostsDTO">
-        SELECT posts.*, post_view.view_number, member.user_id
+        SELECT posts.id, posts.member_id, posts.title, posts.is_private, TO_CHAR(posts.writing_date, 'YYYY-MM-DD') writing_date, posts.content, posts.delete_post_fl, post_view.view_number, member.user_id
         FROM posts
         LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
         LEFT OUTER JOIN member ON posts.member_id = member.id
         WHERE posts.DELETE_POST_FL = 'N'
-        ORDER BY post_view.view_number DESC
+        ORDER BY post_view.view_number DESC NULLS LAST
         OFFSET #{startRow} ROWS
         FETCH NEXT #{pageSize} ROWS ONLY
     </select>
@@ -67,39 +67,64 @@
         AND DELETE_POST_FL = 'N'
     </select>
 
-    <select id="findPostByTitle" resultType="PostsDTO">
-        SELECT posts.*, member.user_id
+    <select id="findPostCountByTitle" resultType="Integer">
+        SELECT COUNT(*)
         FROM posts
-        LEFT OUTER JOIN member ON posts.member_id = member.id
-        WHERE title = #{hintToFind}
+        WHERE title LIKE '%' || #{hintToFind} || '%'
         AND DELETE_POST_FL = 'N'
-        ORDER BY posts.id DESC
+<!--        ORDER BY posts.id DESC -->
     </select>
 
-<!--    SELECT * FROM posts-->
-<!--    WHERE title = #{hintToFind}-->
-
-    <select id="findPostByMemberId" resultType="PostsDTO">
-<!--        SELECT * FROM posts-->
-<!--        WHERE member_id = #{memberId}-->
-        SELECT posts.*, member.user_id
+    <select id="findPostCountByMemberId" resultType="Integer">
+        SELECT COUNT(*)
         FROM posts
-        LEFT OUTER JOIN member ON posts.member_id = member.id
         WHERE member_id = #{hintToFind}
         AND DELETE_POST_FL = 'N'
-        ORDER BY posts.id DESC
+ <!--       ORDER BY posts.id DESC -->
     </select>
 
-    <select id="findPostByContent" resultType="PostsDTO">
-
-<!--        SELECT * FROM posts-->
-<!--        WHERE content LIKE #{hintToFind}-->
-        SELECT posts.*, member.user_id
+    <select id="findPostCountByContent" resultType="Integer">
+        SELECT COUNT(*)
         FROM posts
-        LEFT OUTER JOIN member ON posts.member_id = member.id
-        WHERE content LIKE #{hintToFind}
+        WHERE content LIKE '%' || #{hintToFind} || '%'
         AND DELETE_POST_FL = 'N'
+ <!--       ORDER BY posts.id DESC -->
+    </select>
+
+    <select id="findPostsByTitle" resultType="PostsDTO">
+        SELECT posts.id, posts.member_id, posts.title, posts.is_private, TO_CHAR(posts.writing_date, 'YYYY-MM-DD') writing_date, posts.content, posts.delete_post_fl, post_view.view_number, member.user_id
+        FROM posts
+        LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
+        JOIN member ON posts.member_id = member.id
+        WHERE posts.DELETE_POST_FL = 'N'
+        AND posts.title = #{hintToFind}
         ORDER BY posts.id DESC
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <select id="findPostsByMemberId" resultType="PostsDTO">
+        SELECT posts.id, posts.member_id, posts.title, posts.is_private, TO_CHAR(posts.writing_date, 'YYYY-MM-DD') writing_date, posts.content, posts.delete_post_fl, post_view.view_number, member.user_id
+        FROM posts
+        LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
+        JOIN member ON posts.member_id = member.id
+        WHERE posts.DELETE_POST_FL = 'N'
+        AND posts.member_id = #{memberId}
+        ORDER BY posts.id DESC
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <select id="findPostsByContent" resultType="PostsDTO">
+        SELECT posts.id, posts.member_id, posts.title, posts.is_private, TO_CHAR(posts.writing_date, 'YYYY-MM-DD') writing_date, posts.content, posts.delete_post_fl, post_view.view_number, member.user_id
+        FROM posts
+        LEFT OUTER JOIN post_view ON posts.id = post_view.post_id
+        JOIN member ON posts.member_id = member.id
+        WHERE posts.DELETE_POST_FL = 'N'
+        AND posts.content LIKE '%' || #{hintToFind} || '%'
+        ORDER BY posts.id DESC
+        OFFSET #{startRow} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
     </select>
 
 

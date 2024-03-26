@@ -8,219 +8,103 @@
 
 <html>
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
-
-    <style>
-        /*이거 한글 글꼴임*/
-        @font-face {
-            font-family: 'NanumSquareNeo-Variable';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* right-WC 한글글꼴 */
-        @font-face {
-            font-family: 'MYYeongnamnu';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/MYYeongnamnu.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .fullpagecontainer{
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-        }
-
-
-        .leftpunch{
-            width: 30vw;
-            height: 100vh;
-            background: blue;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            color: white;
-            z-index: 1;
-        }
-
-        .rightpunch{
-            width: 70vw;
-            height: 100vh;
-            background: #fff;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            flex-direction: column; /* 요소들을 세로로 쌓기 위해 추가 */
-            color: black;
-            z-index: 8;
-            margin-top: 6vh;
-            font-family: 'MYYeongnamnu';
-        }
-        .my-up-container-in-right{
-            width: 70vw;
-            height:25vh;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            font-size: 40px;
-        }
-        .my-middle-container-in-right{
-            width: 70vw;
-            height: 5vh;
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: right; /* 가로 중앙 정렬 */
-            border-bottom: 1px solid black;
-        }
-        .button-in-middle-container{
-            width:5vw;
-            border: none;
-            border: 2px solid black;
-            border-radius: 10px;
-            background-color: #fafafa;
-            margin-right: 1vw;
-            transition: background-color 0.5s ease; /* 배경색 변경을 0.5초 동안 부드럽게 진행 */
-
-
-        }
-        .button-in-middle-container:hover{
-            background-color: #ffdead;
-        }
-        .my-down-container-in-right{
-            width: 70vw;
-            height: 70vh;
-
-        }
-        .board{
-            display: grid;
-            grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
-            align-items: center; /* 세로축 중앙 정렬 */
-            justify-items: center; /* 가로축 중앙 정렬 */
-            border-bottom: 1px solid black;
-            font-size: 20px;
-            background-color: #ffdead;
-        }
-        .board-2{
-            display: grid;
-            grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
-            align-items: center; /* 세로축 중앙 정렬 */
-            justify-items: center; /* 가로축 중앙 정렬 */
-            border-bottom: 1px solid #878787;
-            font-size: 15px;
-        }
-
-        .pagination{
-            display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            font-size: 25px;
-            margin-right: 40px;
-        }
-        .pagination span, .pagination a{
-            margin-right: 40px;
-        }
-        .pagination span{
-            color: #ff6b3f;
-        }
-        .pagination a{
-            text-decoration: none;
-            color: inherit;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="../../css/board/boardHome.css">
 </head>
 <body>
 
+<!--네브 바 -->
+    <c:import url="/jsp/common/loginedNavbar2.jsp" />
+<!--네브 바 종료 -->
 
-<!-- 사이드 바 -->
-    <c:import url="/jsp/common/sideBar.jsp" />
-<!-- 사이드 바 종료 -->
+    <div id="board-container">
+        <div id="page-title">
+            <div></div>
+            <div>게시판</div>
+            <div></div>
+        </div>
+        <div id="page-body">
+            <div></div>
+                <div>
+                    <div></div>
+                    <div>
+                        <div class="board">
+                            <span>글번호</span>
+                            <span>제목</span>
+                            <span>작성자</span>
+                            <span>작성날짜</span>
+                            <span>조회수</span>
+                        </div>
+                    </div>
 
-    <div class="fullpagecontainer">
-        <div class="leftpunch">
+
+
+                    <div>
+                        <div class="board-2">
+                            <c:forEach var="post" items="${currentPagePosts}">
+                                <div class="post-row"> <!-- 각 게시물을 감싸는 div 추가 -->
+                                    <span>${post.id}</span>
+                                    <a href="/show-writing?postId=${post.id}">${post.title}</a>
+                                    <span>${post.userId}</span>
+                                    <span>${post.writingDate}</span>
+                                    <span>${post.viewNumber}</span>
+                                </div>
+                            </c:forEach>
+                            <c:if test="${not empty nothing}">
+                             <div style="display:flex; justify-content: center; align-items: center;">   ${nothing} </div>
+                            </c:if>
+                        </div>
+                        <div id="post-make-div">
+                            <a href="/writing-page" class="post-make" >&nbsp;글 작성&nbsp;</a>
+                            <a href="/board-home" class="post-make" >&nbsp;최신순&nbsp;</a>
+                            <a href="/board-home-order-by-like-num" class="post-make" >&nbsp;좋아요순&nbsp;</a>
+                            <a href="/board-home-order-by-view-num" class="post-make" >&nbsp;조회수순&nbsp;</a>
+                        </div>
+                        <div id="find-posts">
+                            <!--제목, 작성자, 내용 으로 게시글 찾기 -->
+                            <form action="/find-posts-by-title-writer-content" method="post">
+                                <select name="byWhatType">
+                                    <option value="title" ${byWhatType == 'title' ? 'selected' : ''} >제목</option>
+                                    <option value="writer" ${byWhatType == 'writer' ? 'selected' : ''} >작성자</option>
+                                    <option value="content" ${byWhatType == 'content' ? 'selected' : ''} >내용</option>
+                                </select>
+
+                                <input type="text" name="hintToFind" value="${hintToFind}" />
+                                <button type="submit"> 찾기 </button>
+                            </form>
+                        </div>
+                        <div id="pagination">
+                            <!-- 페이지네이션 -->
+                            <!-- 이전 그룹 링크 -->
+                            <c:if test="${currentGroupFirstPage != 1}">
+                                <a href="/find-posts-by-title-writer-content?page=${currentGroupFirstPage - pageGroupSize}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">&laquo; 이전</a>
+                            </c:if>
+
+                            <!-- 현재 페이지 그룹의 페이지 링크 forEach 문 돌림 -->
+                            <c:forEach var="i" begin="${currentGroupFirstPage}" end="${currentGroupLastPage}">
+                                <c:choose>
+                                    <c:when test="${i == currentPage}">
+                                        <span class="current-page" style="color:#e06500; ">${i}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/find-posts-by-title-writer-content?page=${i}&byWhatType=${byWhatType}&hintToFind=${hintToFind}"">${i}</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+
+                            <!-- 다음 그룹 링크 -->
+                            <c:if test="${currentGroupLastPage != totalPages}">
+                                <a href="/find-posts-by-title-writer-content?page=${currentGroupLastPage + 1}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">다음 &raquo;</a>
+                            </c:if>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            <div>
+            </div>
         </div>
 
-        <div class="rightpunch">
-
-            <div class="my-up-container-in-right">
-                자유 게시판
-            </div>
-
-            <div class="my-middle-container-in-right">
-                <button class="button-in-middle-container" id="writing-button"> 글 작성 </button>
-            </div>
-
-            <div class="my-down-container-in-right">
-                <div class="board">
-                    <span>글번호</span>
-                    <span>제목</span>
-                    <span>작성자</span>
-                    <span>작성날짜</span>
-                    <span>조회수</span>
-                </div>
-
-                <div class="board-2">
-                    <c:forEach var="post" items="${currentPagePosts}">
-                        <span>${post.id}</span>
-                        <a href="/show-writing?postId=${post.id}"><span style="font-size: 20px;">${post.title}</span></a>
-                        <span>${post.memberId}</span>
-                        <span>${post.writingDate}</span>
-                        <span>${post.viewNumber}</span>
-                    </c:forEach>
-                </div>
-
-            <div class="pagination">
-                <!-- 이전 그룹 링크 -->
-                <c:if test="${currentGroupFirstPage != 1}">
-                    <a href="/find-posts-by-title-writer-content?page=${currentGroupFirstPage - pageGroupSize}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">&laquo; 이전</a>
-                </c:if>
-
-                <!-- 현재 페이지 그룹의 페이지 링크 forEach 문 돌림 -->
-                <c:forEach var="i" begin="${currentGroupFirstPage}" end="${currentGroupLastPage}">
-                    <c:choose>
-                        <c:when test="${i == currentPage}">
-                            <span class="current-page">${i}</span>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/find-posts-by-title-writer-content?page=${i}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">${i}</a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-
-                <!-- 다음 그룹 링크 -->
-                <c:if test="${currentGroupLastPage != totalPages}">
-                    <a href="/find-posts-by-title-writer-content?page=${currentGroupLastPage + 1}&byWhatType=${byWhatType}&hintToFind=${hintToFind}">다음 &raquo;</a>
-                </c:if>
-            </div>
-
-            <form action="/find-posts-by-title-writer-content" method="post">
-                <select name="byWhatType">
-                    <option value="title" ${byWhatType == 'title' ? 'selected' : ''} >제목</option>
-                    <option value="writer" ${byWhatType == 'writer' ? 'selected' : ''} >작성자</option>
-                    <option value="content" ${byWhatType == 'content' ? 'selected' : ''} >내용</option>
-                </select>
-
-                <input type="text" name="hintToFind" value="${hintToFind}" />
-                <button type="submit"> 찾기 </button>
-            </form>
-            </div>
-
-
-
-
-        </div>
-</div>
-
-<script>
-    document.getElementById('writing-button').addEventListener("click",function(){
-        window.location.href="/writing-page"
-    });
-</script>
-
+    </div>
 </body>
 </html>

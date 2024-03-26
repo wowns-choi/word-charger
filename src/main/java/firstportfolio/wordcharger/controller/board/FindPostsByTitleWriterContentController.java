@@ -24,8 +24,11 @@ public class FindPostsByTitleWriterContentController {
     private final FindPostsByTitleWriterService findPostsByTitleWriterService;
     @RequestMapping("find-posts-by-title-writer-content")
     public String findWritingControllerMethod(@RequestParam String byWhatType, @RequestParam String hintToFind, @RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
+
+        log.info("before");
         findPostsByTitleWriterService.findPostsService(byWhatType, hintToFind, page, model);
-        return "/contact/boardHomeFind2";
+        log.info("after");
+        return "/contact/boardHomeFind";
     }
 
 }
