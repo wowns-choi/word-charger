@@ -24,7 +24,7 @@ public class PostValidationService {
     private final InsertPaymentsRowService insertPaymentsRowService;
     private final ProductsMapper productsMapper;
 
-    public void postValidation(ResponseEntity<String> response){
+    public void postValidation(ResponseEntity<String> response) throws JsonProcessingException {
         log.info("response={}", response); // 아래와 같은 것들이 포트원으로부터 왔다.
         //<200 OK OK,
         // { -- HTTP응답의 body 시작
@@ -166,7 +166,7 @@ public class PostValidationService {
             // JsonNode rootNode = objectMapper.readTree(responseBody); 이거 하다가 발생할 수 있는 예외를 처리해줘야 함.
             // 컨트롤러로 다시 예외를 발생시키도록 했음. 왜? 이렇게 잡고 다시 던지면, 로그를 남길 수 있잖아. 그래서, throws 로 던질수도 있었는데, 그렇게 안함.
             log.error("SinglePaymentQueryService : JSON 파싱 중 오류 발생", e);
-            throw new JsonParsingException("JSON 파싱 중 오류 발생");
+            throw e;
         }
 
     }

@@ -37,7 +37,7 @@ public class UpdateUserInfoController {
 
         log.info("userInfo 수정폼에 유저가 입력한 걸 바인딩 한 객체 ={}", memberAllDataFindDTO);
         updateUserInfoService.updateUserInfo(memberAllDataFindDTO, model);
-        return "/home/loginedHome2";
+        return "/home/loginedHome";
     }
 
 

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.update-comment').forEach(function(element) {
         element.addEventListener('click', function() {
             let textarea = this.previousElementSibling;
-            let firstChild = this.previousElementSibling.previousElementSibling;
+            let firstChild = this.parentElement.parentElement.previousElementSibling;
 
             let flag = textarea.style.display === 'block' ? true : false; // 토글 효과 적용
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.update-reply').forEach(function(element) {
         element.addEventListener('click', function() {
             let textarea = this.previousElementSibling;
-            let firstChild = this.previousElementSibling.previousElementSibling;
+            let firstChild = this.parentElement.previousElementSibling;
 
             let flag = textarea.style.display === 'block' ? true : false; // 토글 효과 적용
 

@@ -91,7 +91,7 @@
                     <form action="/insert-comment" method="post">
                     <textarea name="content" id="comment-textarea" style="resize:none;"></textarea>
                     <input type="hidden" name="postId" value="${findPost.id}"/>
-                    <input type="hidden" name="memberId" value="${loginedMemberId.userId}"/>
+                    <input type="hidden" name="memberId" value="${loginedMemberId.id}"/>
                 </div>
                 <div id="comment-register-btn-div">
                     <div>
@@ -117,15 +117,17 @@
                                    ${comment.stringCreateDate}
                                 </span>
                             </div>
+                            <div style="font-size: 12px;" class="comment-content-div">
+                                ${comment.content}
+                            </div>
+
+
                             <div>
 
 <!-------------------------------------------------------------------------------------------->
                                 <!-- 조건문 추가: 로그인한 사용자가 댓글 작성자와 같다면 "삭제" 표시 -->
-                                <c:if test="${loginedMemberId.userId == comment.userId}">
+                                <c:if test="${sessionScope.loginedMember.id == comment.memberId}">
                                 <div>
-                                    <div style="font-size: 12px;" class="comment-content-div">
-                                        ${comment.content}
-                                    </div>
                                     <div style="display:none;">
                                         <form action="/update-comment" method="post" class="update-form">
                                             <textarea name="content" class="update-comment-textarea">${comment.content}</textarea>
@@ -134,7 +136,6 @@
                                             <button class="update-btn">수정하기</button>
                                         </form>
                                     </div>
-
                                     <span type="button" style="color:red; font-size: 12px; cursor:pointer;" class="update-comment">수정</span>
                                     <span style="color:red; font-size: 12px; cursor:pointer;" class="delete-comment" data-comment-id="${comment.id}">삭제</span>
                                 </div>
@@ -158,16 +159,15 @@
                                     <div class="reply" style="margin-left: 2vw; background-color: #fafafa; >
                                          &nbsp  <span style="font-weight: bold; font-size: 17px;">  ${reply.userId}</span> <span style="font-size: 9px; ">${reply.stringCreateDate}</span>
                                     </div>
-
+                                    <div class="reply" style="margin-left: 2vw; font-size: 12px; background-color: #fafafa; border-bottom:0.5px solid lightgray;">
+                                         ${reply.content}
+                                    </div>
 
 
 
 <!-------------------------------------------------------------------------------------------->
-                                <c:if test="${loginedMemberId.userId == reply.userId}">
+                                <c:if test="${sessionScope.loginedMember.id == reply.memberId}">
                                     <div>
-                                        <div class="reply" style="margin-left: 2vw; font-size: 12px; background-color: #fafafa; border-bottom:0.5px solid lightgray;">
-                                             ${reply.content}
-                                        </div>
                                         <div style="display:none;">
                                               <form action="/update-comment" method="post" class="update-form">
                                                   <textarea name="content" class="update-comment-textarea">${reply.content}</textarea>
@@ -235,7 +235,7 @@
 document.querySelectorAll('.click-me').forEach(function(button) {
     button.addEventListener('click', function() {
         // 현재 클릭된 버튼과 관련된 'textarea-reply' 요소만 선택합니다.
-        // 이 예제에서는 버튼이 'textarea-reply' 요소 바로 전에 있다고 가정합니다.
+        // 버튼이 'textarea-reply' 요소 바로 전에 있다고 가정합니다.
         let textareaReply = this.nextElementSibling;
 
         // 'textarea-reply' 요소의 display 상태를 토글합니다.

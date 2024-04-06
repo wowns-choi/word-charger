@@ -1,4 +1,5 @@
 package firstportfolio.wordcharger.controller.payment;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import firstportfolio.wordcharger.DTO.*;
 import firstportfolio.wordcharger.exception.payment.JsonParsingException;
 import firstportfolio.wordcharger.exception.payment.PaymentVerificationException;
@@ -112,7 +113,7 @@ public class OrderV2Controller {
                 //더 결제된 경우 => 정상처리로 보고 정상처리를 해줘야지.
                 return "결제했어야 할 금액 : " + myDbAmount + ", 결제된 금액 : " + portOneAmount + ", " + priceDifference + "가 더 결제되었습니다. 최대한 빠른 시일 내에 당사 직원이 연락드리겠습니다." ;
             }
-        } catch (JsonParsingException e) {
+        } catch (JsonProcessingException e) {
             //JSON 파싱에 실패한 경우
             return "결제 중 오류가 발생되었습니다. JsonParsingException";
         } catch(Exception e){

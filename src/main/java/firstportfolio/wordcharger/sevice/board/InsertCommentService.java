@@ -15,12 +15,10 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 //@Transactional 안쓴다. insert 쿼리 하나니까.
 public class InsertCommentService {
-    private final MemberMapper memberMapper;
     private final CommentsMapper commentsMapper;
 
     public void insertComment(String content, Integer postId, String memberId){
-        MemberJoinDTO findMember = memberMapper.findMemberById(memberId);
         LocalDateTime now = LocalDateTime.now();
-        commentsMapper.insertComment(postId, findMember.getId(), content, now);
+        commentsMapper.insertComment(postId, Integer.parseInt(memberId), content, now);
     }
 }

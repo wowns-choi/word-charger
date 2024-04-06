@@ -6,10 +6,12 @@
 <mapper namespace="firstportfolio.wordcharger.repository.CommentsMapper">
 
     <select id="findCommentsByPostId" resultType="CommentDTO">
-        SELECT * FROM comments
-        WHERE post_id = #{postId}
-        AND DELETE_COMMENT_FL = 'N'
-        ORDER BY create_date ASC
+        SELECT comments.*, member.user_id
+        FROM comments
+        INNER JOIN member ON comments.member_id = member.id
+        WHERE comments.post_id = #{postId}
+        AND comments.delete_comment_fl = 'N'
+        ORDER BY comments.create_date ASC
     </select>
 
     <insert id="insertComment">

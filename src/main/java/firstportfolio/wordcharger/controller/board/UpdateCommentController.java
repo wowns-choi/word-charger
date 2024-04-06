@@ -22,11 +22,6 @@ public class UpdateCommentController {
     @PostMapping("update-comment")
     @ResponseBody
     public Map<String, String> updateCommentControllerMethod(@RequestBody CommentUpdateDTO commentUpdateDTO){
-        log.info("=======commentId == {}", commentUpdateDTO.getCommentId());
-        log.info("=======postId == {}", commentUpdateDTO.getPostId());
-        log.info("=======content == {}", commentUpdateDTO.getContent());
-
-
         commentsMapper.updateContent(commentUpdateDTO.getCommentId(), commentUpdateDTO.getContent());
 
         Map<String, String> map = new HashMap<>();

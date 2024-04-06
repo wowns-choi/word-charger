@@ -18,5 +18,4 @@ public class ReplySaveController {
         replySaveService.replySave(content, postId, memberId, parentCommentId);
         return "redirect:/show-writing?postId=" + postId;
     }
-
 }

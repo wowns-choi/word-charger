@@ -18,6 +18,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Service
@@ -260,5 +261,130 @@ public class ShowPostService {
             } else{
                 model.addAttribute("likeNumber", findPostLikeNumber);
             }
+
+            // 5. 댓글과 관련된 부분 시작
+            // 5-1. 파라미터로 넘겨받은 postId 로 COMMENTS 테이블의 행을 조회해온다.
+            List<CommentDTO> findComments = commentsMapper.findCommentsByPostId(postId);//찾아옴
+
+            for (CommentDTO comment : findComments) {
+                LocalDateTime createDate = comment.getCreateDate();
+                // 댓글들에 들어가있는 2024-03-26T23:20:10 이런 형태의 데이터를 가지고,
+                // 현재 시각으로부터 얼마나 이전에 쓰여진 댓글인지를 구해서,
+                // stringCreateDate 라는 필드에 담아줄 것이다.
+
+                // 현재 시각 구하기
+                LocalDateTime now = LocalDateTime.now();
+
+                // "댓글이 생성된 시각" 과 "현재 시각" 의 차이를
+                // 년도단위로, 월단위로, 일단위로, 시간단위로, 분단위로 계산.
+                long years = ChronoUnit.YEARS.between(createDate, now);
+                long months = ChronoUnit.MONTHS.between(createDate, now);
+                long days = ChronoUnit.DAYS.between(createDate, now);
+                long hours = ChronoUnit.HOURS.between(createDate, now);
+                long minutes = ChronoUnit.MINUTES.between(createDate, now);
+
+                // timeAgeStr 이라는 String 타입 변수를 하나 만들고,
+                // 조건에 따라 다른 문자열이 바인딩 되도록 한다.
+                String timeAgoStr;
+                if (years > 0) {
+                    timeAgoStr = years + "년 전";
+                } else if (months > 0) {
+                    timeAgoStr = months + "개월 전";
+                } else if (days > 0) {
+                    timeAgoStr = days + "일 전";
+                } else if (hours > 0) {
+                    timeAgoStr = hours + "시간 전";
+                } else if (minutes > 0) {
+                    timeAgoStr = minutes + "분 전";
+                } else {
+                    timeAgoStr = "방금 전";
+                }
+
+                // 이렇게 만들어진, timeAgeStr 을 해당 CommentDTO 타입 객체의
+                // stringCreateDate 라는 필드에 담는다.
+                comment.setStringCreateDate(timeAgoStr);
+            }
+
+            // 지금 findComments 라는 List 자료구조에 뭐가 들어있어?
+            // 몇분전에 쓰여졌는지가 stringCreateDate 라는 String 타입 필드에 담겨있는
+            // 해당 게시글과 관련된 댓글들이 CommentDTO 라는 타입객체의 형태로 들어있다.
+
+            // Integer, CommentDTO 타입의 Map 자료구조를 만들고,
+            // findComments 에서 CommentDTO 타입 객체를 하나씩 꺼내와서,
+            // 그 객체안에 들어있는 id필드(COMMENTS 테이블 id컬럼값) 을 키로 하고,
+            // 그 객체자체를 값으로 하는 Map 으로 만듦.
+            Map<Integer, CommentDTO> commentMap = new ConcurrentHashMap<>();
+
+            for (CommentDTO comment : findComments) {
+                commentMap.put(comment.getId(), comment);
+            }
+
+            //findComments 를 for문으로 돌린다.
+            for (CommentDTO comment : findComments) {
+                if (comment.getParentCommentId() != null) { //만약, parentCommentId 필드가 null 이 아니라면, == 대댓글이라면
+                    // 부모인 그 대댓글이 속한 댓글을 찾아야 한다.
+                    // 이를 위해서 아까 commentMap 을 만들어 둔 것이다.
+                    // COMMENTS 테이블의 id 컬럼값만으로 어떤 댓글인지 파악하기 위해서.
+                    CommentDTO parent = commentMap.get(comment.getParentCommentId());
+
+                    // 부모인 댓글을 찾았다면, 그 부모인 댓글에 자식인 대댓글을 박아줘야지.
+                    // 이를 위해 CommentDTO 클래스에서 replies 라는 List<CommentDTO> 타입 필드를 둔거야.
+                    if (parent != null) {
+                        parent.getReplies().add(comment);
+                    }
+                }
+            }
+
+            // 그럼 이제 jsp 에 전달할 건 뭐냐면, findComments 가 아니야.
+            // findComments 에 담겨있는 CommentDTO 들 중, parentCommentId 가 없는 것들만을 jsp에 전달해주면 된다.
+
+            List<CommentDTO> parentCommentList = new ArrayList<>();
+
+            for (CommentDTO comment : findComments) {
+                if (comment.getParentCommentId() == null) {
+                    parentCommentList.add(comment);
+                }
+            }
+
+            //--------페이징 시작----------
+            Integer currentPage = page; // 현재 페이지
+
+            //한 페이지당 댓글 개수
+            Integer pageSize = 5;
+            //전체 코멘트 개수
+            Integer totalPosts = parentCommentList.size(); //전체 comment 의 개수
+
+            //그룹당 페이지수
+            Integer pageGroupSize = 5;
+
+            // 게시물 5개 주는 거는 아래 코드로 됬음.
+            Integer startRow = (currentPage - 1) * pageSize;
+
+            List<CommentDTO> listFinded = new ArrayList<>();
+
+            for (int i = startRow; i < Math.min(parentCommentList.size(), startRow + 5); i++) {
+                CommentDTO commentDTO = parentCommentList.get(i);
+                listFinded.add(commentDTO);
+            }
+
+            for (int i = 0; i < listFinded.size(); i++) {
+                CommentDTO commentDTO = listFinded.get(i);
+                Integer id = commentDTO.getMemberId();
+                String findUserId = memberMapper.findUserIdById(id);
+                listFinded.get(i).setUserId(findUserId);
+            }
+
+            for (int i = 0; i < listFinded.size(); i++) {
+                if (listFinded.get(i).getReplies() != null) {
+                    for (CommentDTO child : listFinded.get(i).getReplies()) {
+                        Integer id = child.getMemberId();
+                        String findUserId = memberMapper.findUserIdById(id);
+                        child.setUserId(findUserId);
+                    }
+                }
+            }
+
+            paginationService.pagination(currentPage,pageSize,totalPosts, pageGroupSize, listFinded, model);
+
         }
 }

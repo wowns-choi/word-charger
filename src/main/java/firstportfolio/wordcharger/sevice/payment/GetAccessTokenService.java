@@ -37,6 +37,8 @@ public class GetAccessTokenService {
         HttpEntity<MultiValueMap<String, String>> entity2 = new HttpEntity<>(map, headers);
 
         TokenResponseDTO responseJson = restTemplate.postForObject(url, entity2, TokenResponseDTO.class);
+
+
         return responseJson;
     }
 

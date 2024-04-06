@@ -2,6 +2,7 @@ package firstportfolio.wordcharger.DTO;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ public class CommentDTO {
     private Integer postId;
     private Integer memberId;
     private String content;
-    private Date createDate;
+    private LocalDateTime createDate;
     private Integer parentCommentId;
     private String deleteCommentFl;
 

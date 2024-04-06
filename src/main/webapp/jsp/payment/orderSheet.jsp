@@ -233,8 +233,7 @@
                 </div>
         </div>
     </div>
-기
-                    </form>
+    </form>
 
 
 
