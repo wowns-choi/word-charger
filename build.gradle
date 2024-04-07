@@ -54,6 +54,15 @@ dependencies {
 
 	// BCrypt를 위한 의존성. 해싱관련.
 	implementation 'org.springframework.security:spring-security-crypto:5.4.5'
+
+	// Auth0 JWT 라이브러리 추가 (카카오 로그인 관련)
+	implementation 'com.auth0:java-jwt:3.19.0'
+
+	// JWKs를 위한 RSA 라이브러리 추가 (카카오 로그인 관련해서 공개키를 가져오기 위하여 추가함)
+	implementation 'com.auth0:jwks-rsa:0.21.1'
+
+
+
 }
 
 tasks.named('test') {

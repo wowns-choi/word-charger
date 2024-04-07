@@ -156,6 +156,11 @@ public class HomeController {
 
         //세션은 있는데, loginedMember 라는 키의 세션은 없다.
         MemberJoinDTO loginedMember = (MemberJoinDTO) session.getAttribute("loginedMember");
+        log.info("lognedMember========={}", loginedMember);
+        log.info("lognedMember========={}", loginedMember);
+        log.info("lognedMember========={}", loginedMember);
+        log.info("lognedMember========={}", loginedMember);
+
         if (loginedMember == null) {
             return "/home/home";
         }
