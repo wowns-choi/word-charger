@@ -18,7 +18,7 @@ import org.springframework.ui.Model;
 public class LoginService {
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
-
+    private final ShowOrdersService showOrdersService;
 
     public String loginCheck(String id, String password, HttpServletRequest request){
 
@@ -54,6 +54,9 @@ public class LoginService {
 
         //만약, 관리자라면, 다른 흐름을 만들어줘야 함.
         if(id.equals("manager1")){
+            // 어떤 페이지를 처음에 보여줄 것인가?
+            // 처음에는 orders 테이블의 모든 행을 마치 게시판 글처럼 보여줄 것이다.
+            showOrdersService.showOrders(1);
             return "/manager/managerHome";
         }
 

@@ -29,4 +29,6 @@ public interface OrdersMapper {
 
     Integer findProductIdByMerchantUid(String merchantUid);
 
+    Integer selectAllCount();
+
 }
